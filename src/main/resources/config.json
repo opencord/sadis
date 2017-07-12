@@ -1,0 +1,35 @@
+{
+	"integration":
+	{
+		"url": "http://localhost:8090",
+		"cache":
+		{
+			"enabled": true,
+			"maxsize": 50,
+			"ttl": "PT1m"
+		}
+	},
+
+	"entries":
+	[
+		{
+			"id": "1",
+			"cTag": 2,
+			"sTag": 2,
+			"nasPortId": "1/1/2",
+			"port": 125,
+			"slot": 3,
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff"
+		},
+
+		{
+			"id": "2",
+			"cTag": 4,
+			"sTag": 4,
+			"nasPortId": "1/1/2",
+			"port": 129,
+			"slot": 4,
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff"
+		}
+	]
+}
