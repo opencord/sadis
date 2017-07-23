@@ -27,6 +27,7 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.onlab.packet.Ip4Address;
 import org.onlab.packet.MacAddress;
 import org.onlab.packet.VlanId;
 import org.onosproject.core.ApplicationId;
@@ -77,11 +78,14 @@ public class SadisManagerTest {
         assertEquals(50, config.getCacheMaxSize());
         assertEquals(Duration.parse("PT1m"), config.getCacheTtl());
         List<SubscriberAndDeviceInformation> entries = config.getEntries();
-        assertEquals(2, entries.size());
+        assertEquals(3, entries.size());
         assertEquals(SubscriberAndDeviceInformationBuilder.build("1", (short) 2, (short) 2, "1/1/2", (short) 125,
-                (short) 3, "aa:bb:cc:dd:ee:ff"), entries.get(0));
+                (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10"), entries.get(0));
         assertEquals(SubscriberAndDeviceInformationBuilder.build("2", (short) 4, (short) 4, "1/1/2", (short) 129,
-                (short) 4, "aa:bb:cc:dd:ee:ff"), entries.get(1));
+                (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1"), entries.get(1));
+        assertEquals(SubscriberAndDeviceInformationBuilder.build("cc:dd:ee:ff:aa:bb", (short) -1, (short) -1, null,
+                (short) -1,
+                (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12"), entries.get(2));
 
     }
 
@@ -90,15 +94,25 @@ public class SadisManagerTest {
     private static final class SubscriberAndDeviceInformationBuilder extends SubscriberAndDeviceInformation {
 
         public static SubscriberAndDeviceInformation build(String id, short cTag, short sTag, String nasPortId,
-                short port, short slot, String mac) {
+                short port, short slot, String mac, String nasId, String ipAddress) {
             SubscriberAndDeviceInformation info = new SubscriberAndDeviceInformation();
             info.setId(id);
-            info.setCTag(VlanId.vlanId(cTag));
-            info.setSTag(VlanId.vlanId(sTag));
+            if (cTag != -1) {
+                info.setCTag(VlanId.vlanId(cTag));
+            }
+            if (sTag != -1) {
+                info.setSTag(VlanId.vlanId(sTag));
+            }
             info.setNasPortId(nasPortId);
-            info.setPort(port);
-            info.setSlot(slot);
+            if (port != -1) {
+                info.setPort(port);
+            }
+            if (slot != -1) {
+                info.setSlot(slot);
+            }
             info.setHardwareIdentifier(MacAddress.valueOf(mac));
+            info.setIPAddress(Ip4Address.valueOf(ipAddress));
+            info.setNasId(nasId);
             return info;
         }
     }

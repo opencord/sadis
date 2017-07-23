@@ -17,6 +17,7 @@ package org.opencord.sadis;
 
 import static org.onosproject.net.config.basics.SubjectFactories.APP_SUBJECT_FACTORY;
 
+import java.net.MalformedURLException;
 import java.util.Set;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -102,6 +103,17 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
         this.log.info("Cache Mac Size: {}", cfg.getCacheMaxSize());
         this.log.info("Cache TTL:      {}", cfg.getCacheTtl().getSeconds());
         this.log.info("Entries:        {}", cfg.getEntries());
+
+        // if the url is not present then assume data is in netcfg
+        try {
+            if (cfg.getUrl() == null) {
+                configure(cfg);
+            } else {
+                configure(cfg.getUrl().toString(), cfg.getCacheMaxSize(), cfg.getCacheTtl().getSeconds());
+            }
+        } catch (MalformedURLException mUrlEx) {
+            this.log.error("Invalid URL specified: {}", mUrlEx);
+        }
     }
 
     /**

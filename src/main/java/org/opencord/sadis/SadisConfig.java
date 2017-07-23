@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.onlab.packet.Ip4Address;
 import org.onlab.packet.VlanId;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.net.config.Config;
@@ -58,7 +59,9 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *             "nasportid"          : string,
  *             "port"               : int,
  *             "slot"               : int,
- *             "hardwareidentifier" : string
+ *             "hardwareidentifier" : string,
+ *             "ipAddress"          : string,
+ *             "nasId"              : string
  *         }, ...
  *     ]
  * }
@@ -151,6 +154,7 @@ public class SadisConfig extends Config<ApplicationId> {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(VlanId.class, new VlanIdDeserializer());
+        module.addDeserializer(Ip4Address.class, new Ip4AddressDeserializer());
         mapper.registerModule(module);
         final JsonNode entries = this.object.path(SADIS_ENTRIES);
         entries.forEach(entry -> {
@@ -171,6 +175,16 @@ public class SadisConfig extends Config<ApplicationId> {
             ObjectCodec oc = jp.getCodec();
             JsonNode node = oc.readTree(jp);
             return VlanId.vlanId((short) node.asInt());
+        }
+    }
+
+    public class Ip4AddressDeserializer extends JsonDeserializer<Ip4Address> {
+        @Override
+        public Ip4Address deserialize(JsonParser jp, DeserializationContext ctxt)
+                throws IOException, JsonProcessingException {
+            ObjectCodec oc = jp.getCodec();
+            JsonNode node = oc.readTree(jp);
+            return Ip4Address.valueOf((String) node.asText());
         }
     }
 }
