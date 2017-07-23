@@ -19,7 +19,9 @@
 			"nasPortId": "1/1/2",
 			"port": 125,
 			"slot": 3,
-			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff"
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
+			"ipAddress":"10.10.10.10",
+			"nasId":"XXX-NASID"
 		},
 
 		{
@@ -29,7 +31,16 @@
 			"nasPortId": "1/1/2",
 			"port": 129,
 			"slot": 4,
-			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff"
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
+			"ipAddress":"1.1.1.1",
+			"nasId":"YYY-NASID"
+		},
+
+		{
+			"id": "cc:dd:ee:ff:aa:bb",
+			"hardwareIdentifier": "cc:dd:ee:ff:aa:bb",
+			"ipAddress":"12.12.12.12",
+			"nasId":"CCC-NASID"
 		}
 	]
 }

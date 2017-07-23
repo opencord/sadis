@@ -15,6 +15,7 @@
  */
 package org.opencord.sadis;
 
+import org.onlab.packet.Ip4Address;
 import org.onlab.packet.MacAddress;
 import org.onlab.packet.VlanId;
 
@@ -38,13 +39,19 @@ public class SubscriberAndDeviceInformation {
     String nasPortId;
 
     @JsonProperty(value = "port")
-    int port;
+    int port = -1;
 
     @JsonProperty(value = "slot")
-    int slot;
+    int slot = -1;
 
     @JsonProperty(value = "hardwareIdentifier")
     MacAddress hardwareIdentifier;
+
+    @JsonProperty(value = "ipAddress")
+    Ip4Address ipAddress;
+
+    @JsonProperty(value = "nasId")
+    String nasId;
 
     SubscriberAndDeviceInformation() {
     }
@@ -105,6 +112,21 @@ public class SubscriberAndDeviceInformation {
         this.hardwareIdentifier = hardwareIdentifier;
     }
 
+    public final Ip4Address ipAddress() {
+        return this.ipAddress;
+    }
+
+    public final void setIPAddress(final Ip4Address ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public final String nasId() {
+        return this.nasId;
+    }
+
+    public final void setNasId(final String nasId) {
+        this.nasId = nasId;
+    }
     /*
      * (non-Javadoc)
      *
@@ -121,6 +143,8 @@ public class SubscriberAndDeviceInformation {
         result = prime * result + this.port;
         result = prime * result + (this.sTag == null ? 0 : this.sTag.hashCode());
         result = prime * result + this.slot;
+        result = prime * result + (this.ipAddress == null ? 0 : this.ipAddress.hashCode());
+        result = prime * result + (this.nasId == null ? 0 : this.nasId.hashCode());
         return result;
     }
 
@@ -169,6 +193,20 @@ public class SubscriberAndDeviceInformation {
         } else if (!this.nasPortId.equals(other.nasPortId)) {
             return false;
         }
+        if (this.nasId == null) {
+            if (other.nasId != null) {
+                return false;
+            }
+        } else if (!this.nasId.equals(other.nasId)) {
+            return false;
+        }
+        if (this.ipAddress == null) {
+            if (other.ipAddress != null) {
+                return false;
+            }
+        } else if (!this.ipAddress.equals(other.ipAddress())) {
+            return false;
+        }
         if (this.port != other.port) {
             return false;
         }
@@ -208,6 +246,10 @@ public class SubscriberAndDeviceInformation {
         buf.append(this.slot);
         buf.append(",hardwareIdentifier:");
         buf.append(this.hardwareIdentifier);
+        buf.append(",ipaddress:");
+        buf.append(this.ipAddress);
+        buf.append(",nasId:");
+        buf.append(this.nasId);
         buf.append(']');
 
         return buf.toString();

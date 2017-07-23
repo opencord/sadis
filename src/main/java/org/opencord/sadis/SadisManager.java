@@ -102,6 +102,8 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
         this.log.info("Cache Mac Size: {}", cfg.getCacheMaxSize());
         this.log.info("Cache TTL:      {}", cfg.getCacheTtl().getSeconds());
         this.log.info("Entries:        {}", cfg.getEntries());
+
+        configure(cfg);
     }
 
     /**
