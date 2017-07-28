@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1a2d67_2288b0e6",
+        "filename": "src/main/java/org/opencord/sadis/SadisManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-28T16:40:56Z",
+      "side": 1,
+      "message": "need to add a log.trace here so that when debugging we can understand where the data is coming from.",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_e2699826",
+        "filename": "src/main/java/org/opencord/sadis/SubscriberAndDeviceInformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-28T16:40:56Z",
+      "side": 1,
+      "message": "Attempting to understand why you decided to abstract away the cache. The original thought was the cache would be used regardless if the data came from the the config or from a remote call. This way the same code path was exercised regardless of the source of the data.\n\nWould you please explain why you decided to abstract the cache in this way? Also, if we are to abstract the cache we need to put it in a separate source file.",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_c2769c06",
+        "filename": "src/main/resources/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-28T16:40:56Z",
+      "side": 1,
+      "message": "need to convert to tabs or the others to spaces",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_a273a014",
+        "filename": "src/main/resources/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-28T16:40:56Z",
+      "side": 1,
+      "message": "spaces or tabs",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_8260a436",
+        "filename": "src/main/resources/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-28T16:40:56Z",
+      "side": 1,
+      "message": "spaces or tabs",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
