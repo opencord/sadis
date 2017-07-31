@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a1a2d67_6d945937",
+        "filename": "src/main/java/org/opencord/sadis/SadisManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-07-31T04:32:31Z",
+      "side": 1,
+      "message": "Agreed",
+      "parentUuid": "1a1a2d67_2288b0e6",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a1a2d67_e2699826",
         "filename": "src/main/java/org/opencord/sadis/SubscriberAndDeviceInformationAdapter.java",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1a1a2d67_8d8fb523",
+        "filename": "src/main/java/org/opencord/sadis/SubscriberAndDeviceInformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-07-31T04:32:31Z",
+      "side": 1,
+      "message": "My understanding is that the cache is required only when the amount of data is huge and we don\u0027t want all the instances to have a copy. When the data comes from ONOS configuration, each of the instances already has a copy, so there isn\u0027t a reason to cache it.\n\nYes I agree that it might be better to have the cache feed of the ONOS configuration also, but only from a testing perspective, so that the same code path is tested for external or internal data source.\n\nLet me know your thoughts, I can change if you still want the cache to be used irrespective of the data source.",
+      "parentUuid": "1a1a2d67_e2699826",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a1a2d67_c2769c06",
         "filename": "src/main/resources/config.json",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2017-07-28T16:40:56Z",
       "side": 1,
       "message": "need to convert to tabs or the others to spaces",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_4d999d6d",
+        "filename": "src/main/resources/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-07-31T04:32:31Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "1a1a2d67_c2769c06",
       "revId": "203629cf4a97c9d41025101510b7a9107699298d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
