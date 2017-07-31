@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "1a1a2d67_adf8314a",
+        "filename": "src/main/java/org/opencord/sadis/SubscriberAndDeviceInformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-07-31T18:36:56Z",
+      "side": 1,
+      "message": "I would like to use the same code paths if possible, so using the cache everywhere would be my preference.",
+      "parentUuid": "1a1a2d67_8d8fb523",
+      "revId": "203629cf4a97c9d41025101510b7a9107699298d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a1a2d67_c2769c06",
         "filename": "src/main/resources/config.json",
         "patchSetId": 1
