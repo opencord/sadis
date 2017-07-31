@@ -23,7 +23,7 @@
         <relativePath></relativePath>
     </parent>
 
-    <groupId>org.opencord.sadis</groupId>
+    <groupId>org.opencord</groupId>
     <artifactId>sadis</artifactId>
     <version>1.0.0</version>
     <packaging>bundle</packaging>
