@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_12b98ce9",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-08-02T08:37:06Z",
+      "side": 1,
+      "message": "I have a question on the intention of the getSubscriber API.\n\nIf we look at the complete set of APIs, getSubscriber(), deleteSubscriber(), deleteAllSubscribers(), looks like they are supposed to work on the cache and display what is there in the cache or remove things from the cache.\n\nBut the getSubscriber() calls the service.get(), which will pull the data from the source (url) if it does not exist. So we are not giving the correct picture of the cache.\n\nIn my opinion getSubscriber (from REST or CLI) should not end up bringing data into the cache.\n\nWith the current implementation after we do a deleteSubscriber(XX), if we call getSubscriber(XX) again, it will still show up which is confusing.\n\nWe should take David\u0027s inputs also on this, as to what his intention was for these APIs.",
+      "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
