@@ -17,6 +17,10 @@ package org.opencord.sadis.rest;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.onosproject.rest.AbstractWebResource;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.opencord.sadis.SubscriberAndDeviceInformationService;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.onlab.util.ItemNotFoundException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,8 +39,12 @@ import javax.ws.rs.core.Response;
 /**
  * Subscriber And Device Information Service web resource.
  */
-@Path("sadis")
-public class AppWebResource extends AbstractWebResource {
+@Path("sadisApp")
+public class SadisWebResource extends AbstractWebResource {
+    private final ObjectNode root = mapper().createObjectNode();
+    private final ArrayNode node = root.putArray("entry");
+    private static final String SUBSCRIBER_NOT_FOUND = "Subscriber not found";
+    private final SubscriberAndDeviceInformationService service = get(SubscriberAndDeviceInformationService.class);
 
     /**
      * Get subscriber object.
@@ -50,8 +58,12 @@ public class AppWebResource extends AbstractWebResource {
     @Path("/subscriber/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSubscriber(@PathParam("id") String id) {
-        ObjectNode node = mapper().createObjectNode().put("hello", "world");
-        return ok(node).build();
+        final SubscriberAndDeviceInformation entry = service.get(id);
+        if (entry == null) {
+           throw new ItemNotFoundException(SUBSCRIBER_NOT_FOUND);
+        }
+        node.add(codec(SubscriberAndDeviceInformation.class).encode(entry, this));
+        return ok(root).build();
     }
 
     /**
@@ -95,6 +107,19 @@ public class AppWebResource extends AbstractWebResource {
     @DELETE
     @Path("/subscriber/{id}")
     public Response deleteSubscriber(@PathParam("id") String id) {
+        service.invalidateId(id);
+        return Response.noContent().build();
+    }
+
+    /**
+      * Delete all the subscriber objects.
+      *
+      * @return 204 NoContent
+      */
+    @DELETE
+    @Path("/subscriber/")
+    public Response deleteAllSubscribers() {
+        service.invalidateAll();
         return Response.noContent().build();
     }
 }

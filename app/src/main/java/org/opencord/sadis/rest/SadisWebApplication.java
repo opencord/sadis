@@ -23,9 +23,9 @@ import java.util.Set;
 /**
  * Subscriber And Device Infomration Service REST API web application.
  */
-public class AppWebApplication extends AbstractWebApplication {
+public class SadisWebApplication extends AbstractWebApplication {
     @Override
     public Set<Class<?>> getClasses() {
-        return getClasses(AppWebResource.class);
+        return getClasses(SadisWebResource.class);
     }
 }
