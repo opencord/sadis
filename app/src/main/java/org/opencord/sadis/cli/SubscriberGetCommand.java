@@ -18,6 +18,8 @@ package org.opencord.sadis.cli;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.onosproject.cli.AbstractShellCommand;
+import org.opencord.sadis.SubscriberAndDeviceInformationService;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
 
 /**
  * Subscriber And Device Information Service CLI.
@@ -28,9 +30,15 @@ public class SubscriberGetCommand extends AbstractShellCommand {
     @Argument(index = 0, name = "ID", description = "subscriber ID", required = true, multiValued = false)
     String id;
 
+    private SubscriberAndDeviceInformationService sadisService = get(SubscriberAndDeviceInformationService.class);
+
     @Override
     protected void execute() {
-        print("Hello %s", "World");
+        SubscriberAndDeviceInformation info = sadisService.get(id);
+        if (info != null) {
+           print(info.toString());
+        } else {
+           print("Subscriber not found");
+        }
     }
-
 }

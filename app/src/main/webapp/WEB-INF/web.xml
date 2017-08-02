@@ -45,7 +45,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>org.opencord.sadis.rest.AppWebApplication</param-value>
+            <param-value>org.opencord.sadis.rest.SadisWebApplication</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

@@ -26,6 +26,13 @@ public interface SubscriberAndDeviceInformationService {
     public void invalidateAll();
 
     /**
+      * Removes the information associated with the given ID.
+      * @param id
+      *           key to information
+      */
+    public void invalidateId(String id);
+
+    /**
      * Return the information associated with the given ID.
      *
      * @param id
