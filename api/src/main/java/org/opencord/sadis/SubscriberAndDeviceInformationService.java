@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-present Open Networking Laboratory
+ * Copyright 2017-present Open Networking Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ public interface SubscriberAndDeviceInformationService {
     public void invalidateAll();
 
     /**
+      * Removes the information associated with the given ID.
+      * @param id
+      *           key to information
+      */
+    public void invalidateId(String id);
+
+    /**
      * Return the information associated with the given ID.
      *
      * @param id
@@ -33,4 +40,13 @@ public interface SubscriberAndDeviceInformationService {
      * @return information associated with ID, if available, else null
      */
     public SubscriberAndDeviceInformation get(String id);
+
+    /**
+     * Return the information associated with the given ID from the cache.
+     *
+     * @param id
+     *            key to information
+     * @return information associated with ID, if available in the cache, else null
+     */
+    public SubscriberAndDeviceInformation getfromCache(String id);
 }

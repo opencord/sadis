@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-present Open Networking Laboratory
+ * Copyright 2017-present Open Networking Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import org.onosproject.core.CoreServiceAdapter;
 import org.onosproject.net.config.Config;
 import org.onosproject.net.config.ConfigApplyDelegate;
 import org.onosproject.net.config.NetworkConfigRegistryAdapter;
+import org.onosproject.codec.impl.CodecManager;
 
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 
@@ -66,6 +67,7 @@ public class SadisManagerTest {
         config.init(subject, "sadis-test", testConfig, mapper, delegate);
 
         this.sadis.cfgService = new MockNetworkConfigRegistry(config);
+        this.sadis.codecService = new CodecManager();
         this.sadis.activate();
     }
 

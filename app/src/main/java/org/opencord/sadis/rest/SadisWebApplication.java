@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-present Open Networking Laboratory
+ * Copyright 2017-present Open Networking Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,9 @@ import java.util.Set;
 /**
  * Subscriber And Device Infomration Service REST API web application.
  */
-public class AppWebApplication extends AbstractWebApplication {
+public class SadisWebApplication extends AbstractWebApplication {
     @Override
     public Set<Class<?>> getClasses() {
-        return getClasses(AppWebResource.class);
+        return getClasses(SadisWebResource.class);
     }
 }

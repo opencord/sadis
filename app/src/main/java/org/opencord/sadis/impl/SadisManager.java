@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-present Open Networking Laboratory
+ * Copyright 2017-present Open Networking Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ import org.onosproject.net.config.ConfigFactory;
 import org.onosproject.net.config.NetworkConfigEvent;
 import org.onosproject.net.config.NetworkConfigListener;
 import org.onosproject.net.config.NetworkConfigRegistry;
+import org.onosproject.codec.CodecService;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +59,9 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
     protected NetworkConfigRegistry cfgService;
 
+    @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
+    protected CodecService codecService;
+
     @SuppressWarnings("rawtypes")
     private final Set<ConfigFactory> factories = ImmutableSet
             .of(new ConfigFactory<ApplicationId, SadisConfig>(APP_SUBJECT_FACTORY, SadisConfig.class, "sadis") {
@@ -73,6 +78,7 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
     protected void activate() {
 
         this.appId = this.coreService.registerApplication(SADIS_APP);
+        codecService.registerCodec(SubscriberAndDeviceInformation.class, new SubscriberAndDeviceInformationCodec());
         this.cfgService.addListener(this.cfgListener);
         this.factories.forEach(this.cfgService::registerConfigFactory);
         this.updateConfig();
