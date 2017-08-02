@@ -26,9 +26,12 @@ import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.opencord.sadis.SubscriberAndDeviceInformationService;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
+import org.onlab.packet.VlanId;
+import org.onlab.packet.Ip4Address;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +45,7 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
     private static final long DEFAULT_TTL = 0;
 
     private String url;
+    private ObjectMapper mapper;
     private Cache<String, SubscriberAndDeviceInformation> cache;
     private int maxiumCacheSize = DEFAULT_MAXIMUM_CACHE_SIZE;
     private long cacheEntryTtl = DEFAULT_TTL;
@@ -51,6 +55,14 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
     public SubscriberAndDeviceInformationAdapter() {
         cache = CacheBuilder.newBuilder().maximumSize(maxiumCacheSize)
                 .expireAfterAccess(cacheEntryTtl, TimeUnit.SECONDS).build();
+        mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        SadisConfig config = new SadisConfig();
+        SadisConfig.VlanIdDeserializer vlanID = config.new VlanIdDeserializer();
+        SadisConfig.Ip4AddressDeserializer ip4Address = config.new Ip4AddressDeserializer();
+        module.addDeserializer(VlanId.class, vlanID);
+        module.addDeserializer(Ip4Address.class, ip4Address);
+        mapper.registerModule(module);
     }
 
     /**
@@ -114,6 +126,37 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
      * (non-Javadoc)
      *
      * @see
+     * org.opencord.sadis.SubscriberAndDeviceInformationService#invalidateId()
+     */
+    @Override
+    public void invalidateId(String id) {
+        cache.invalidate(id);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.opencord.sadis.SubscriberAndDeviceInformationService#getfromCache(java.lang.
+     * String)
+     */
+     @Override
+     public SubscriberAndDeviceInformation getfromCache(String id) {
+         Cache<String, SubscriberAndDeviceInformation> local;
+         synchronized (this) {
+           local = cache;
+         }
+         SubscriberAndDeviceInformation info = local.getIfPresent(id);
+         if (info != null) {
+            return info;
+         }
+         return null;
+     }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
      * org.opencord.sadis.SubscriberAndDeviceInformationService#get(java.lang.
      * String)
      */
@@ -134,7 +177,7 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
          * from there, else check for it in the locally configured data
          */
         if (this.url == null) {
-            info = localCfgData.get(id);
+            info = (localCfgData == null) ? null : localCfgData.get(id);
 
             if (info != null) {
                 local.put(id, info);
@@ -150,13 +193,12 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             buf.append(id);
 
             try (InputStream io = new URL(buf.toString()).openStream()) {
-                ObjectMapper mapper = new ObjectMapper();
                 info = mapper.readValue(io, SubscriberAndDeviceInformation.class);
                 local.put(id, info);
                 return info;
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                log.warn("Exception while reading remote data " + e.getMessage());
             }
         }
         log.error("Data not found for id {}", id);
