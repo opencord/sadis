@@ -76,6 +76,7 @@ public class SadisManagerTest {
 
     @Test
     public void testConfiguration() {
+        assertTrue(false);
         SadisConfig config = sadis.cfgService.getConfig(null, SadisConfig.class);
         assertEquals(true, config.getCacheEnabled());
         assertEquals(50, config.getCacheMaxSize());
