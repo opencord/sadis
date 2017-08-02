@@ -16,6 +16,24 @@
       "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_729578e3",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-08-02T17:42:52Z",
+      "side": 1,
+      "message": "Any deletion of a subscriber should be done in the source system (i.e. the upstream system or by modifying the netcfg).\n\nto the point\n\nGET: returns entry from cache or attempts to fetch and return entry\nDELETE {id}: removes an item from cache only\nDELETE {all}: removes all entries from the cache\n\nwe are, unfortunately, somewhat limited by the syntax supported by REST, so we don\u0027t really have a way to express that we are deleting from cache and not upstream.\n\nIf we want to be more explicit in the REST resource naming we could change the path to /cache/subscriber/{id} and /cache/subscriber/. It is a little more verbose, but it does make it clear that we are operating on a cache.",
+      "parentUuid": "fa3479d7_12b98ce9",
+      "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
