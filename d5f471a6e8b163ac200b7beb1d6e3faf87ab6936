@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_3826b169",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-08-03T17:46:26Z",
+      "side": 1,
+      "message": "lets add a GET for /cache/subscriber/{id} that will only pull from the cache, so will return 404 if the subscriber is not in the cache. the GET /subscriber/{id} will first check the cache and if not there will pull it from upstream.",
+      "revId": "d5f471a6e8b163ac200b7beb1d6e3faf87ab6936",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_782c394b",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2017-08-03T17:46:26Z",
+      "side": 1,
+      "message": "lets remove this. SADIS is a pull through cache, so no updating.",
+      "revId": "d5f471a6e8b163ac200b7beb1d6e3faf87ab6936",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
