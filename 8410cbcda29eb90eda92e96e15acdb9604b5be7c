@@ -70,6 +70,24 @@
       "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_185d2dea",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-08-03T17:30:40Z",
+      "side": 1,
+      "message": "ok agreed, as long as there is an option to check if something exists in the cache or not it should be fine.",
+      "parentUuid": "fa3479d7_98ba3d09",
+      "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
