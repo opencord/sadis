@@ -34,6 +34,24 @@
       "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b5574a26",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-08-03T06:33:03Z",
+      "side": 1,
+      "message": "Just to confirm, you mean that DELETE should delete only from the cache? Because in the first statement you are saying \"Any deletion of a subscriber should be done in the source system\"\n\nCan we also have another version of \"GET\" which gets only from the cache? We could have an API on the Sadis Service something like bool isPresetInCache(id), which could be used here before calling get(id) to make sure that only data comes from the cache.\n\nYour thoughts...",
+      "parentUuid": "fa3479d7_729578e3",
+      "revId": "8410cbcda29eb90eda92e96e15acdb9604b5be7c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
