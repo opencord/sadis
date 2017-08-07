@@ -63,7 +63,9 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *             "slot"               : int,
  *             "hardwareidentifier" : string,
  *             "ipAddress"          : string,
- *             "nasId"              : string
+ *             "nasId"              : string,
+ *             "circuitId"          : string,
+ *             "removeId"           : string
  *         }, ...
  *     ]
  * }

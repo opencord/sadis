@@ -33,7 +33,10 @@ public  class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAn
                                     .put("hardwareIdentifier", (entry.hardwareIdentifier() == null) ? "" :
                                           entry.hardwareIdentifier().toString())
                                     .put("ipAddress", (entry.ipAddress() == null) ? "" : entry.ipAddress().toString())
-                                    .put("nasId", entry.nasId());
+                                    .put("nasId", entry.nasId())
+                                    .put("circuiltId", (entry.circuitId() == null) ? "" : entry.circuitId())
+                                    .put("remoteId", (entry.remoteId() == null) ? "" : entry.remoteId());
+
           return result;
       }
 }

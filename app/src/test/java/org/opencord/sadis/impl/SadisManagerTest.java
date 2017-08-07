@@ -85,12 +85,14 @@ public class SadisManagerTest {
         List<SubscriberAndDeviceInformation> entries = config.getEntries();
         assertEquals(3, entries.size());
         assertTrue(SubscriberAndDeviceInformationBuilder.build("1", (short) 2, (short) 2, "1/1/2", (short) 125,
-                (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10").checkEquals(entries.get(0)));
+                (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10", "circuit123", "remote123")
+                .checkEquals(entries.get(0)));
         assertTrue(SubscriberAndDeviceInformationBuilder.build("2", (short) 4, (short) 4, "1/1/2", (short) 129,
-                (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1").checkEquals(entries.get(1)));
+                (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1", "circuit234", "remote234")
+                .checkEquals(entries.get(1)));
         assertTrue(SubscriberAndDeviceInformationBuilder.build("cc:dd:ee:ff:aa:bb", (short) -1, (short) -1, null,
-                (short) -1,
-                (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12").checkEquals(entries.get(2)));
+                (short) -1, (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12", "circuit345", "remote345")
+                .checkEquals(entries.get(2)));
 
     }
 
@@ -99,8 +101,8 @@ public class SadisManagerTest {
     private static final class SubscriberAndDeviceInformationBuilder extends SubscriberAndDeviceInformation {
 
         public static SubscriberAndDeviceInformationBuilder build(String id, short cTag, short sTag, String nasPortId,
-                short port, short slot, String mac, String nasId, String ipAddress) {
-            //SubscriberAndDeviceInformation info = new SubscriberAndDeviceInformation();
+                short port, short slot, String mac, String nasId, String ipAddress, String circuitId, String remoteId) {
+
             SubscriberAndDeviceInformationBuilder info = new SubscriberAndDeviceInformationBuilder();
             info.setId(id);
             if (cTag != -1) {
@@ -119,6 +121,8 @@ public class SadisManagerTest {
             info.setHardwareIdentifier(MacAddress.valueOf(mac));
             info.setIPAddress(Ip4Address.valueOf(ipAddress));
             info.setNasId(nasId);
+            info.setCircuitId(circuitId);
+            info.setRemoteId(remoteId);
             return info;
         }
 
@@ -179,6 +183,20 @@ public class SadisManagerTest {
                 return false;
             }
             if (this.slot() != other.slot()) {
+                return false;
+            }
+            if (this.circuitId() == null) {
+                if (other.circuitId() != null) {
+                    return false;
+                }
+            } else if (!this.circuitId().equals(other.circuitId())) {
+                return false;
+            }
+            if (this.remoteId() == null) {
+                if (other.remoteId() != null) {
+                    return false;
+                }
+            } else if (!this.remoteId().equals(other.remoteId())) {
                 return false;
             }
             return true;

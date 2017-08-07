@@ -53,6 +53,12 @@ public class SubscriberAndDeviceInformation {
     @JsonProperty(value = "nasId")
     String nasId;
 
+    @JsonProperty(value = "circuitId")
+    String circuitId;
+
+    @JsonProperty(value = "remoteId")
+    String remoteId;
+
     protected SubscriberAndDeviceInformation() {
     }
 
@@ -127,6 +133,23 @@ public class SubscriberAndDeviceInformation {
     public final void setNasId(final String nasId) {
         this.nasId = nasId;
     }
+
+    public final String circuitId() {
+        return this.circuitId;
+    }
+
+    public final void setCircuitId(final String circuitId) {
+        this.circuitId = circuitId;
+    }
+
+    public final String remoteId() {
+        return this.remoteId;
+    }
+
+    public final void setRemoteId(final String remoteId) {
+        this.remoteId = remoteId;
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -145,6 +168,8 @@ public class SubscriberAndDeviceInformation {
         result = prime * result + this.slot;
         result = prime * result + (this.ipAddress == null ? 0 : this.ipAddress.hashCode());
         result = prime * result + (this.nasId == null ? 0 : this.nasId.hashCode());
+        result = prime + result + (this.circuitId == null ? 0 : this.circuitId.hashCode());
+        result = prime + result + (this.remoteId == null ? 0 : this.remoteId.hashCode());
         return result;
     }
 
@@ -220,6 +245,20 @@ public class SubscriberAndDeviceInformation {
         if (this.slot != other.slot) {
             return false;
         }
+        if (this.circuitId == null) {
+            if (other.circuitId != null) {
+                return false;
+            }
+        } else if (!this.circuitId.equals(other.circuitId)) {
+            return false;
+        }
+        if (this.remoteId == null) {
+            if (other.remoteId != null) {
+                return false;
+            }
+        } else if (!this.remoteId.equals(other.remoteId)) {
+            return false;
+        }
         return true;
     }
 
@@ -250,6 +289,10 @@ public class SubscriberAndDeviceInformation {
         buf.append(this.ipAddress);
         buf.append(",nasId:");
         buf.append(this.nasId);
+        buf.append(",circuitId:");
+        buf.append(this.circuitId);
+        buf.append(",remoteId:");
+        buf.append(this.remoteId);
         buf.append(']');
 
         return buf.toString();
