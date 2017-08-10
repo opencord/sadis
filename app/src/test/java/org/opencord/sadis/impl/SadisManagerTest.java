@@ -17,6 +17,8 @@ package org.opencord.sadis.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.InputStream;
 import java.time.Duration;
@@ -37,6 +39,8 @@ import org.onosproject.net.config.Config;
 import org.onosproject.net.config.ConfigApplyDelegate;
 import org.onosproject.net.config.NetworkConfigRegistryAdapter;
 import org.onosproject.codec.impl.CodecManager;
+import org.onosproject.net.config.NetworkConfigEvent;
+import org.onosproject.net.config.NetworkConfigListener;
 
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 
@@ -49,26 +53,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SadisManagerTest {
 
     private SadisManager sadis;
+    private ObjectMapper mapper;
+    private ApplicationId subject;
+    private ConfigApplyDelegate delegate;
+    private SadisConfig config;
+    private NetworkConfigEvent event;
+    private static NetworkConfigListener configListener;
+
+     SubscriberAndDeviceInformationBuilder entry1 = SubscriberAndDeviceInformationBuilder.build("1", (short) 2,
+                  (short) 2, "1/1/2", (short) 125, (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10",
+                  "circuit123", "remote123");
+     SubscriberAndDeviceInformationBuilder entry2 = SubscriberAndDeviceInformationBuilder.build("2", (short) 4,
+                  (short) 4, "1/1/2", (short) 129, (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1",
+                  "circuit234", "remote234");
+     SubscriberAndDeviceInformationBuilder entry3 = SubscriberAndDeviceInformationBuilder.build("3", (short) 7,
+                  (short) 8, "1/1/2", (short) 130, (short) 7, "ff:aa:dd:cc:bb:ee", "MNO-NASID", "30.30.30.30",
+                  "circuit567", "remote567");
+     SubscriberAndDeviceInformationBuilder entry4 = SubscriberAndDeviceInformationBuilder.build("4", (short) 2,
+                  (short) 1, "1/1/2", (short) 132, (short) 1, "ff:cc:dd:aa:ee:bb", "PQR-NASID", "15.15.15.15",
+                  "circuit678", "remote678");
 
     @Before
     public void setUp() throws Exception {
-        this.sadis = new SadisManager();
-        this.sadis.coreService = new MockCoreService();
-
-        final InputStream jsonStream = SadisManagerTest.class.getResourceAsStream("/config.json");
-
-        final ObjectMapper mapper = new ObjectMapper();
-        final JsonNode testConfig = mapper.readTree(jsonStream);
-        final ConfigApplyDelegate delegate = new MockConfigDelegate();
-
-        final SadisConfig config = new SadisConfig();
-        final ApplicationId subject = this.sadis.coreService.registerApplication("org.opencord.sadis");
-
-        config.init(subject, "sadis-test", testConfig, mapper, delegate);
-
-        this.sadis.cfgService = new MockNetworkConfigRegistry(config);
-        this.sadis.codecService = new CodecManager();
-        this.sadis.activate();
+        sadis = new SadisManager();
+        sadis.coreService = new MockCoreService();
+        delegate = new MockConfigDelegate();
+        mapper = new ObjectMapper();
+        config = new SadisConfig();
+        subject = sadis.coreService.registerApplication("org.opencord.sadis");
+        config.init(subject, "sadis-local-mode-test", node("/LocalConfig.json"), mapper, delegate);
+        sadis.cfgService = new MockNetworkConfigRegistry(config);
+        event = new NetworkConfigEvent(NetworkConfigEvent.Type.CONFIG_ADDED, subject, config.getClass());
+        sadis.codecService = new CodecManager();
+        sadis.activate();
     }
 
     @After
@@ -94,6 +111,88 @@ public class SadisManagerTest {
                 (short) -1, (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12", "circuit345", "remote345")
                 .checkEquals(entries.get(2)));
 
+    }
+
+    @Test
+    public void testLocalMode() throws Exception {
+        SubscriberAndDeviceInformation entry = sadis.get("3");
+        assertNull(entry);
+
+        entry = sadis.get("1");
+        assertNotNull(entry);
+        assertTrue(entry1.checkEquals(entry));
+
+        entry = sadis.get("2");
+        assertNotNull(entry);
+        assertTrue(entry2.checkEquals(entry));
+
+        sadis.invalidateId("1");
+        entry = sadis.getfromCache("1");
+        assertNull(entry);
+        entry = sadis.get("1");
+        assertNotNull(entry);
+        assertTrue(entry1.checkEquals(entry));
+
+        sadis.invalidateAll();
+        entry = sadis.getfromCache("2");
+        assertNull(entry);
+        entry = sadis.get("2");
+        assertNotNull(entry);
+        assertTrue(entry2.checkEquals(entry));
+    }
+
+    @Test
+    public void testRemoteMode() throws Exception {
+        config.init(subject, "sadis-remote-mode-test", node("/RemoteConfig.json"), mapper, delegate);
+        configListener.event(event);
+
+        SubscriberAndDeviceInformation entry = sadis.get("3");
+        assertNotNull(entry);
+        assertTrue(entry3.checkEquals(entry));
+
+        entry = sadis.get("4");
+        assertNotNull(entry);
+        assertTrue(entry4.checkEquals(entry));
+
+        sadis.invalidateId("3");
+        entry = sadis.getfromCache("3");
+        assertNull(entry);
+        entry = sadis.get("3");
+        assertNotNull(entry);
+        assertTrue(entry3.checkEquals(entry));
+
+        sadis.invalidateAll();
+        entry = sadis.getfromCache("4");
+        assertNull(entry);
+        entry = sadis.get("4");
+        assertNotNull(entry);
+        assertTrue(entry4.checkEquals(entry));
+
+        entry = sadis.get("8");
+        assertNull(entry);
+    }
+
+    @Test
+    public void testModeSwitch() throws Exception {
+        config.init(subject, "sadis-remote-mode-test", node("/RemoteConfig.json"), mapper, delegate);
+        configListener.event(event);
+        SubscriberAndDeviceInformation entry = sadis.get("3");
+        assertNotNull(entry);
+        entry = sadis.get("1");
+        assertNull(entry);
+
+        config.init(subject, "sadis-local-mode-test", node("/LocalConfig.json"), mapper, delegate);
+        configListener.event(event);
+        entry = sadis.get("1");
+        assertNotNull(entry);
+        entry = sadis.get("3");
+        assertNull(entry);
+    }
+
+    private JsonNode node(String jsonFile) throws Exception {
+        final InputStream jsonStream = SadisManagerTest.class.getResourceAsStream(jsonFile);
+        final JsonNode testConfig = mapper.readTree(jsonStream);
+        return testConfig;
     }
 
     // Mocks live here
@@ -308,6 +407,11 @@ public class SadisManagerTest {
         @Override
         public <S, C extends Config<S>> C getConfig(final S subject, final Class<C> configClass) {
             return (C) this.config;
+        }
+
+        @Override
+        public void addListener(NetworkConfigListener listener) {
+            configListener = listener;
         }
     }
 }

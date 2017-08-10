@@ -92,7 +92,7 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
         long cacheEntryTtl = cfg.getCacheTtl().getSeconds();
 
         // Rebuild cache if needed
-        if ((url != null && url != this.url) || maximumCacheSeize != this.maxiumCacheSize ||
+        if (isurlChanged(url) || maximumCacheSeize != this.maxiumCacheSize ||
                 cacheEntryTtl != this.cacheEntryTtl) {
             this.maxiumCacheSize = maximumCacheSeize;
             this.cacheEntryTtl = cacheEntryTtl;
@@ -109,6 +109,13 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             oldCache.invalidateAll();
             oldCache.cleanUp();
         }
+    }
+
+    private boolean isurlChanged(String url) {
+        if (url == null && this.url == null) {
+         return false;
+        }
+        return !((url == this.url) || (url != null && url.equals(this.url)));
     }
 
     /*
