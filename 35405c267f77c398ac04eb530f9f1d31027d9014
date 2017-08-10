@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_d5c08c7e",
+        "filename": "app/src/test/resources/LocalConfig.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2017-08-10T08:28:08Z",
+      "side": 1,
+      "message": "Indentation?",
+      "revId": "35405c267f77c398ac04eb530f9f1d31027d9014",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
