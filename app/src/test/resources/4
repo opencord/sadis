@@ -1,0 +1,13 @@
+{
+      "id": "4",
+      "cTag": 2,
+      "sTag": 1,
+      "nasPortId": "1/1/2",
+      "port": 132,
+      "slot": 1,
+      "hardwareIdentifier": "ff:cc:dd:aa:ee:bb",
+      "ipAddress":"15.15.15.15",
+      "nasId":"PQR-NASID",
+      "circuitId":"circuit678",
+      "remoteId":"remote678"
+}

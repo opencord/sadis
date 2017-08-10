@@ -1,7 +1,6 @@
 {
 	"integration":
 	{
-		"url": "http://localhost:8090",
 		"cache":
 		{
 			"enabled": true,
@@ -37,7 +36,7 @@
 			"ipAddress":"1.1.1.1",
 			"nasId":"YYY-NASID",
 			"circuitId":"circuit234",
-                        "remoteId":"remote234"
+			"remoteId":"remote234"
 		},
 
 		{
