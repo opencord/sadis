@@ -91,6 +91,7 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
      */
     @Deactivate
     protected void deactivate() {
+        cfgService.removeListener(cfgListener);
         this.log.info("Stopped");
     }
 
