@@ -92,6 +92,8 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
     @Deactivate
     protected void deactivate() {
         cfgService.removeListener(cfgListener);
+        this.factories.forEach(this.cfgService::unregisterConfigFactory);
+        codecService.unregisterCodec(SubscriberAndDeviceInformation.class);
         this.log.info("Stopped");
     }
 
