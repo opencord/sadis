@@ -96,7 +96,6 @@ public class SadisManagerTest {
     @Test
     public void testConfiguration() {
         SadisConfig config = sadis.cfgService.getConfig(null, SadisConfig.class);
-        assertEquals(true, config.getCacheEnabled());
         assertEquals(50, config.getCacheMaxSize());
         assertEquals(Duration.parse("PT1m"), config.getCacheTtl());
         List<SubscriberAndDeviceInformation> entries = config.getEntries();

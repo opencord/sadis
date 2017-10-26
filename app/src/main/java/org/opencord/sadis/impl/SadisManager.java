@@ -105,7 +105,6 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
             this.log.warn("Subscriber And Device Information Service (SADIS) configuration not available");
             return;
         }
-        this.log.info("Cache Enabled:  {}", cfg.getCacheEnabled());
         this.log.info("Cache Mac Size: {}", cfg.getCacheMaxSize());
         this.log.info("Cache TTL:      {}", cfg.getCacheTtl().getSeconds());
         this.log.info("Entries:        {}", cfg.getEntries());

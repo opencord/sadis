@@ -48,7 +48,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *     "integration" : {
  *         "url" : "http://{hostname}{:port}",
  *         "cache" : {
- *             "enable"   : true or false,
  *             "maxsize"  : number of entries,
  *             "entryttl" : duration, i.e. 10s or 1m
  *         }
@@ -77,7 +76,6 @@ public class SadisConfig extends Config<ApplicationId> {
 
     private static final String SADIS_INTEGRATION = "integration";
     private static final String SADIS_CACHE = "cache";
-    private static final String SADIS_CACHE_ENABLED = "enabled";
     private static final String SADIS_CACHE_SIZE = "maxsize";
     private static final String SADIS_CACHE_TTL = "ttl";
     private static final String SADIS_URL = "url";
@@ -103,26 +101,6 @@ public class SadisConfig extends Config<ApplicationId> {
         }
 
         return new URL(url.asText());
-    }
-
-    /**
-     * Returns configuration if cache should be used or not. Only used if
-     * integration URL is set.
-     *
-     * @return if cache should be used
-     */
-    public Boolean getCacheEnabled() {
-        final JsonNode integration = this.object.path(SADIS_INTEGRATION);
-        if (integration.isMissingNode()) {
-            return false;
-        }
-
-        final JsonNode cache = integration.path(SADIS_CACHE);
-        if (cache.isMissingNode()) {
-            return false;
-        }
-
-        return cache.path(SADIS_CACHE_ENABLED).asBoolean(false);
     }
 
     public int getCacheMaxSize() {
