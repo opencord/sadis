@@ -38,8 +38,8 @@ public class SubscriberAndDeviceInformation {
     @JsonProperty(value = "nasPortId")
     String nasPortId;
 
-    @JsonProperty(value = "port")
-    int port = -1;
+    @JsonProperty(value = "uplinkPort")
+    int uplinkPort = -1;
 
     @JsonProperty(value = "slot")
     int slot = -1;
@@ -94,12 +94,12 @@ public class SubscriberAndDeviceInformation {
         this.nasPortId = nasPortId;
     }
 
-    public final int port() {
-        return this.port;
+    public final int uplinkPort() {
+        return this.uplinkPort;
     }
 
-    public final void setPort(final int port) {
-        this.port = port;
+    public final void setUplinkPort(final int uplinkPort) {
+        this.uplinkPort = uplinkPort;
     }
 
     public final int slot() {
@@ -163,7 +163,7 @@ public class SubscriberAndDeviceInformation {
         result = prime * result + (this.hardwareIdentifier == null ? 0 : this.hardwareIdentifier.hashCode());
         result = prime * result + (this.id == null ? 0 : this.id.hashCode());
         result = prime * result + (this.nasPortId == null ? 0 : this.nasPortId.hashCode());
-        result = prime * result + this.port;
+        result = prime * result + this.uplinkPort;
         result = prime * result + (this.sTag == null ? 0 : this.sTag.hashCode());
         result = prime * result + this.slot;
         result = prime * result + (this.ipAddress == null ? 0 : this.ipAddress.hashCode());
@@ -232,7 +232,7 @@ public class SubscriberAndDeviceInformation {
         } else if (!this.ipAddress.equals(other.ipAddress())) {
             return false;
         }
-        if (this.port != other.port) {
+        if (this.uplinkPort != other.uplinkPort) {
             return false;
         }
         if (this.sTag == null) {
@@ -279,8 +279,8 @@ public class SubscriberAndDeviceInformation {
         buf.append(this.sTag);
         buf.append(",nasPortId:");
         buf.append(this.nasPortId);
-        buf.append(",port:");
-        buf.append(this.port);
+        buf.append(",uplinkPort:");
+        buf.append(this.uplinkPort);
         buf.append(",slot:");
         buf.append(this.slot);
         buf.append(",hardwareIdentifier:");

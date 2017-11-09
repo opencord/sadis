@@ -211,7 +211,7 @@ public class SadisManagerTest {
             }
             info.setNasPortId(nasPortId);
             if (port != -1) {
-                info.setPort(port);
+                info.setUplinkPort(port);
             }
             if (slot != -1) {
                 info.setSlot(slot);
@@ -270,7 +270,7 @@ public class SadisManagerTest {
             } else if (!this.ipAddress().equals(other.ipAddress())) {
                 return false;
             }
-            if (this.port() != other.port()) {
+            if (this.uplinkPort() != other.uplinkPort()) {
                 return false;
             }
             if (this.sTag() == null) {
