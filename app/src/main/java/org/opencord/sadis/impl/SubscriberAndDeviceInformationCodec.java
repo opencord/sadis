@@ -28,7 +28,7 @@ public  class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAn
                                     .put("cTag", (entry.cTag() == null) ? "" : entry.cTag().toString())
                                     .put("sTag", (entry.sTag() == null) ? "" : entry.sTag().toString())
                                     .put("nasPortId", entry.nasPortId())
-                                    .put("port", entry.port())
+                                    .put("uplinkPort", entry.uplinkPort())
                                     .put("slot", entry.slot())
                                     .put("hardwareIdentifier", (entry.hardwareIdentifier() == null) ? "" :
                                           entry.hardwareIdentifier().toString())

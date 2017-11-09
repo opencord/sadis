@@ -3,7 +3,7 @@
       "cTag": 7,
       "sTag": 8,
       "nasPortId": "1/1/2",
-      "port": 130,
+      "uplinkPort": 130,
       "slot": 7,
       "hardwareIdentifier": "ff:aa:dd:cc:bb:ee",
       "ipAddress":"30.30.30.30",
