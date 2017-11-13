@@ -81,6 +81,7 @@ public class SadisConfig extends Config<ApplicationId> {
     private static final String SADIS_URL = "url";
     private static final String SADIS_ENTRIES = "entries";
     private static final String DEFAULT_CACHE_TTL = "PT0S";
+    private static final String SUBSCRIBER_ID_SUB_PATTERN = "%s";
 
     /**
      * Returns SADIS integration URL.
@@ -99,7 +100,11 @@ public class SadisConfig extends Config<ApplicationId> {
         if (url.isMissingNode()) {
             return null;
         }
-
+        StringBuffer buf = new StringBuffer(SUBSCRIBER_ID_SUB_PATTERN);
+        if (!url.asText().contains(buf)) {
+            log.error("Error in url, missing {}", SUBSCRIBER_ID_SUB_PATTERN);
+            return null;
+        }
         return new URL(url.asText());
     }
 

@@ -1,6 +1,6 @@
 {
   "integration": {
-    "url": "file:src/test/resources",
+    "url": "file:src/test/resources/%s",
     "cache": {
       "maxsize": 50,
       "ttl": "PT1m"

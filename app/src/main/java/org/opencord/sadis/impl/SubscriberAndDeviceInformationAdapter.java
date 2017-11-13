@@ -192,14 +192,9 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             }
         } else {
             // Augment URL with query parameters
-            StringBuilder buf = new StringBuilder(this.url);
-            if (buf.charAt(buf.length() - 1) != '/') {
-                buf.append('/');
-            }
+            String urlWithSubId = this.url.replaceAll("%s", id);
 
-            buf.append(id);
-
-            try (InputStream io = new URL(buf.toString()).openStream()) {
+            try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, SubscriberAndDeviceInformation.class);
                 local.put(id, info);
                 return info;
