@@ -79,6 +79,7 @@ public class SadisConfig extends Config<ApplicationId> {
     private static final String SADIS_CACHE_SIZE = "maxsize";
     private static final String SADIS_CACHE_TTL = "ttl";
     private static final String SADIS_URL = "url";
+    private static final String SADIS_URL_SUFFIX = "urlSuffix";
     private static final String SADIS_ENTRIES = "entries";
     private static final String DEFAULT_CACHE_TTL = "PT0S";
 
@@ -101,6 +102,20 @@ public class SadisConfig extends Config<ApplicationId> {
         }
 
         return new URL(url.asText());
+    }
+
+    public String getUrlSuffix() {
+        final JsonNode integration = this.object.path(SADIS_INTEGRATION);
+        if (integration.isMissingNode()) {
+            return null;
+        }
+
+        final JsonNode urlSuffix = integration.path(SADIS_URL_SUFFIX);
+        if (urlSuffix.isMissingNode()) {
+            return null;
+        }
+
+        return urlSuffix.asText();
     }
 
     public int getCacheMaxSize() {

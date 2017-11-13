@@ -45,6 +45,7 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
     private static final long DEFAULT_TTL = 0;
 
     private String url;
+    private String urlSuffix;
     private ObjectMapper mapper;
     private Cache<String, SubscriberAndDeviceInformation> cache;
     private int maxiumCacheSize = DEFAULT_MAXIMUM_CACHE_SIZE;
@@ -76,6 +77,7 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             // if the url is not present then assume data is in netcfg
             if (cfg.getUrl() != null) {
                 url = cfg.getUrl().toString();
+                this.urlSuffix = cfg.getUrlSuffix();
             } else {
                 localCfgData = Maps.newConcurrentMap();
 
@@ -198,6 +200,9 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             }
 
             buf.append(id);
+            if (this.urlSuffix != null) {
+                buf.append(this.urlSuffix);
+            }
 
             try (InputStream io = new URL(buf.toString()).openStream()) {
                 info = mapper.readValue(io, SubscriberAndDeviceInformation.class);
