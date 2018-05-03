@@ -92,6 +92,11 @@
             <version>${onos.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.karaf.shell</groupId>
+            <artifactId>org.apache.karaf.shell.console</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -99,6 +104,7 @@
             <plugin>
                 <groupId>org.onosproject</groupId>
                 <artifactId>onos-maven-plugin</artifactId>
+                <version>1.11</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
