@@ -47,3 +47,51 @@ The in memory cache is not a clustered, distributed data structure, such that
 each instance of ONOS in a cluster might have a different set of objects in its
 cache. The thought behind this is that each instance in a cluster will be a
 master for a different set of devices and thus needs different information.
+
+
+### Configuration Paramters
+```
+"org.opencord.sadis" : {
+      "sadis" : {
+        "integration" : {
+          "url": "http://localhost/src/test/resources/%s",
+          "cache" : {
+            "maxsize" : 50,
+            "ttl" : "PT1m"
+          }
+        },
+        "entries" : [ {
+          "id" : "uni-1",
+          "cTag" : 2,
+          "sTag" : 2,
+          "nasPortId" : "PON 1",
+          "circuitId" : "VOLT-1",
+        }, {
+          "id" : "211702604597",
+          "hardwareIdentifier" : "00:1e:67:d2:ef:66",
+          "ipAddress" : "144.60.34.89",
+          "nasId" : "66"
+        }]
+      }
+    }
+```
+* __url__ - A url using which the subscriber and device data can be fetched. It is mandatory to have a `%s` in the url which will be substituted with the id for that subscriber/device to retrieve the data.
+* __maxsize__ - Maximum number of entries that the cache may contain
+* __ttl__ - Number of seconds after last access at which the cache entry expires
+
+Entries can be for Subscribers and OLT Devices; they are differentiated by the id.
+If the url is specified the data for the subscribers/devices are picked from there else the local data is used.
+
+##### For a subscriber
+* __id__ - Unique identifier for the subscriber. This should match the name of the logical port name for this subscriber as can be seen from the ONOS `ports` command
+* __cTag__ - C-Tag to be used for this subscriber
+* __sTag__ - S-Tag to be used for this subscriber
+* __nasPortId__ - NAS Port Id to be used for this subscriber; for example in RADIUS messages
+* __circuitId__ - Circuit Id to be used for this subscriber; for example in DHCP messages
+
+##### For an OLT Device
+* __id__ - Unique identifier for an OLT device. This should match the serial number of the device as can be seen from the ONOS `devices` command
+* __hardwareIdentifier__ - MAC address for this device
+* __ipAddress__ - IP address of this device
+* __nasId__ - NAS Id to be used for this device; for example in RADIUS messages
+
