@@ -32,7 +32,7 @@
 
     <properties>
         <web.context>/onos/sadis</web.context>
-        <api.version>2.0.0-SNAPSHOT</api.version>
+        <api.version>2.0.0</api.version>
         <api.title>Subscriber And Device Information REST API</api.title>
         <api.description>Subscriber And Device Information REST API</api.description>
         <api.package>org.onosproject.sadis.rest</api.package>
