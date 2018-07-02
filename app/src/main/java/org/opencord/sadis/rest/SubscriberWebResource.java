@@ -18,7 +18,8 @@ package org.opencord.sadis.rest;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.onosproject.rest.AbstractWebResource;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.opencord.sadis.SubscriberAndDeviceInformationService;
+import org.opencord.sadis.BaseInformationService;
+import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.onlab.util.ItemNotFoundException;
 
@@ -39,11 +40,13 @@ import javax.ws.rs.core.Response;
  * Subscriber And Device Information Service web resource.
  */
 @Path("sadisApp")
-public class SadisWebResource extends AbstractWebResource {
+public class SubscriberWebResource extends AbstractWebResource {
     private final ObjectNode root = mapper().createObjectNode();
     private final ArrayNode node = root.putArray("entry");
     private static final String SUBSCRIBER_NOT_FOUND = "Subscriber not found";
-    private final SubscriberAndDeviceInformationService service = get(SubscriberAndDeviceInformationService.class);
+    private final SadisService sadisService = get(SadisService.class);
+    private final BaseInformationService<SubscriberAndDeviceInformation> service =
+            sadisService.getSubscriberInfoService();
 
     /**
      * Get subscriber object.
