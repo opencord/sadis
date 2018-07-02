@@ -26,6 +26,6 @@ import java.util.Set;
 public class SadisWebApplication extends AbstractWebApplication {
     @Override
     public Set<Class<?>> getClasses() {
-        return getClasses(SadisWebResource.class);
+        return getClasses(SubscriberWebResource.class, BandwidthProfileWebResource.class);
     }
 }
