@@ -9,5 +9,8 @@
       "ipAddress":"30.30.30.30",
       "nasId":"MNO-NASID",
       "circuitId":"circuit567",
-      "remoteId":"remote567"
+      "remoteId":"remote567",
+      "technologyProfileId":64,
+      "upstreamBandwidthProfile":"10Gb",
+      "downstreamBandwidthProfile":"10Gb"
 }
