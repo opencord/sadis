@@ -62,16 +62,16 @@ public class SadisManagerTest {
 
      SubscriberAndDeviceInformationBuilder entry1 = SubscriberAndDeviceInformationBuilder.build("1", (short) 2,
                   (short) 2, "1/1/2", (short) 125, (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10",
-                  "circuit123", "remote123");
+                  "circuit123", "remote123", 64, "1Gb", "1Gb");
      SubscriberAndDeviceInformationBuilder entry2 = SubscriberAndDeviceInformationBuilder.build("2", (short) 4,
                   (short) 4, "1/1/2", (short) 129, (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1",
-                  "circuit234", "remote234");
+                  "circuit234", "remote234", 64, "10Gb", "10Gb");
      SubscriberAndDeviceInformationBuilder entry3 = SubscriberAndDeviceInformationBuilder.build("3", (short) 7,
                   (short) 8, "1/1/2", (short) 130, (short) 7, "ff:aa:dd:cc:bb:ee", "MNO-NASID", "30.30.30.30",
-                  "circuit567", "remote567");
+                  "circuit567", "remote567", 64, "10Gb", "10Gb");
      SubscriberAndDeviceInformationBuilder entry4 = SubscriberAndDeviceInformationBuilder.build("4", (short) 2,
                   (short) 1, "1/1/2", (short) 132, (short) 1, "ff:cc:dd:aa:ee:bb", "PQR-NASID", "15.15.15.15",
-                  "circuit678", "remote678");
+                  "circuit678", "remote678", 64, "5Gb", "5Gb");
 
     @Before
     public void setUp() throws Exception {
@@ -101,13 +101,16 @@ public class SadisManagerTest {
         List<SubscriberAndDeviceInformation> entries = config.getEntries();
         assertEquals(3, entries.size());
         assertTrue(SubscriberAndDeviceInformationBuilder.build("1", (short) 2, (short) 2, "1/1/2", (short) 125,
-                (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10", "circuit123", "remote123")
+                (short) 3, "aa:bb:cc:dd:ee:ff", "XXX-NASID", "10.10.10.10", "circuit123", "remote123",
+                64, "1Gb", "1Gb")
                 .checkEquals(entries.get(0)));
         assertTrue(SubscriberAndDeviceInformationBuilder.build("2", (short) 4, (short) 4, "1/1/2", (short) 129,
-                (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1", "circuit234", "remote234")
+                (short) 4, "aa:bb:cc:dd:ee:ff", "YYY-NASID", "1.1.1.1", "circuit234", "remote234",
+                64, "10Gb", "10Gb")
                 .checkEquals(entries.get(1)));
         assertTrue(SubscriberAndDeviceInformationBuilder.build("cc:dd:ee:ff:aa:bb", (short) -1, (short) -1, null,
-                (short) -1, (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12", "circuit345", "remote345")
+                (short) -1, (short) -1, "cc:dd:ee:ff:aa:bb", "CCC-NASID", "12.12.12.12", "circuit345", "remote345",
+                64, "10Gb", "10Gb")
                 .checkEquals(entries.get(2)));
 
     }
@@ -119,6 +122,7 @@ public class SadisManagerTest {
 
         entry = sadis.get("1");
         assertNotNull(entry);
+        System.out.println(entry);
         assertTrue(entry1.checkEquals(entry));
 
         entry = sadis.get("2");
@@ -199,7 +203,10 @@ public class SadisManagerTest {
     private static final class SubscriberAndDeviceInformationBuilder extends SubscriberAndDeviceInformation {
 
         public static SubscriberAndDeviceInformationBuilder build(String id, short cTag, short sTag, String nasPortId,
-                short port, short slot, String mac, String nasId, String ipAddress, String circuitId, String remoteId) {
+                short port, short slot, String mac, String nasId, String ipAddress, String circuitId, String remoteId,
+                                                                  int technologyProfileId,
+                                                                  String upstreamBandwidthProfile,
+                                                                  String downstreamBandwidthProfile) {
 
             SubscriberAndDeviceInformationBuilder info = new SubscriberAndDeviceInformationBuilder();
             info.setId(id);
@@ -221,6 +228,14 @@ public class SadisManagerTest {
             info.setNasId(nasId);
             info.setCircuitId(circuitId);
             info.setRemoteId(remoteId);
+
+            if (technologyProfileId != -1) {
+                info.setTechnologyProfileId(technologyProfileId);
+            }
+
+            info.setUpstreamBandwidthProfile(upstreamBandwidthProfile);
+            info.setDownstreamBandwidthProfile(downstreamBandwidthProfile);
+
             return info;
         }
 
@@ -295,6 +310,23 @@ public class SadisManagerTest {
                     return false;
                 }
             } else if (!this.remoteId().equals(other.remoteId())) {
+                return false;
+            }
+            if (this.technologyProfileId() != other.technologyProfileId()) {
+                return false;
+            }
+            if (this.upstreamBandwidthProfile() == null) {
+                if (other.upstreamBandwidthProfile() != null) {
+                    return false;
+                }
+            } else if (!this.upstreamBandwidthProfile().equals(other.upstreamBandwidthProfile())) {
+                return false;
+            }
+             if (this.downstreamBandwidthProfile() == null) {
+                if (other.downstreamBandwidthProfile() != null) {
+                    return false;
+                }
+            } else if (!this.downstreamBandwidthProfile().equals(other.downstreamBandwidthProfile())) {
                 return false;
             }
             return true;

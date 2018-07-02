@@ -195,6 +195,8 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
             String urlWithSubId = this.url.replaceAll("%s", id);
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
+
+
                 info = mapper.readValue(io, SubscriberAndDeviceInformation.class);
                 local.put(id, info);
                 return info;
