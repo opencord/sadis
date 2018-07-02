@@ -24,10 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a unit of information about a subscriber or access device.
  */
-public class SubscriberAndDeviceInformation {
+public class SubscriberAndDeviceInformation extends BaseInformation {
 
-    @JsonProperty(value = "id")
-    String id;
 
     @JsonProperty(value = "sTag")
     VlanId sTag;
@@ -59,15 +57,16 @@ public class SubscriberAndDeviceInformation {
     @JsonProperty(value = "remoteId")
     String remoteId;
 
+    @JsonProperty(value = "technologyProfileId")
+    int technologyProfileId = -1;
+
+    @JsonProperty(value = "upstreamBandwidthProfile")
+    String upstreamBandwidthProfile;
+
+    @JsonProperty(value = "downstreamBandwidthProfile")
+    String downstreamBandwidthProfile;
+
     protected SubscriberAndDeviceInformation() {
-    }
-
-    public final String id() {
-        return this.id;
-    }
-
-    public final void setId(final String id) {
-        this.id = id;
     }
 
     public final VlanId sTag() {
@@ -150,6 +149,30 @@ public class SubscriberAndDeviceInformation {
         this.remoteId = remoteId;
     }
 
+    public final int technologyProfileId() {
+        return this.technologyProfileId;
+    }
+
+    public final void setTechnologyProfileId(final int technologyProfileId) {
+        this.technologyProfileId = technologyProfileId;
+    }
+
+    public final String upstreamBandwidthProfile() {
+        return this.upstreamBandwidthProfile;
+    }
+
+    public final void setUpstreamBandwidthProfile(final String upstreamBandwidthProfile) {
+        this.upstreamBandwidthProfile = upstreamBandwidthProfile;
+    }
+
+    public final String downstreamBandwidthProfile() {
+        return this.downstreamBandwidthProfile;
+    }
+
+    public final void setDownstreamBandwidthProfile(final String downstreamBandwidthProfile) {
+        this.downstreamBandwidthProfile = downstreamBandwidthProfile;
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -170,6 +193,11 @@ public class SubscriberAndDeviceInformation {
         result = prime * result + (this.nasId == null ? 0 : this.nasId.hashCode());
         result = prime + result + (this.circuitId == null ? 0 : this.circuitId.hashCode());
         result = prime + result + (this.remoteId == null ? 0 : this.remoteId.hashCode());
+        result = prime + result + this.technologyProfileId;
+        result = prime + result +
+                (this.upstreamBandwidthProfile == null ? 0 : this.upstreamBandwidthProfile.hashCode());
+        result = prime + result +
+                (this.downstreamBandwidthProfile == null ? 0 : this.downstreamBandwidthProfile.hashCode());
         return result;
     }
 
@@ -259,6 +287,23 @@ public class SubscriberAndDeviceInformation {
         } else if (!this.remoteId.equals(other.remoteId)) {
             return false;
         }
+        if (this.technologyProfileId != other.technologyProfileId) {
+            return false;
+        }
+        if (this.upstreamBandwidthProfile == null) {
+            if (other.upstreamBandwidthProfile != null) {
+                return false;
+            }
+        } else if (!this.upstreamBandwidthProfile.equals(other.upstreamBandwidthProfile)) {
+            return false;
+        }
+        if (this.downstreamBandwidthProfile == null) {
+            if (other.downstreamBandwidthProfile != null) {
+                return false;
+            }
+        } else if (!this.downstreamBandwidthProfile.equals(other.downstreamBandwidthProfile)) {
+            return false;
+        }
         return true;
     }
 
@@ -293,6 +338,12 @@ public class SubscriberAndDeviceInformation {
         buf.append(this.circuitId);
         buf.append(",remoteId:");
         buf.append(this.remoteId);
+        buf.append(",technologyProfileId:");
+        buf.append(this.technologyProfileId);
+        buf.append(",upstreamBandwidthProfile:");
+        buf.append(this.upstreamBandwidthProfile);
+        buf.append(",downstreamBandwidthProfile:");
+        buf.append(this.downstreamBandwidthProfile);
         buf.append(']');
 
         return buf.toString();

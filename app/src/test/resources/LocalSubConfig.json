@@ -21,7 +21,10 @@
 			"ipAddress":"10.10.10.10",
 			"nasId":"XXX-NASID",
 			"circuitId":"circuit123",
-			"remoteId":"remote123"
+			"remoteId":"remote123",
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"1Gb",
+			"downstreamBandwidthProfile":"1Gb"
 		},
 
 		{
@@ -35,7 +38,10 @@
 			"ipAddress":"1.1.1.1",
 			"nasId":"YYY-NASID",
 			"circuitId":"circuit234",
-			"remoteId":"remote234"
+			"remoteId":"remote234",
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"10Gb",
+			"downstreamBandwidthProfile":"10Gb"
 		},
 
 		{
@@ -44,7 +50,10 @@
 			"ipAddress":"12.12.12.12",
 			"nasId":"CCC-NASID",
 			"circuitId":"circuit345",
-                        "remoteId":"remote345"
+			"remoteId":"remote345",
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"10Gb",
+			"downstreamBandwidthProfile":"10Gb"
 		}
 	]
 }

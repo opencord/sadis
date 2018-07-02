@@ -9,5 +9,8 @@
       "ipAddress":"15.15.15.15",
       "nasId":"PQR-NASID",
       "circuitId":"circuit678",
-      "remoteId":"remote678"
+      "remoteId":"remote678",
+      "technologyProfileId":64,
+      "upstreamBandwidthProfile":"5Gb",
+      "downstreamBandwidthProfile":"5Gb"
 }

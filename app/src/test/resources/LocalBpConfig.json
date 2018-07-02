@@ -1,0 +1,26 @@
+{
+  "integration": {
+    "cache": {
+      "maxsize": 60,
+      "ttl": "PT1m"
+    }
+  },
+  "entries": [
+    {
+      "id": "High Speed",
+      "cir": 1000000000,
+      "cbs": 384000,
+      "eir": 100000000,
+      "ebs": 384000,
+      "air": 100000000
+    },
+    {
+      "id": "Home User Speed",
+      "cir": 1000000000,
+      "cbs": 200000,
+      "eir": 100000000,
+      "ebs": 200000,
+      "air": 100000000
+    }
+  ]
+}

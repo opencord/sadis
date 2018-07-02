@@ -15,43 +15,36 @@
  */
 package org.opencord.sadis.impl;
 
-import static org.onosproject.net.config.basics.SubjectFactories.APP_SUBJECT_FACTORY;
-
-import java.util.Set;
-
-import org.apache.felix.scr.annotations.Activate;
+import com.google.common.collect.Lists;
 import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.ReferenceCardinality;
 import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.Activate;
+import org.apache.felix.scr.annotations.Deactivate;
+import org.onosproject.codec.CodecService;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.core.CoreService;
 import org.onosproject.net.config.ConfigFactory;
 import org.onosproject.net.config.NetworkConfigEvent;
 import org.onosproject.net.config.NetworkConfigListener;
 import org.onosproject.net.config.NetworkConfigRegistry;
-import org.onosproject.codec.CodecService;
+import org.opencord.sadis.BaseInformationService;
+import org.opencord.sadis.BandwidthProfileInformation;
+import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.ImmutableSet;
+import java.util.List;
+import java.util.Set;
 
-/**
- * Subscriber And Device Information Service application component. Component
- * that manages the integration of ONOS into a deployment providing a bridge
- * between ONOS and deployment specific information about subscribers and access
- * devices.
- */
 @Service
 @Component(immediate = true)
-public class SadisManager extends SubscriberAndDeviceInformationAdapter {
+public class SadisManager implements SadisService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String SADIS_APP = "org.opencord.sadis";
-    private ApplicationId appId;
-    private final InternalConfigListener cfgListener = new InternalConfigListener();
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
     protected CoreService coreService;
@@ -62,54 +55,60 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
     protected CodecService codecService;
 
-    @SuppressWarnings("rawtypes")
-    private final Set<ConfigFactory> factories = ImmutableSet
-            .of(new ConfigFactory<ApplicationId, SadisConfig>(APP_SUBJECT_FACTORY, SadisConfig.class, "sadis") {
-                @Override
-                public SadisConfig createConfig() {
-                    return new SadisConfig();
-                }
-            });
+    private final InternalConfigListener cfgListener = new InternalConfigListener();
 
-    /**
-     * Initialize the SADIS ONOS application.
-     */
+    private SubscriberManager subscriberManager;
+    private BandwidthProfileManager bandwidthProfileManager;
+
+    private List<InformationAdapter> internalServices = Lists.newArrayList();
+
     @Activate
     protected void activate() {
+        ApplicationId appId = this.coreService.registerApplication(SADIS_APP);
+        cfgService.addListener(this.cfgListener);
 
-        this.appId = this.coreService.registerApplication(SADIS_APP);
-        codecService.registerCodec(SubscriberAndDeviceInformation.class, new SubscriberAndDeviceInformationCodec());
-        this.cfgService.addListener(this.cfgListener);
-        this.factories.forEach(this.cfgService::registerConfigFactory);
-        this.updateConfig();
+        subscriberManager = new SubscriberManager(appId);
+        bandwidthProfileManager = new BandwidthProfileManager(appId);
 
-        this.log.info("Started");
+        internalServices.add(subscriberManager);
+        internalServices.add(bandwidthProfileManager);
+
+        registerAdapters();
+
+        log.info("Started");
     }
 
-    /**
-     * Cleans up resources utilized by the SADIS ONOS application.
-     */
+    private void registerAdapters() {
+        internalServices.forEach(service -> {
+            registerConfigFactory(service.getConfigFactories());
+            registerCodec(service);
+            service.updateConfig(cfgService);
+        });
+    }
+
     @Deactivate
     protected void deactivate() {
         cfgService.removeListener(cfgListener);
-        this.log.info("Stopped");
+        log.info("Stopped");
     }
 
-    /**
-     * Validates the configuration and updates any operational settings that are
-     * affected by configuration changes.
-     */
-    private void updateConfig() {
-        final SadisConfig cfg = this.cfgService.getConfig(this.appId, SadisConfig.class);
-        if (cfg == null) {
-            this.log.warn("Subscriber And Device Information Service (SADIS) configuration not available");
-            return;
-        }
-        this.log.info("Cache Mac Size: {}", cfg.getCacheMaxSize());
-        this.log.info("Cache TTL:      {}", cfg.getCacheTtl().getSeconds());
-        this.log.info("Entries:        {}", cfg.getEntries());
+    private void registerConfigFactory(Set<ConfigFactory> factories) {
+        factories.forEach(cfgService::registerConfigFactory);
+    }
 
-        configure(cfg);
+    private void registerCodec(InformationAdapter service) {
+        codecService.registerCodec(service.getInformationClass(), service.getCodec());
+    }
+
+
+    @Override
+    public BaseInformationService<SubscriberAndDeviceInformation> getSubscriberInfoService() {
+        return subscriberManager;
+    }
+
+    @Override
+    public BaseInformationService<BandwidthProfileInformation> getBandwidthProfileService() {
+        return bandwidthProfileManager;
     }
 
     /**
@@ -121,11 +120,18 @@ public class SadisManager extends SubscriberAndDeviceInformationAdapter {
         public void event(final NetworkConfigEvent event) {
 
             if ((event.type() == NetworkConfigEvent.Type.CONFIG_ADDED
-                    || event.type() == NetworkConfigEvent.Type.CONFIG_UPDATED)
-                    && event.configClass().equals(SadisConfig.class)) {
-                SadisManager.this.updateConfig();
-                SadisManager.this.log.info("Reconfigured");
+                    || event.type() == NetworkConfigEvent.Type.CONFIG_UPDATED)) {
+
+                internalServices.forEach(adapter -> {
+                    if (event.configClass().equals(adapter.getConfigClass())) {
+                        adapter.updateConfig(cfgService);
+                        log.info("Reconfigured");
+                    }
+                });
             }
+
+
         }
     }
 }
+

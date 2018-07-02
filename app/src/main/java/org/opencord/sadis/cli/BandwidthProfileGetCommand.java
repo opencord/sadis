@@ -18,29 +18,29 @@ package org.opencord.sadis.cli;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.onosproject.cli.AbstractShellCommand;
+import org.opencord.sadis.BandwidthProfileInformation;
 import org.opencord.sadis.BaseInformationService;
 import org.opencord.sadis.SadisService;
-import org.opencord.sadis.SubscriberAndDeviceInformation;
 
 /**
- * Subscriber And Device Information Service CLI.
+ * Bandwidth profile information service CLI.
  */
-@Command(scope = "onos", name = "sadis", description = "Subscriber And Device Information Service CLI command")
-public class SubscriberGetCommand extends AbstractShellCommand {
+@Command(scope = "onos", name = "bandwidthProfile", description = "Bandwidth profile information service CLI command")
+public class BandwidthProfileGetCommand extends AbstractShellCommand {
 
-    @Argument(index = 0, name = "ID", description = "subscriber ID", required = true, multiValued = false)
+    @Argument(index = 0, name = "ID", description = "bandwidthProfile ID", required = true, multiValued = false)
     String id;
 
     private SadisService sadisService = get(SadisService.class);
-    private BaseInformationService<SubscriberAndDeviceInformation> service = sadisService.getSubscriberInfoService();
+    private BaseInformationService<BandwidthProfileInformation> service = sadisService.getBandwidthProfileService();
 
     @Override
     protected void execute() {
-        SubscriberAndDeviceInformation info = service.get(id);
+        BandwidthProfileInformation info = service.get(id);
         if (info != null) {
-           print(info.toString());
+            print(info.toString());
         } else {
-           print("Subscriber not found");
+            print("Bandwidth profile not found");
         }
     }
 }

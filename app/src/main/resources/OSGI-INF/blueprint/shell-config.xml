@@ -19,6 +19,9 @@
         <command>
             <action class="org.opencord.sadis.cli.SubscriberGetCommand"/>
         </command>
+        <command>
+            <action class="org.opencord.sadis.cli.BandwidthProfileGetCommand"/>
+        </command>
     </command-bundle>
 
 </blueprint>

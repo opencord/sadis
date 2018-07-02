@@ -23,7 +23,7 @@ import org.opencord.sadis.SubscriberAndDeviceInformation;
 public  class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAndDeviceInformation> {
       @Override
       public ObjectNode encode(SubscriberAndDeviceInformation entry, CodecContext context) {
-          final ObjectNode result = context.mapper().createObjectNode()
+          return context.mapper().createObjectNode()
                                     .put("id", entry.id())
                                     .put("cTag", (entry.cTag() == null) ? "" : entry.cTag().toString())
                                     .put("sTag", (entry.sTag() == null) ? "" : entry.sTag().toString())
@@ -35,8 +35,12 @@ public  class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAn
                                     .put("ipAddress", (entry.ipAddress() == null) ? "" : entry.ipAddress().toString())
                                     .put("nasId", entry.nasId())
                                     .put("circuiltId", (entry.circuitId() == null) ? "" : entry.circuitId())
-                                    .put("remoteId", (entry.remoteId() == null) ? "" : entry.remoteId());
+                                    .put("remoteId", (entry.remoteId() == null) ? "" : entry.remoteId())
+                                    .put("technologyProfileId", entry.technologyProfileId())
+                                    .put("upstreamBandwidthProfile", (entry.upstreamBandwidthProfile() == null) ?
+                                            "" : entry.upstreamBandwidthProfile())
+                                    .put("downstreamBandwidthProfile", (entry.downstreamBandwidthProfile() == null) ?
+                                            "" : entry.downstreamBandwidthProfile());
 
-          return result;
       }
 }

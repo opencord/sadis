@@ -15,39 +15,35 @@
  */
 package org.opencord.sadis;
 
-/**
- * Subscriber And Device Information Service.
- */
-public interface SubscriberAndDeviceInformationService {
+public interface BaseInformationService<T extends BaseInformation> {
 
     /**
      * Removes all cached entries.
      */
-    public void invalidateAll();
+    void invalidateAll();
 
     /**
-      * Removes the information associated with the given ID.
-      * @param id
-      *           key to information
-      */
-    public void invalidateId(String id);
+     * Removes the information associated with the given ID.
+     *
+     * @param id key to information
+     */
+    void invalidateId(String id);
 
     /**
      * Return the information associated with the given ID.
      *
-     * @param id
-     *            key to information
+     * @param id key to information
      * @return information associated with ID, if available, else null
      */
-    public SubscriberAndDeviceInformation get(String id);
+    T get(String id);
 
     /**
      * Return the information associated with the given ID from the cache.
      *
-     * @param id
-     *            key to information
+     * @param id key to information
      * @return information associated with ID, if available in the cache, else null
      */
-    public SubscriberAndDeviceInformation getfromCache(String id);
+    T getfromCache(String id);
+
 
 }
