@@ -54,17 +54,20 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *     },
  *     "entries" : [
  *         {
- *             "id"                 : "uniqueid",
- *             "ctag"               : int,
- *             "stag"               : int,
- *             "nasportid"          : string,
- *             "port"               : int,
- *             "slot"               : int,
- *             "hardwareidentifier" : string,
- *             "ipAddress"          : string,
- *             "nasId"              : string,
- *             "circuitId"          : string,
- *             "removeId"           : string
+ *             "id"                         : "uniqueid",
+ *             "ctag"                       : int,
+ *             "stag"                       : int,
+ *             "nasportid"                  : string,
+ *             "port"                       : int,
+ *             "slot"                       : int,
+ *             "hardwareidentifier"         : string,
+ *             "ipAddress"                  : string,
+ *             "nasId"                      : string,
+ *             "circuitId"                  : string,
+ *             "removeId"                   : string,
+ *             "technologyProfileId"        : int,
+ *             "upstreamBandwidthProfile"   : string,
+ *             "downstreamBandwidthProfile" : string
  *         }, ...
  *     ]
  * }
