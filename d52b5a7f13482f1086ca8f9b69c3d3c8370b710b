@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95776887_f51f6564",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationCodec.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2018-07-03T15:33:16Z",
+      "side": 1,
+      "message": "Should we check for null and set \"\" when it is so?. Same for the downstreamBandwidthProfile",
+      "revId": "d52b5a7f13482f1086ca8f9b69c3d3c8370b710b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c4d78b7_594fdcf4",
+        "filename": "app/src/test/java/org/opencord/sadis/impl/SadisManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2018-07-03T15:33:16Z",
+      "side": 1,
+      "message": "indentation is not correct",
+      "revId": "d52b5a7f13482f1086ca8f9b69c3d3c8370b710b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
