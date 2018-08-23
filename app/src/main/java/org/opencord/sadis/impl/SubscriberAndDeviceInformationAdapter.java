@@ -15,26 +15,24 @@
  */
 package org.opencord.sadis.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.Maps;
+import org.onlab.packet.Ip4Address;
+import org.onlab.packet.VlanId;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.opencord.sadis.SubscriberAndDeviceInformationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import org.opencord.sadis.SubscriberAndDeviceInformation;
-import org.opencord.sadis.SubscriberAndDeviceInformationService;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.collect.Maps;
-import org.onlab.packet.VlanId;
-import org.onlab.packet.Ip4Address;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public abstract class SubscriberAndDeviceInformationAdapter implements SubscriberAndDeviceInformationService {
@@ -199,11 +197,11 @@ public abstract class SubscriberAndDeviceInformationAdapter implements Subscribe
                 local.put(id, info);
                 return info;
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                log.warn("Exception while reading remote data " + e.getMessage());
+                // TODO use a better http library that allows us to read status code
+                log.debug("Exception while reading remote data " + e.getMessage());
             }
         }
-        log.error("Data not found for id {}", id);
+        log.debug("Data not found for id {}", id);
         return null;
     }
 }
