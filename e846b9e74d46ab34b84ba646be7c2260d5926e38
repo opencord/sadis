@@ -16,6 +16,24 @@
       "revId": "e846b9e74d46ab34b84ba646be7c2260d5926e38",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa187949_e0e3533a",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2018-08-23T17:02:43Z",
+      "side": 1,
+      "message": "No it also happens when the data source returns a 404 which is completely normal. When I run ONOS with a combination of OLTs and other devices, the Olt app is trying to look up in SADIS for all the other devices and not finding a record for them, and sadis is printing errors and warning all over the place.\nI\u0027d suggest this gets moved to using a proper http library to do the request because then we should be able to differentiate better between the case where we can\u0027t reach the data source and the case where the data source returns 404 not found or no information.",
+      "parentUuid": "96ab5d54_c7610dd4",
+      "revId": "e846b9e74d46ab34b84ba646be7c2260d5926e38",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
