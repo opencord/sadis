@@ -67,18 +67,6 @@
 
         <dependency>
             <groupId>org.onosproject</groupId>
-            <artifactId>onos-incubator-api</artifactId>
-            <version>${onos.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.onosproject</groupId>
-            <artifactId>onos-incubator-net</artifactId>
-            <version>${onos.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.onosproject</groupId>
             <artifactId>onos-core-common</artifactId>
             <version>${onos.version}</version>
         </dependency>
