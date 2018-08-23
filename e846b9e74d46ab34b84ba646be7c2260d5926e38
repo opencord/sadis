@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96ab5d54_c7610dd4",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2018-08-23T04:40:55Z",
+      "side": 1,
+      "message": "Why shouldn\u0027t this be warning? This would happen when we are not able to reach the data source and that is not normal behavior.",
+      "revId": "e846b9e74d46ab34b84ba646be7c2260d5926e38",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
