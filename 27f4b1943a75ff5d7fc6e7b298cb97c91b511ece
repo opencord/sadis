@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42d2ce77_ec8e6dfb",
+        "filename": "README-NEW-DESIGN.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-09-06T16:30:18Z",
+      "side": 1,
+      "message": "please remove whitespace",
+      "revId": "27f4b1943a75ff5d7fc6e7b298cb97c91b511ece",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "029416c3_039ef9d9",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-09-06T16:30:18Z",
+      "side": 1,
+      "message": "isUrlChanged? should U be capital.",
+      "revId": "27f4b1943a75ff5d7fc6e7b298cb97c91b511ece",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2716dd0b_27b04a10",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-09-06T16:30:18Z",
+      "side": 1,
+      "message": "shouldn\u0027t everything be from the cache (read through cache). not sure why a fromCache and just get method",
+      "revId": "27f4b1943a75ff5d7fc6e7b298cb97c91b511ece",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
