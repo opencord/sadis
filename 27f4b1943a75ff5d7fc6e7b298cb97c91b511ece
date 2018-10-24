@@ -50,6 +50,24 @@
       "revId": "27f4b1943a75ff5d7fc6e7b298cb97c91b511ece",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74f74db5_54031c09",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2018-10-24T09:45:14Z",
+      "side": 1,
+      "message": "Hi David, I didn\u0027t create this. It was already there. Do you want me to delete this?",
+      "parentUuid": "2716dd0b_27b04a10",
+      "revId": "27f4b1943a75ff5d7fc6e7b298cb97c91b511ece",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
