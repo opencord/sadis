@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "fe9c587c_d85fbf52",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/BandwidthProfileWebResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-11-08T14:59:01Z",
+      "side": 1,
+      "message": "why not keep this as sadis or common between all the resources? the next part of the path identifies what it is.",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 7
+      },
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dd87088_3554cb14",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SubscriberWebResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-11-08T14:59:01Z",
+      "side": 1,
+      "message": "This should be common between both resources.",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2354f43e_5a7a0f2c",
         "filename": "pom.xml",
         "patchSetId": 9
@@ -49,6 +89,24 @@
       "side": 1,
       "message": "It has to be either 2.3.0-SNAPSHOT or 3.0.0-SNAPSHOT. I would suggest 3.0.0-SNAPSHOT as the interface has changed completely.\n\n@David: Any suggestions?",
       "parentUuid": "9e10a95f_4477cc3f",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f0a95ec_86f86eda",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2018-11-08T14:59:01Z",
+      "side": 1,
+      "message": "If the interface has changed, then yes, I would think we need to move to 3.0.0-SNAPSHOT.",
+      "parentUuid": "2c9e872a_c94f832c",
       "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
