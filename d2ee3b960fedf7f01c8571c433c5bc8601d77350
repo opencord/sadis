@@ -110,6 +110,24 @@
       "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a62d0cc_5faea714",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2018-11-08T15:00:40Z",
+      "side": 1,
+      "message": "Opps! I thought ONOS version, I get it now :) It is ok for me to change SADIS version, I\u0027m waiting for David response. Then, I will update its version and other applications dependencies. Thanks Amit.",
+      "parentUuid": "2c9e872a_c94f832c",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
