@@ -16,6 +16,24 @@
       "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e10a95f_4477cc3f",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2018-11-08T14:04:33Z",
+      "side": 1,
+      "message": "What will be the version? 1.13.6-sth or another tag? Any recommendations?",
+      "parentUuid": "2354f43e_5a7a0f2c",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
