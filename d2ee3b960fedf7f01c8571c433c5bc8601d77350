@@ -34,6 +34,24 @@
       "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c9e872a_c94f832c",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2018-11-08T14:23:54Z",
+      "side": 1,
+      "message": "It has to be either 2.3.0-SNAPSHOT or 3.0.0-SNAPSHOT. I would suggest 3.0.0-SNAPSHOT as the interface has changed completely.\n\n@David: Any suggestions?",
+      "parentUuid": "9e10a95f_4477cc3f",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
