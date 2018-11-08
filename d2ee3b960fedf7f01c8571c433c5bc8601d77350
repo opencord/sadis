@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2354f43e_5a7a0f2c",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2018-11-08T13:56:46Z",
+      "side": 1,
+      "message": "I think we should change the version. There are substantial changes in this patchset",
+      "revId": "d2ee3b960fedf7f01c8571c433c5bc8601d77350",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
