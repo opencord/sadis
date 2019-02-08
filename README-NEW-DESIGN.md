@@ -57,9 +57,9 @@ TEST
 -------
 To test the related work:
 
-- Run ONOS 1.13.6 using "ok clean"
+- Run ONOS 1.13.8 using "ok clean"
 
-- Go to 1.13.6/config directory and create cfg.json. If you want to test the remote address, then enter the entry:
+- Go to 1.13.8/config directory and create cfg.json. If you want to test the remote address, then enter the entry:
 
  ```
     {
@@ -154,18 +154,14 @@ To test the related work:
   }
   ```
 
-- Install Cord-Config Oar - Be sure that this application ONOS dependency is also 1.13.6.
-  ```
-    onos-app localhost install ~/voltha-projects/config/target/cord-config-1.5.0-SNAPSHOT.oar
-    ```
 - Install and activate SADIS.
   ```
-    onos-app localhost install ~/voltha-projects/sadis-new/sadis/app/target/sadis-app-2.2.0-SNAPSHOT.oar
+    onos-app localhost install ~/voltha-projects/sadis-new/sadis/app/target/sadis-3.0.0.oar
     onos-app localhost activate org.opencord.sadis
    ```
 - Add the config that refers to cfg.json.
   ```
-    onos-netcfg localhost /tmp/1.13.6/config/cfg.json
+    onos-netcfg localhost /tmp/1.13.8/config/cfg.json
    ```
 
 - Connect to ONOS CLI and run SADIS commands:
