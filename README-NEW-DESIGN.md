@@ -57,9 +57,9 @@ TEST
 -------
 To test the related work:
 
-- Run ONOS 1.13.9-rc3 using "ok clean"
+- Run ONOS 1.13.9-rc4 using "ok clean"
 
-- Go to 1.13.9-rc3/config directory and create cfg.json. If you want to test the remote address, then enter the entry:
+- Go to 1.13.9-rc4/config directory and create cfg.json. If you want to test the remote address, then enter the entry:
 
  ```
     {
@@ -161,7 +161,7 @@ To test the related work:
    ```
 - Add the config that refers to cfg.json.
   ```
-    onos-netcfg localhost /tmp/1.13.9-rc3/config/cfg.json
+    onos-netcfg localhost /tmp/1.13.9-rc4/config/cfg.json
    ```
 
 - Connect to ONOS CLI and run SADIS commands:
