@@ -15,8 +15,9 @@
  */
 package org.opencord.sadis.cli;
 
-import org.apache.karaf.shell.commands.Argument;
-import org.apache.karaf.shell.commands.Command;
+import org.apache.karaf.shell.api.action.Argument;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.onosproject.cli.AbstractShellCommand;
 import org.opencord.sadis.BaseInformationService;
 import org.opencord.sadis.SadisService;
@@ -25,6 +26,7 @@ import org.opencord.sadis.SubscriberAndDeviceInformation;
 /**
  * Subscriber And Device Information Service CLI.
  */
+@Service
 @Command(scope = "onos", name = "sadis", description = "Subscriber And Device Information Service CLI command")
 public class SubscriberGetCommand extends AbstractShellCommand {
 
@@ -35,7 +37,7 @@ public class SubscriberGetCommand extends AbstractShellCommand {
     private BaseInformationService<SubscriberAndDeviceInformation> service = sadisService.getSubscriberInfoService();
 
     @Override
-    protected void execute() {
+    protected void doExecute() {
         SubscriberAndDeviceInformation info = service.get(id);
         if (info != null) {
            print(info.toString());
