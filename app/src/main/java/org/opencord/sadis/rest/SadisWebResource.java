@@ -23,9 +23,11 @@ import org.opencord.sadis.BaseInformationService;
 import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.onlab.util.ItemNotFoundException;
+import org.opencord.sadis.impl.SubscriberAndDeviceInformationCodec;
+import org.slf4j.Logger;
 
+import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -37,6 +39,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static org.onlab.util.Tools.readTreeFromStream;
+import static org.slf4j.LoggerFactory.getLogger;
+
 /**
  * Subscriber And Device Information Service web resource.
  */
@@ -44,6 +49,7 @@ import javax.ws.rs.core.Response;
 public class SadisWebResource extends AbstractWebResource {
     private final ObjectNode root = mapper().createObjectNode();
     private final ArrayNode node = root.putArray("entry");
+    private static final String ID_INVALID = "Id is null";
     private static final String SUBSCRIBER_NOT_FOUND = "Subscriber not found";
     private static final String BP_NOT_FOUND = "Bandwidth Profile not found";
     private final SadisService sadisService = get(SadisService.class);
@@ -51,6 +57,7 @@ public class SadisWebResource extends AbstractWebResource {
             sadisService.getSubscriberInfoService();
     private final BaseInformationService<BandwidthProfileInformation> bpService =
             sadisService.getBandwidthProfileService();
+    private final Logger log = getLogger(getClass());
 
     /**
      * Get subscriber object.
@@ -95,15 +102,27 @@ public class SadisWebResource extends AbstractWebResource {
     /**
      * Create subscriber object.
      *
+     * @param id the subscriber id
+     * @param stream subscriberAndDeviceInformation stream
+     *
      * @return 201 Created
      */
     @POST
-    @Path("/subscriber")
+    @Path("/subscriber/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response postSubscriber() {
+    public Response postSubscriber(@PathParam("id") String id, InputStream stream) {
         try {
-            return Response.created(new URI("/subsciber/123")).build();
-        } catch (URISyntaxException e) {
+            if (id == null) {
+                throw new IllegalArgumentException(ID_INVALID);
+            }
+
+            ObjectNode jsonTree = readTreeFromStream(mapper(), stream);
+            SubscriberAndDeviceInformation info =
+                    new SubscriberAndDeviceInformationCodec().decode(jsonTree, null);
+            subService.addToCache(id, info);
+            return Response.created(new URI("/subsciber/" + id)).build();
+        } catch (Exception e) {
+            log.error("Internal Server Error while adding the subscriber", e);
             return Response.serverError().build();
         }
     }
@@ -161,7 +180,7 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/bandwidthprofile/{id}")
     public Response deleteBandwidthProfile(@PathParam("id") String id) {
-        bpService.invalidateAll();
+        bpService.invalidateId(id);
         return Response.noContent().build();
     }
 
