@@ -1,7 +1,5 @@
 {
       "id": "4",
-      "cTag": 2,
-      "sTag": 1,
       "nasPortId": "1/1/2",
       "uplinkPort": 132,
       "slot": 1,
@@ -10,7 +8,32 @@
       "nasId":"PQR-NASID",
       "circuitId":"circuit678",
       "remoteId":"remote678",
-      "technologyProfileId":64,
-      "upstreamBandwidthProfile":"5Gb",
-      "downstreamBandwidthProfile":"5Gb"
+      "uniTagList": [
+      	{
+      	    "uniTagMatch":100,
+      		"ponCTag":2,
+      		"ponSTag":2,
+      		"usPonCTagPriority":0,
+      		"usPonSTagPriority":1,
+      		"dsPonCTagPriority":0,
+      		"dsPonSTagPriority":0,
+      		"technologyProfileId":64,
+      		"upstreamBandwidthProfile":"HSA",
+      		"downstreamBandwidthProfile":"HSA",
+      		"serviceName":"HSIA"
+      	},
+      	{
+      		"uniTagMatch":200,
+      		"ponCTag":3,
+      		"ponSTag":2,
+      		"usPonCTagPriority":0,
+      		"usPonSTagPriority":1,
+      		"dsPonCTagPriority":0,
+      		"dsPonSTagPriority":0,
+      		"technologyProfileId":65,
+      		"upstreamBandwidthProfile":"IPTV",
+      		"downstreamBandwidthProfile":"IPTV",
+      		"serviceName":"IPTV"
+      	}
+      ]
 }
