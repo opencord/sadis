@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41a8fdf3_f45a5bd5",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationCodec.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000042
+      },
+      "writtenOn": "2019-08-21T17:17:56Z",
+      "side": 1,
+      "message": "Should we consider to add an UniServiceInformationCodec instead of relying on the implementation of the toString method ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 44,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "edc8dd95b12961fed7371802308b166ea05d9cd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
