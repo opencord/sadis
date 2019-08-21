@@ -24,16 +24,11 @@ import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.onlab.util.ItemNotFoundException;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -44,6 +39,7 @@ import javax.ws.rs.core.Response;
 public class SadisWebResource extends AbstractWebResource {
     private final ObjectNode root = mapper().createObjectNode();
     private final ArrayNode node = root.putArray("entry");
+    private static final String ID_INVALID = "Id is null";
     private static final String SUBSCRIBER_NOT_FOUND = "Subscriber not found";
     private static final String BP_NOT_FOUND = "Bandwidth Profile not found";
     private final SadisService sadisService = get(SadisService.class);
@@ -91,22 +87,6 @@ public class SadisWebResource extends AbstractWebResource {
          node.add(codec(SubscriberAndDeviceInformation.class).encode(entry, this));
          return ok(root).build();
      }
-
-    /**
-     * Create subscriber object.
-     *
-     * @return 201 Created
-     */
-    @POST
-    @Path("/subscriber")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response postSubscriber() {
-        try {
-            return Response.created(new URI("/subsciber/123")).build();
-        } catch (URISyntaxException e) {
-            return Response.serverError().build();
-        }
-    }
 
     /**
      * Delete subscriber object.
@@ -161,7 +141,7 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/bandwidthprofile/{id}")
     public Response deleteBandwidthProfile(@PathParam("id") String id) {
-        bpService.invalidateAll();
+        bpService.invalidateId(id);
         return Response.noContent().build();
     }
 
