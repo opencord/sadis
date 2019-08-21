@@ -143,6 +143,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
      */
     @Override
     public void invalidateId(String id) {
+        log.info("Deleting the id {}", id);
         cache.invalidate(id);
     }
 
