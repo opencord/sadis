@@ -143,6 +143,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
      */
     @Override
     public void invalidateId(String id) {
+        log.info("Deleting the id {}", id);
         cache.invalidate(id);
     }
 
@@ -164,6 +165,19 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
             return info;
         }
         return null;
+    }
+
+    @Override
+    public void addToCache(String id, T information) {
+        log.info("Adding a new entry to the cache. Id {} and info {}", id, information);
+        Cache<String, T> local;
+        synchronized (this) {
+            local = cache;
+        }
+        if (id != null && information != null) {
+            local.put(id, information);
+        }
+        log.debug("Cache size is {}", cache.size());
     }
 
     /*

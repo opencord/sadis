@@ -45,5 +45,13 @@ public interface BaseInformationService<T extends BaseInformation> {
      */
     T getfromCache(String id);
 
+    /**
+     * Adds a new entry to the cache for a subscriber or bandwidth.
+     *
+     * @param id key to the information
+     * @param information either a SubscriberAndDeviceInformation instance or BandwidthProfileInformation
+     */
+    void addToCache(String id, T information);
+
 
 }
