@@ -24,6 +24,7 @@ import org.onlab.packet.VlanId;
 import org.opencord.sadis.BaseConfig;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 
+import org.opencord.sadis.UniServiceInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,8 +51,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *     "entries" : [
  *         {
  *             "id"                         : "uniqueid",
- *             "ctag"                       : int,
- *             "stag"                       : int,
  *             "nasportid"                  : string,
  *             "port"                       : int,
  *             "slot"                       : int,
@@ -59,10 +58,23 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *             "ipAddress"                  : string,
  *             "nasId"                      : string,
  *             "circuitId"                  : string,
- *             "removeId"                   : string,
- *             "technologyProfileId"        : int,
- *             "upstreamBandwidthProfile"   : string,
- *             "downstreamBandwidthProfile" : string
+ *             "remoteId"                   : string,
+ *             "uniServiceList": [
+ *                  {
+ *                  "uniTagMatch"               : int,
+ *                  "ponCTag"                   : string,
+ *                  "ponSTag"                   : string,
+ *                  "usPonCTagPriority"         : int,
+ *                  "dsPonCTagPriority"         : int,
+ *                  "usPonSTagPriority"         : int,
+ *                  "dsPonSTagPriority"         : int,
+ *                  "technologyProfileId"       : int,
+ *                  "upstreamBandwidthProfile"  : string,
+ *                  "downstreamBandwidthProfile": string
+ *                  "serviceName"               : string,
+ *                  "useDstMac"                 : bool
+ *                 }
+ *                 ]
  *         }, ...
  *     ]
  * }
@@ -71,6 +83,19 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberAndDeviceInformation> {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final int NO_PCP = -1;
+    private static final String UNI_TAG_MATCH = "uniTagMatch";
+    private static final String PON_C_TAG = "ponCTag";
+    private static final String PON_S_TAG = "ponSTag";
+    private static final String US_C_TAG_PCP = "usPonCTagPriority";
+    private static final String US_S_TAG_PCP = "usPonSTagPriority";
+    private static final String DS_C_TAG_PCP = "dsPonCTagPriority";
+    private static final String DS_S_TAG_PCP = "dsPonSTagPriority";
+    private static final String USE_DST_MAC = "useDstMac";
+    private static final String TP_ID = "technologyProfileId";
+    private static final String US_BW = "upstreamBandwidthProfile";
+    private static final String DS_BW = "downstreamBandwidthProfile";
+    private static final String SERVICE_NAME = "serviceName";
 
     public List<SubscriberAndDeviceInformation> getEntries() {
         List<SubscriberAndDeviceInformation> result = new ArrayList<>();
@@ -78,6 +103,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
         SimpleModule module = new SimpleModule();
         module.addDeserializer(VlanId.class, new VlanIdDeserializer());
         module.addDeserializer(Ip4Address.class, new Ip4AddressDeserializer());
+        module.addDeserializer(UniServiceInformation.class, new UniServiceDeserializer());
         mapper.registerModule(module);
         final JsonNode entries = this.object.path(ENTRIES);
         entries.forEach(entry -> {
@@ -109,5 +135,37 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
             JsonNode node = oc.readTree(jp);
             return Ip4Address.valueOf(node.asText());
         }
+    }
+
+    public class UniServiceDeserializer extends JsonDeserializer<UniServiceInformation> {
+        @Override
+        public UniServiceInformation deserialize(JsonParser jp, DeserializationContext ctxt)
+                throws IOException {
+            ObjectCodec oc = jp.getCodec();
+            JsonNode node = oc.readTree(jp);
+            return getUniServiceInformation(node);
+        }
+    }
+
+    public UniServiceInformation getUniServiceInformation(JsonNode node) {
+        return new UniServiceInformation.Builder()
+                .setUniTagMatch(VlanId.vlanId(node.get(UNI_TAG_MATCH) == null ? VlanId.NO_VID
+                        : (short) node.get(UNI_TAG_MATCH).asInt()))
+                .setPonCTag(VlanId.vlanId((short) node.get(PON_C_TAG).asInt()))
+                .setPonSTag(VlanId.vlanId((short) node.get(PON_S_TAG).asInt()))
+                .setUsPonCTagPriority(node.get(US_C_TAG_PCP) == null ? NO_PCP :
+                        node.get(US_C_TAG_PCP).asInt())
+                .setUsPonSTagPriority(node.get(US_S_TAG_PCP) == null ? NO_PCP :
+                        node.get(US_S_TAG_PCP).asInt())
+                .setDsPonCTagPriority(node.get(DS_C_TAG_PCP) == null ? NO_PCP :
+                        node.get(DS_C_TAG_PCP).asInt())
+                .setDsPonSTagPriority(node.get(DS_S_TAG_PCP) == null ? NO_PCP :
+                        node.get(DS_S_TAG_PCP).asInt())
+                .setUseDstMac(node.get(USE_DST_MAC) == null ? false : node.get(USE_DST_MAC).asBoolean())
+                .setTechnologyProfileId(node.get(TP_ID).asInt())
+                .setUpstreamBandwidthProfile(node.get(US_BW) == null ? null : node.get(US_BW).asText())
+                .setDownstreamBandwidthProfile(node.get(DS_BW) == null ? null : node.get(DS_BW).asText())
+                .setServiceName(node.get(SERVICE_NAME).asText())
+                .build();
     }
 }

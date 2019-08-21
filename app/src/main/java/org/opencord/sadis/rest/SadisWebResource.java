@@ -161,7 +161,7 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/bandwidthprofile/{id}")
     public Response deleteBandwidthProfile(@PathParam("id") String id) {
-        bpService.invalidateAll();
+        bpService.invalidateId(id);
         return Response.noContent().build();
     }
 

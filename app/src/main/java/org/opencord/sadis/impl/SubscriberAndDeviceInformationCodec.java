@@ -21,26 +21,36 @@ import org.onosproject.codec.JsonCodec;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 
 public  class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAndDeviceInformation> {
+
+    private static final String ID = "id";
+    private static final String NAS_PORT_ID = "nasPortId";
+    private static final String UPLINK_PORT = "uplinkPort";
+    private static final String SLOT = "slot";
+    private static final String HARDWARE_IDENTIFIER = "hardwareIdentifier";
+    private static final String IP_ADDRESS = "ipAddress";
+    private static final String NAS_ID = "nasId";
+    private static final String CIRCUIT_ID = "circuitId";
+    private static final String REMOTE_ID = "remoteId";
+    private static final String UNI_SERVICE_LIST = "uniServiceList";
+    private static final String EMPTY_STRING = "";
+    private static final int NO_VALUE = -1;
+
       @Override
       public ObjectNode encode(SubscriberAndDeviceInformation entry, CodecContext context) {
           return context.mapper().createObjectNode()
-                                    .put("id", entry.id())
-                                    .put("cTag", (entry.cTag() == null) ? "" : entry.cTag().toString())
-                                    .put("sTag", (entry.sTag() == null) ? "" : entry.sTag().toString())
-                                    .put("nasPortId", entry.nasPortId())
-                                    .put("uplinkPort", entry.uplinkPort())
-                                    .put("slot", entry.slot())
-                                    .put("hardwareIdentifier", (entry.hardwareIdentifier() == null) ? "" :
+                                    .put(ID, entry.id())
+                                    .put(NAS_PORT_ID, entry.nasPortId())
+                                    .put(UPLINK_PORT, entry.uplinkPort())
+                                    .put(SLOT, entry.slot())
+                                    .put(HARDWARE_IDENTIFIER, (entry.hardwareIdentifier() == null) ? EMPTY_STRING :
                                           entry.hardwareIdentifier().toString())
-                                    .put("ipAddress", (entry.ipAddress() == null) ? "" : entry.ipAddress().toString())
-                                    .put("nasId", entry.nasId())
-                                    .put("circuiltId", (entry.circuitId() == null) ? "" : entry.circuitId())
-                                    .put("remoteId", (entry.remoteId() == null) ? "" : entry.remoteId())
-                                    .put("technologyProfileId", entry.technologyProfileId())
-                                    .put("upstreamBandwidthProfile", (entry.upstreamBandwidthProfile() == null) ?
-                                            "" : entry.upstreamBandwidthProfile())
-                                    .put("downstreamBandwidthProfile", (entry.downstreamBandwidthProfile() == null) ?
-                                            "" : entry.downstreamBandwidthProfile());
+                                    .put(IP_ADDRESS, (entry.ipAddress() == null) ? EMPTY_STRING :
+                                            entry.ipAddress().toString())
+                                    .put(NAS_ID, entry.nasId())
+                                    .put(CIRCUIT_ID, (entry.circuitId() == null) ? EMPTY_STRING : entry.circuitId())
+                                    .put(REMOTE_ID, (entry.remoteId() == null) ? EMPTY_STRING : entry.remoteId())
+                                    .put(UNI_SERVICE_LIST, (entry.uniServiceList() == null) ? EMPTY_STRING :
+                                            entry.uniServiceList().toString());
 
       }
 }
