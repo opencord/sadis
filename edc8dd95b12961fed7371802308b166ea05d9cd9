@@ -22,6 +22,30 @@
       "revId": "edc8dd95b12961fed7371802308b166ea05d9cd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d4e2201_f9271f4d",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationCodec.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000042
+      },
+      "writtenOn": "2019-09-17T17:16:48Z",
+      "side": 1,
+      "message": "can you please address this comment ?",
+      "parentUuid": "41a8fdf3_f45a5bd5",
+      "range": {
+        "startLine": 53,
+        "startChar": 44,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "edc8dd95b12961fed7371802308b166ea05d9cd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
