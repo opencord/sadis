@@ -15,8 +15,9 @@
  */
 package org.opencord.sadis.cli;
 
-import org.apache.karaf.shell.commands.Argument;
-import org.apache.karaf.shell.commands.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.apache.karaf.shell.api.action.Argument;
+import org.apache.karaf.shell.api.action.Command;
 import org.onosproject.cli.AbstractShellCommand;
 import org.opencord.sadis.BandwidthProfileInformation;
 import org.opencord.sadis.BaseInformationService;
@@ -25,6 +26,7 @@ import org.opencord.sadis.SadisService;
 /**
  * Bandwidth profile information service CLI.
  */
+@Service
 @Command(scope = "onos", name = "bandwidthProfile", description = "Bandwidth profile information service CLI command")
 public class BandwidthProfileGetCommand extends AbstractShellCommand {
 
@@ -35,7 +37,7 @@ public class BandwidthProfileGetCommand extends AbstractShellCommand {
     private BaseInformationService<BandwidthProfileInformation> service = sadisService.getBandwidthProfileService();
 
     @Override
-    protected void execute() {
+    protected void doExecute() {
         BandwidthProfileInformation info = service.get(id);
         if (info != null) {
             print(info.toString());

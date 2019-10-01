@@ -14,8 +14,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<app name="org.opencord.sadis" origin="ON.Lab" version="${project.version}"
-     category="Traffic Steering" url="http://onosproject.org" title="Subscriber And Device Information App"
+<app name="org.opencord.sadis" origin="Open Networking Foundation"
+     version="${project.version}"
+     category="Traffic Steering" url="http://onosproject.org"
+     title="Subscriber And Device Information App"
      featuresRepo="mvn:${project.groupId}/${project.artifactId}/${project.version}/xml/features"
      features="${project.artifactId}">
     <description>${project.description}</description>
