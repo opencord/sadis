@@ -3,3 +3,5 @@ host=gerrit.opencord.org
 port=29418
 project=sadis.git
 defaultremote=origin
+defaultbranch=sadis-3.1
+
