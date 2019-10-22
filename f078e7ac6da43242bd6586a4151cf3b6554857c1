@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "469f69d8_10721eb3",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000042
+      },
+      "writtenOn": "2019-10-22T11:31:16Z",
+      "side": 1,
+      "message": "in each method you need to get the reference - basically they will become a local objects",
+      "parentUuid": "affeb571_fb040b83",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "f078e7ac6da43242bd6586a4151cf3b6554857c1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "539fba6f_7b58170b",
         "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
         "patchSetId": 2
@@ -176,6 +200,30 @@
       "side": 1,
       "message": "Could you give an example?",
       "parentUuid": "6f4963e6_9962b770",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 77
+      },
+      "revId": "f078e7ac6da43242bd6586a4151cf3b6554857c1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bffd8eb5_35aa6e8f",
+        "filename": "app/src/test/java/org/opencord/sadis/impl/SubscriberAndDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000042
+      },
+      "writtenOn": "2019-10-22T11:31:16Z",
+      "side": 1,
+      "message": "for example uniTagList and uniTagList2 are used for TT and uniTagList3 is used for ATT - my suggestion was very simple just add to the name tt or att in this way the flow will be more readable when people look at the tests",
+      "parentUuid": "35cf7251_5fe15cda",
       "range": {
         "startLine": 137,
         "startChar": 0,
