@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "affeb571_fb040b83",
+        "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2019-10-22T10:24:16Z",
+      "side": 1,
+      "message": "So, what will be the proper solution?",
+      "parentUuid": "4b85d280_a1c98744",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "f078e7ac6da43242bd6586a4151cf3b6554857c1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "539fba6f_7b58170b",
         "filename": "app/src/main/java/org/opencord/sadis/rest/SadisWebResource.java",
         "patchSetId": 2
@@ -130,6 +154,30 @@
       "message": "wondering if this can be moved to BaseSadis",
       "range": {
         "startLine": 43,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 77
+      },
+      "revId": "f078e7ac6da43242bd6586a4151cf3b6554857c1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35cf7251_5fe15cda",
+        "filename": "app/src/test/java/org/opencord/sadis/impl/SubscriberAndDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2019-10-22T10:24:16Z",
+      "side": 1,
+      "message": "Could you give an example?",
+      "parentUuid": "6f4963e6_9962b770",
+      "range": {
+        "startLine": 137,
         "startChar": 0,
         "endLine": 150,
         "endChar": 77
