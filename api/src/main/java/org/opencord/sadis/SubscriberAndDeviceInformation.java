@@ -17,21 +17,14 @@ package org.opencord.sadis;
 
 import org.onlab.packet.Ip4Address;
 import org.onlab.packet.MacAddress;
-import org.onlab.packet.VlanId;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 /**
  * Represents a unit of information about a subscriber or access device.
  */
 public class SubscriberAndDeviceInformation extends BaseInformation {
-
-
-    @JsonProperty(value = "sTag")
-    VlanId sTag;
-
-    @JsonProperty(value = "cTag")
-    VlanId cTag;
 
     @JsonProperty(value = "nasPortId")
     String nasPortId;
@@ -57,32 +50,10 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
     @JsonProperty(value = "remoteId")
     String remoteId;
 
-    @JsonProperty(value = "technologyProfileId")
-    int technologyProfileId = -1;
+    @JsonProperty(value = "uniTagList")
+    List<UniTagInformation> uniTagList;
 
-    @JsonProperty(value = "upstreamBandwidthProfile")
-    String upstreamBandwidthProfile;
-
-    @JsonProperty(value = "downstreamBandwidthProfile")
-    String downstreamBandwidthProfile;
-
-    protected SubscriberAndDeviceInformation() {
-    }
-
-    public final VlanId sTag() {
-        return this.sTag;
-    }
-
-    public final void setSTag(final VlanId stag) {
-        this.sTag = stag;
-    }
-
-    public final VlanId cTag() {
-        return this.cTag;
-    }
-
-    public final void setCTag(final VlanId ctag) {
-        this.cTag = ctag;
+    public SubscriberAndDeviceInformation() {
     }
 
     public final String nasPortId() {
@@ -149,29 +120,14 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         this.remoteId = remoteId;
     }
 
-    public final int technologyProfileId() {
-        return this.technologyProfileId;
+    public final List<UniTagInformation> uniTagList() {
+        return this.uniTagList;
     }
 
-    public final void setTechnologyProfileId(final int technologyProfileId) {
-        this.technologyProfileId = technologyProfileId;
+    public final void setUniTagList(final List<UniTagInformation> uniTagList) {
+        this.uniTagList = uniTagList;
     }
 
-    public final String upstreamBandwidthProfile() {
-        return this.upstreamBandwidthProfile;
-    }
-
-    public final void setUpstreamBandwidthProfile(final String upstreamBandwidthProfile) {
-        this.upstreamBandwidthProfile = upstreamBandwidthProfile;
-    }
-
-    public final String downstreamBandwidthProfile() {
-        return this.downstreamBandwidthProfile;
-    }
-
-    public final void setDownstreamBandwidthProfile(final String downstreamBandwidthProfile) {
-        this.downstreamBandwidthProfile = downstreamBandwidthProfile;
-    }
 
     /*
      * (non-Javadoc)
@@ -182,22 +138,16 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (this.cTag == null ? 0 : this.cTag.hashCode());
         result = prime * result + (this.hardwareIdentifier == null ? 0 : this.hardwareIdentifier.hashCode());
         result = prime * result + (this.id == null ? 0 : this.id.hashCode());
         result = prime * result + (this.nasPortId == null ? 0 : this.nasPortId.hashCode());
         result = prime * result + this.uplinkPort;
-        result = prime * result + (this.sTag == null ? 0 : this.sTag.hashCode());
         result = prime * result + this.slot;
         result = prime * result + (this.ipAddress == null ? 0 : this.ipAddress.hashCode());
         result = prime * result + (this.nasId == null ? 0 : this.nasId.hashCode());
         result = prime + result + (this.circuitId == null ? 0 : this.circuitId.hashCode());
         result = prime + result + (this.remoteId == null ? 0 : this.remoteId.hashCode());
-        result = prime + result + this.technologyProfileId;
-        result = prime + result +
-                (this.upstreamBandwidthProfile == null ? 0 : this.upstreamBandwidthProfile.hashCode());
-        result = prime + result +
-                (this.downstreamBandwidthProfile == null ? 0 : this.downstreamBandwidthProfile.hashCode());
+        result = prime + result + (this.uniTagList == null ? 0 : this.uniTagList.hashCode());
         return result;
     }
 
@@ -218,13 +168,7 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
             return false;
         }
         final SubscriberAndDeviceInformation other = (SubscriberAndDeviceInformation) obj;
-        if (this.cTag == null) {
-            if (other.cTag != null) {
-                return false;
-            }
-        } else if (!this.cTag.equals(other.cTag)) {
-            return false;
-        }
+
         if (this.hardwareIdentifier == null) {
             if (other.hardwareIdentifier != null) {
                 return false;
@@ -263,13 +207,7 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         if (this.uplinkPort != other.uplinkPort) {
             return false;
         }
-        if (this.sTag == null) {
-            if (other.sTag != null) {
-                return false;
-            }
-        } else if (!this.sTag.equals(other.sTag)) {
-            return false;
-        }
+
         if (this.slot != other.slot) {
             return false;
         }
@@ -287,21 +225,11 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         } else if (!this.remoteId.equals(other.remoteId)) {
             return false;
         }
-        if (this.technologyProfileId != other.technologyProfileId) {
-            return false;
-        }
-        if (this.upstreamBandwidthProfile == null) {
-            if (other.upstreamBandwidthProfile != null) {
+        if (this.uniTagList == null) {
+            if (other.uniTagList != null) {
                 return false;
             }
-        } else if (!this.upstreamBandwidthProfile.equals(other.upstreamBandwidthProfile)) {
-            return false;
-        }
-        if (this.downstreamBandwidthProfile == null) {
-            if (other.downstreamBandwidthProfile != null) {
-                return false;
-            }
-        } else if (!this.downstreamBandwidthProfile.equals(other.downstreamBandwidthProfile)) {
+        } else if (!this.uniTagList.equals(other.uniTagList)) {
             return false;
         }
         return true;
@@ -316,34 +244,16 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
     public String toString() {
         final StringBuilder buf = new StringBuilder();
         buf.append('[');
-        buf.append("id:");
-        buf.append(this.id);
-        buf.append(",cTag:");
-        buf.append(this.cTag);
-        buf.append(",sTag:");
-        buf.append(this.sTag);
-        buf.append(",nasPortId:");
-        buf.append(this.nasPortId);
-        buf.append(",uplinkPort:");
-        buf.append(this.uplinkPort);
-        buf.append(",slot:");
-        buf.append(this.slot);
-        buf.append(",hardwareIdentifier:");
-        buf.append(this.hardwareIdentifier);
-        buf.append(",ipaddress:");
-        buf.append(this.ipAddress);
-        buf.append(",nasId:");
-        buf.append(this.nasId);
-        buf.append(",circuitId:");
-        buf.append(this.circuitId);
-        buf.append(",remoteId:");
-        buf.append(this.remoteId);
-        buf.append(",technologyProfileId:");
-        buf.append(this.technologyProfileId);
-        buf.append(",upstreamBandwidthProfile:");
-        buf.append(this.upstreamBandwidthProfile);
-        buf.append(",downstreamBandwidthProfile:");
-        buf.append(this.downstreamBandwidthProfile);
+        buf.append("id:").append(this.id);
+        buf.append(",nasPortId:").append(this.nasPortId);
+        buf.append(",uplinkPort:").append(this.uplinkPort);
+        buf.append(",slot:").append(this.slot);
+        buf.append(",hardwareIdentifier:").append(this.hardwareIdentifier);
+        buf.append(",ipaddress:").append(this.ipAddress);
+        buf.append(",nasId:").append(this.nasId);
+        buf.append(",circuitId:").append(this.circuitId);
+        buf.append(",remoteId:").append(this.remoteId);
+        buf.append(",uniTagList:").append(this.uniTagList);
         buf.append(']');
 
         return buf.toString();
