@@ -17,6 +17,10 @@ package org.opencord.sadis.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
+import org.onlab.packet.Ip4Address;
+import org.onlab.packet.MacAddress;
+import org.onlab.packet.VlanId;
 import org.onosproject.codec.impl.CodecManager;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.core.CoreServiceAdapter;
@@ -26,8 +30,10 @@ import org.onosproject.net.config.NetworkConfigListener;
 import org.onosproject.net.config.Config;
 import org.onosproject.net.config.NetworkConfigEvent;
 import org.opencord.sadis.BaseConfig;
-import org.opencord.sadis.BaseInformationService;
 import org.opencord.sadis.BaseInformation;
+import org.opencord.sadis.BaseInformationService;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.opencord.sadis.UniTagInformation;
 
 import java.io.InputStream;
 import java.time.Duration;
@@ -47,6 +53,115 @@ public abstract class BaseSadis {
     protected BaseConfig config;
     protected NetworkConfigEvent event;
     protected static NetworkConfigListener configListener;
+
+    private static final short UNI_TAG_MATCH_1 = 100;
+    private static final short UNI_TAG_MATCH_2 = 200;
+    private static final short C_TAG_1 = 2;
+    private static final short S_TAG_1 = 2;
+    private static final short S_TAG_2 = 3;
+    private static final int C_TAG_PRIORITY = 0;
+    private static final int S_TAG_PRIORITY = 1;
+    private static final int TECH_PROF_ID_1 = 64;
+    private static final int TECH_PROF_ID_2 = 65;
+
+    private static final String HSA = "HSA";
+    private static final String IPTV = "IPTV";
+    private static final String NAS_PORT_ID = "1/1/2";
+
+    private static final short PORT_1 = 125;
+    private static final short PORT_2 = 129;
+    private static final short PORT_3 = 130;
+    private static final short PORT_4 = 132;
+
+    private static final short SLOT_1 = 3;
+    private static final short SLOT_2 = 4;
+    private static final short SLOT_3 = 7;
+    private static final short SLOT_4 = 1;
+
+    private static final String MAC1 = "aa:bb:cc:dd:ee:ff";
+    private static final String MAC2 = "ff:aa:dd:cc:bb:ee";
+    private static final String MAC3 = "ff:cc:dd:aa:ee:bb";
+
+    private static final String NAS1 = "XXX-NASID";
+    private static final String NAS2 = "YYY-NASID";
+    private static final String NAS3 = "MNO-NASID";
+    private static final String NAS4 = "PQR-NASID";
+
+    private static final String CIRCUIT1 = "circuit123";
+    private static final String CIRCUIT2 = "circuit234";
+    private static final String CIRCUIT3 = "circuit567";
+    private static final String CIRCUIT4 = "circuit678";
+
+    private static final String REMOTE1 = "remote123";
+    private static final String REMOTE2 = "remote234";
+    private static final String REMOTE3 = "remote567";
+    private static final String REMOTE4 = "remote678";
+
+    private static final String IP1 = "10.10.10.10";
+    private static final String IP2 = "1.1.1.1";
+    private static final String IP3 = "30.30.30.30";
+    private static final String IP4 = "15.15.15.15";
+
+    protected static final String ID1 = "1";
+    protected static final String ID2 = "2";
+    protected static final String ID3 = "3";
+    protected static final String ID4 = "4";
+    protected static final String ID5 = "5";
+
+    UniTagInformation ttService1 = new UniTagInformation.Builder()
+            .setUniTagMatch(VlanId.vlanId(UNI_TAG_MATCH_1))
+            .setPonCTag(VlanId.vlanId(C_TAG_1))
+            .setPonSTag(VlanId.vlanId(S_TAG_1))
+            .setUsPonCTagPriority(C_TAG_PRIORITY)
+            .setUsPonSTagPriority(S_TAG_PRIORITY)
+            .setDsPonCTagPriority(C_TAG_PRIORITY)
+            .setDsPonSTagPriority(S_TAG_PRIORITY)
+            .setTechnologyProfileId(TECH_PROF_ID_1)
+            .setUpstreamBandwidthProfile(HSA)
+            .setDownstreamBandwidthProfile(HSA)
+            .setServiceName(HSA)
+            .build();
+
+    UniTagInformation ttService2 = new UniTagInformation.Builder()
+            .setUniTagMatch(VlanId.vlanId(UNI_TAG_MATCH_2))
+            .setPonCTag(VlanId.vlanId(C_TAG_1))
+            .setPonSTag(VlanId.vlanId(S_TAG_2))
+            .setUsPonCTagPriority(C_TAG_PRIORITY)
+            .setUsPonSTagPriority(S_TAG_PRIORITY)
+            .setDsPonCTagPriority(C_TAG_PRIORITY)
+            .setDsPonSTagPriority((S_TAG_PRIORITY))
+            .setTechnologyProfileId(TECH_PROF_ID_2)
+            .setUpstreamBandwidthProfile(IPTV)
+            .setDownstreamBandwidthProfile(IPTV)
+            .setServiceName(IPTV)
+            .setIsIgmpRequired(true)
+            .setIsDhcpRequired(true)
+            .setEnableMacLearning(true)
+            .setConfiguredMacAddress(MAC2)
+            .build();
+
+    UniTagInformation attService1 = new UniTagInformation.Builder()
+            .setPonCTag(VlanId.vlanId(C_TAG_1))
+            .setPonSTag(VlanId.vlanId(S_TAG_2))
+            .setTechnologyProfileId(TECH_PROF_ID_1)
+            .setUpstreamBandwidthProfile(HSA)
+            .setDownstreamBandwidthProfile(HSA)
+            .build();
+
+    List<UniTagInformation> uniTagListForTT = Lists.newArrayList(ttService1);
+    List<UniTagInformation> uniTagList2ForTT = Lists.newArrayList(ttService1, ttService2);
+    List<UniTagInformation> uniTagList3Att = Lists.newArrayList(attService1);
+
+    SubscriberAndDeviceInformationBuilder entry1 = SubscriberAndDeviceInformationBuilder.build(ID1, NAS_PORT_ID,
+            PORT_1, SLOT_1, MAC1, NAS1, IP1, CIRCUIT1, REMOTE1, uniTagListForTT);
+    SubscriberAndDeviceInformationBuilder entry2 = SubscriberAndDeviceInformationBuilder.build(ID2, NAS_PORT_ID,
+            PORT_2, SLOT_2, MAC1, NAS2, IP2, CIRCUIT2, REMOTE2, uniTagList2ForTT);
+    SubscriberAndDeviceInformationBuilder entry3 = SubscriberAndDeviceInformationBuilder.build(ID3, NAS_PORT_ID,
+            PORT_3, SLOT_3, MAC2, NAS3, IP3, CIRCUIT3, REMOTE3, uniTagListForTT);
+    SubscriberAndDeviceInformationBuilder entry4 = SubscriberAndDeviceInformationBuilder.build(ID4, NAS_PORT_ID,
+            PORT_4, SLOT_4, MAC3, NAS4, IP4, CIRCUIT4, REMOTE4, uniTagList2ForTT);
+    SubscriberAndDeviceInformationBuilder entry5 = SubscriberAndDeviceInformationBuilder.build(ID5, NAS_PORT_ID,
+            PORT_3, SLOT_3, MAC2, NAS3, IP3, CIRCUIT3, REMOTE3, uniTagList3Att);
 
     public void setUp(String localConfig, Class configClass) throws Exception {
         sadis = new SadisManager();
@@ -104,6 +219,33 @@ public abstract class BaseSadis {
         }
     }
 
+    private static final class SubscriberAndDeviceInformationBuilder extends SubscriberAndDeviceInformation {
+
+        public static SubscriberAndDeviceInformationBuilder build(String id, String nasPortId,
+                                                                  short port, short slot, String mac,
+                                                                  String nasId, String ipAddress, String circuitId,
+                                                                  String remoteId,
+                                                                  List<UniTagInformation> uniTagList) {
+
+            SubscriberAndDeviceInformationBuilder info = new SubscriberAndDeviceInformationBuilder();
+            info.setId(id);
+            if (slot != -1) {
+                info.setSlot(slot);
+            }
+            info.setNasPortId(nasPortId);
+            info.setUplinkPort(port);
+            info.setHardwareIdentifier(MacAddress.valueOf(mac));
+            info.setIPAddress(Ip4Address.valueOf(ipAddress));
+            info.setNasId(nasId);
+            info.setCircuitId(circuitId);
+            info.setRemoteId(remoteId);
+
+            info.setUniTagList(uniTagList);
+
+            return info;
+        }
+
+    }
 
     /**
      * Mocks an ONOS configuration delegate to allow JSON based configuration to
