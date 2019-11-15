@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3db268_75e01937",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000381
+      },
+      "writtenOn": "2019-11-15T22:44:08Z",
+      "side": 1,
+      "message": "onos-base is no longer published after onos 2.1, you should remove this block",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "5bb716ea9f7ac787a3f366a03e86cf02dde277e1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
