@@ -20,12 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.onlab.packet.Ip4Address;
-import org.onlab.packet.MacAddress;
 import org.onlab.packet.VlanId;
 import org.opencord.sadis.BaseConfig;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 
-import org.opencord.sadis.UniTagInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,6 +50,8 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *     "entries" : [
  *         {
  *             "id"                         : "uniqueid",
+ *             "ctag"                       : int,
+ *             "stag"                       : int,
  *             "nasportid"                  : string,
  *             "port"                       : int,
  *             "slot"                       : int,
@@ -59,26 +59,10 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *             "ipAddress"                  : string,
  *             "nasId"                      : string,
  *             "circuitId"                  : string,
- *             "remoteId"                   : string,
- *             "uniTagList": [
- *                  {
- *                  "uniTagMatch"               : int,
- *                  "ponCTag"                   : string,
- *                  "ponSTag"                   : string,
- *                  "usPonCTagPriority"         : int,
- *                  "dsPonCTagPriority"         : int,
- *                  "usPonSTagPriority"         : int,
- *                  "dsPonSTagPriority"         : int,
- *                  "technologyProfileId"       : int,
- *                  "upstreamBandwidthProfile"  : string,
- *                  "downstreamBandwidthProfile": string,
- *                  "enableMacLearning"         : string,
- *                  "configuredDacAddress"      : string,
- *                  "isDhcpRequired"            : string,
- *                  "isIgmpRequired"            : string,
- *                  "serviceName"               : string
- *                 }
- *                 ]
+ *             "removeId"                   : string,
+ *             "technologyProfileId"        : int,
+ *             "upstreamBandwidthProfile"   : string,
+ *             "downstreamBandwidthProfile" : string
  *         }, ...
  *     ]
  * }
@@ -87,23 +71,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberAndDeviceInformation> {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private static final int NO_PCP = -1;
-    private static final String NO_SN = "";
-    private static final String UNI_TAG_MATCH = "uniTagMatch";
-    private static final String PON_C_TAG = "ponCTag";
-    private static final String PON_S_TAG = "ponSTag";
-    private static final String US_C_TAG_PCP = "usPonCTagPriority";
-    private static final String US_S_TAG_PCP = "usPonSTagPriority";
-    private static final String DS_C_TAG_PCP = "dsPonCTagPriority";
-    private static final String DS_S_TAG_PCP = "dsPonSTagPriority";
-    private static final String MAC_LEARNING = "enableMacLearning";
-    private static final String TP_ID = "technologyProfileId";
-    private static final String US_BW = "upstreamBandwidthProfile";
-    private static final String DS_BW = "downstreamBandwidthProfile";
-    private static final String SERVICE_NAME = "serviceName";
-    private static final String IS_DHCP_REQ = "isDhcpRequired";
-    private static final String IS_IGMP_REQ = "isIgmpRequired";
-    private static final String MAC_ADDRESS = "configuredMacAddress";
 
     public List<SubscriberAndDeviceInformation> getEntries() {
         List<SubscriberAndDeviceInformation> result = new ArrayList<>();
@@ -111,7 +78,6 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
         SimpleModule module = new SimpleModule();
         module.addDeserializer(VlanId.class, new VlanIdDeserializer());
         module.addDeserializer(Ip4Address.class, new Ip4AddressDeserializer());
-        module.addDeserializer(UniTagInformation.class, new UniTagDeserializer());
         mapper.registerModule(module);
         final JsonNode entries = this.object.path(ENTRIES);
         entries.forEach(entry -> {
@@ -143,45 +109,5 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
             JsonNode node = oc.readTree(jp);
             return Ip4Address.valueOf(node.asText());
         }
-    }
-
-    public class UniTagDeserializer extends JsonDeserializer<UniTagInformation> {
-        @Override
-        public UniTagInformation deserialize(JsonParser jp, DeserializationContext ctxt)
-                throws IOException {
-            ObjectCodec oc = jp.getCodec();
-            JsonNode node = oc.readTree(jp);
-            return getUniTagInformation(node);
-        }
-    }
-
-    public UniTagInformation getUniTagInformation(JsonNode node) {
-        return new UniTagInformation.Builder()
-                .setUniTagMatch(VlanId.vlanId(node.get(UNI_TAG_MATCH) == null ? VlanId.NO_VID
-                        : (short) node.get(UNI_TAG_MATCH).asInt()))
-                .setPonCTag(VlanId.vlanId((short) node.get(PON_C_TAG).asInt()))
-                .setPonSTag(VlanId.vlanId((short) node.get(PON_S_TAG).asInt()))
-                .setUsPonCTagPriority(node.get(US_C_TAG_PCP) == null ? NO_PCP :
-                        node.get(US_C_TAG_PCP).asInt())
-                .setUsPonSTagPriority(node.get(US_S_TAG_PCP) == null ? NO_PCP :
-                        node.get(US_S_TAG_PCP).asInt())
-                .setDsPonCTagPriority(node.get(DS_C_TAG_PCP) == null ? NO_PCP :
-                        node.get(DS_C_TAG_PCP).asInt())
-                .setDsPonSTagPriority(node.get(DS_S_TAG_PCP) == null ? NO_PCP :
-                        node.get(DS_S_TAG_PCP).asInt())
-                .setEnableMacLearning(node.get(MAC_LEARNING) == null ? false :
-                        node.get(MAC_LEARNING).asBoolean())
-                .setTechnologyProfileId(node.get(TP_ID).asInt())
-                .setUpstreamBandwidthProfile(node.get(US_BW) == null ? null
-                        : node.get(US_BW).asText())
-                .setDownstreamBandwidthProfile(node.get(DS_BW) == null ? null
-                        : node.get(DS_BW).asText())
-                .setServiceName(node.get(SERVICE_NAME) == null ? NO_SN :
-                        node.get(SERVICE_NAME).asText())
-                .setIsDhcpRequired(node.get(IS_DHCP_REQ) == null ? false : node.get(IS_DHCP_REQ).asBoolean())
-                .setIsIgmpRequired(node.get(IS_IGMP_REQ) == null ? false : node.get(IS_IGMP_REQ).asBoolean())
-                .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? MacAddress.NONE.toString() :
-                        node.get(MAC_ADDRESS).asText())
-                .build();
     }
 }

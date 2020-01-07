@@ -12,6 +12,8 @@
 	[
 		{
 			"id": "1",
+			"cTag": 2,
+			"sTag": 2,
 			"nasPortId": "1/1/2",
 			"uplinkPort": 125,
 			"slot": 3,
@@ -20,25 +22,15 @@
 			"nasId":"XXX-NASID",
 			"circuitId":"circuit123",
 			"remoteId":"remote123",
-			"uniTagList": [
-				{
-					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
-					"usPonCTagPriority":0,
-					"usPonSTagPriority":1,
-					"dsPonCTagPriority":0,
-					"dsPonSTagPriority":1,
-					"technologyProfileId":64,
-					"upstreamBandwidthProfile":"HSA",
-					"downstreamBandwidthProfile":"HSA",
-					"serviceName":"HSIA"
-				}
-			]
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"1Gb",
+			"downstreamBandwidthProfile":"1Gb"
 		},
 
 		{
 			"id": "2",
+			"cTag": 4,
+			"sTag": 4,
 			"nasPortId": "1/1/2",
 			"uplinkPort": 129,
 			"slot": 4,
@@ -47,57 +39,21 @@
 			"nasId":"YYY-NASID",
 			"circuitId":"circuit234",
 			"remoteId":"remote234",
-			"uniTagList": [
-				{
-					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
-					"usPonCTagPriority":0,
-					"usPonSTagPriority":1,
-					"dsPonCTagPriority":0,
-					"dsPonSTagPriority":1,
-					"technologyProfileId":64,
-					"upstreamBandwidthProfile":"HSA",
-					"downstreamBandwidthProfile":"HSA",
-					"serviceName":"HSIA"
-				},
-				{
-					"uniTagMatch":200,
-					"ponCTag":3,
-					"ponSTag":2,
-					"usPonCTagPriority":0,
-					"usPonSTagPriority":1,
-					"dsPonCTagPriority": 0,
-					"dsPonSTagPriority": 1,
-					"technologyProfileId":65,
-					"upstreamBandwidthProfile":"IPTV",
-					"downstreamBandwidthProfile":"IPTV",
-					"serviceName":"IPTV",
-					"isIgmpRequired": "true",
-					"isDhcpRequired": "true",
-					"configuredMacAddress": "\"ff:aa:dd:cc:bb:ee\""
-				}
-			]
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"10Gb",
+			"downstreamBandwidthProfile":"10Gb"
 		},
+
 		{
-			"id": "5",
-			"nasPortId": "1/1/2",
-			"uplinkPort": 125,
-			"slot": 3,
-			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
-			"ipAddress":"10.10.10.10",
-			"nasId":"XXX-NASID",
-			"circuitId":"circuit123",
-			"remoteId":"remote123",
-			"uniTagList": [
-				{
-					"ponCTag":"2,",
-					"ponSTag":"2",
-					"technologyProfileId":64,
-					"upstreamBandwidthProfile":"HSA",
-					"downstreamBandwidthProfile":"HSA"
-				}
-			]
+			"id": "cc:dd:ee:ff:aa:bb",
+			"hardwareIdentifier": "cc:dd:ee:ff:aa:bb",
+			"ipAddress":"12.12.12.12",
+			"nasId":"CCC-NASID",
+			"circuitId":"circuit345",
+			"remoteId":"remote345",
+			"technologyProfileId":64,
+			"upstreamBandwidthProfile":"10Gb",
+			"downstreamBandwidthProfile":"10Gb"
 		}
 	]
 }
