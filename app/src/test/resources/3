@@ -1,5 +1,7 @@
 {
       "id": "3",
+      "cTag": 7,
+      "sTag": 8,
       "nasPortId": "1/1/2",
       "uplinkPort": 130,
       "slot": 7,
@@ -8,19 +10,7 @@
       "nasId":"MNO-NASID",
       "circuitId":"circuit567",
       "remoteId":"remote567",
-      "uniTagList": [
-     	{
-     	    "uniTagMatch":100,
-     		"ponCTag":2,
-     		"ponSTag":2,
-     		"usPonCTagPriority":0,
-     		"usPonSTagPriority":1,
-     		"dsPonCTagPriority": 0,
-     		"dsPonSTagPriority": 0,
-     		"technologyProfileId":64,
-     		"upstreamBandwidthProfile":"HSA",
-     		"downstreamBandwidthProfile":"HSA",
-     		"serviceName":"HSIA"
-     	}
-     ]
+      "technologyProfileId":64,
+      "upstreamBandwidthProfile":"10Gb",
+      "downstreamBandwidthProfile":"10Gb"
 }

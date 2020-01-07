@@ -24,11 +24,16 @@ import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
 import org.onlab.util.ItemNotFoundException;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -41,6 +46,11 @@ public class SadisWebResource extends AbstractWebResource {
     private final ArrayNode node = root.putArray("entry");
     private static final String SUBSCRIBER_NOT_FOUND = "Subscriber not found";
     private static final String BP_NOT_FOUND = "Bandwidth Profile not found";
+    private final SadisService sadisService = get(SadisService.class);
+    private final BaseInformationService<SubscriberAndDeviceInformation> subService =
+            sadisService.getSubscriberInfoService();
+    private final BaseInformationService<BandwidthProfileInformation> bpService =
+            sadisService.getBandwidthProfileService();
 
     /**
      * Get subscriber object.
@@ -54,9 +64,6 @@ public class SadisWebResource extends AbstractWebResource {
     @Path("/subscriber/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSubscriber(@PathParam("id") String id) {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<SubscriberAndDeviceInformation> subService =
-                sadisService.getSubscriberInfoService();
         final SubscriberAndDeviceInformation entry = subService.get(id);
         if (entry == null) {
            throw new ItemNotFoundException(SUBSCRIBER_NOT_FOUND);
@@ -77,9 +84,6 @@ public class SadisWebResource extends AbstractWebResource {
      @Path("/cache/subscriber/{id}")
      @Produces(MediaType.APPLICATION_JSON)
      public Response getSubscriberCache(@PathParam("id") String id) {
-         SadisService sadisService = get(SadisService.class);
-         BaseInformationService<SubscriberAndDeviceInformation> subService =
-                 sadisService.getSubscriberInfoService();
          final SubscriberAndDeviceInformation entry = subService.getfromCache(id);
          if (entry == null) {
             throw new ItemNotFoundException(SUBSCRIBER_NOT_FOUND);
@@ -87,6 +91,22 @@ public class SadisWebResource extends AbstractWebResource {
          node.add(codec(SubscriberAndDeviceInformation.class).encode(entry, this));
          return ok(root).build();
      }
+
+    /**
+     * Create subscriber object.
+     *
+     * @return 201 Created
+     */
+    @POST
+    @Path("/subscriber")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response postSubscriber() {
+        try {
+            return Response.created(new URI("/subsciber/123")).build();
+        } catch (URISyntaxException e) {
+            return Response.serverError().build();
+        }
+    }
 
     /**
      * Delete subscriber object.
@@ -98,9 +118,6 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/subscriber/{id}")
     public Response deleteSubscriber(@PathParam("id") String id) {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<SubscriberAndDeviceInformation> subService =
-                sadisService.getSubscriberInfoService();
         subService.invalidateId(id);
         return Response.noContent().build();
     }
@@ -113,9 +130,6 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/subscriber/")
     public Response deleteAllSubscribers() {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<SubscriberAndDeviceInformation> subService =
-                sadisService.getSubscriberInfoService();
         subService.invalidateAll();
         return Response.noContent().build();
     }
@@ -124,9 +138,6 @@ public class SadisWebResource extends AbstractWebResource {
     @Path("/bandwidthprofile/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBandwidthProfile(@PathParam("id") String id) {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<BandwidthProfileInformation> bpService =
-                sadisService.getBandwidthProfileService();
         final BandwidthProfileInformation entry = bpService.get(id);
         if (entry == null) {
             throw new ItemNotFoundException(BP_NOT_FOUND);
@@ -139,9 +150,6 @@ public class SadisWebResource extends AbstractWebResource {
     @Path("/cache/bandwidthprofile/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBandwidthProfileCache(@PathParam("id") String id) {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<BandwidthProfileInformation> bpService =
-                sadisService.getBandwidthProfileService();
         final BandwidthProfileInformation entry = bpService.getfromCache(id);
         if (entry == null) {
             throw new ItemNotFoundException(BP_NOT_FOUND);
@@ -153,19 +161,13 @@ public class SadisWebResource extends AbstractWebResource {
     @DELETE
     @Path("/cache/bandwidthprofile/{id}")
     public Response deleteBandwidthProfile(@PathParam("id") String id) {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<BandwidthProfileInformation> bpService =
-                sadisService.getBandwidthProfileService();
-        bpService.invalidateId(id);
+        bpService.invalidateAll();
         return Response.noContent().build();
     }
 
     @DELETE
     @Path("/cache/bandwidthprofile/")
     public Response deleteAllBandwidthProfiles() {
-        SadisService sadisService = get(SadisService.class);
-        BaseInformationService<BandwidthProfileInformation> bpService =
-                sadisService.getBandwidthProfileService();
         bpService.invalidateAll();
         return Response.noContent().build();
     }
