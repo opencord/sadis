@@ -42,9 +42,6 @@ public class BandwidthProfileInformation extends BaseInformation {
     //note that: the burst size of assured bandwidth will be always 0
     //the rate information must be in Kbps and burst must be in Kbits
 
-    protected BandwidthProfileInformation() {
-    }
-
     public final long committedInformationRate() {
         return this.committedInformationRate;
     }
