@@ -104,7 +104,6 @@
             <plugin>
                 <groupId>org.onosproject</groupId>
                 <artifactId>onos-maven-plugin</artifactId>
-                <version>1.11</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>

@@ -4,3 +4,8 @@ target
 .settings
 *.swp
 *.iml
+*~
+*.class
+.checkstyle
+target
+.idea
