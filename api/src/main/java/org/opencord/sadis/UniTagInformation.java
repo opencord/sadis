@@ -262,10 +262,10 @@ public final class UniTagInformation {
         private VlanId uniTagMatch;
         private VlanId ponCTag;
         private VlanId ponSTag;
-        private int usPonCTagPriority;
-        private int usPonSTagPriority;
-        private int dsPonCTagPriority;
-        private int dsPonSTagPriority;
+        private int usPonCTagPriority = -1;
+        private int usPonSTagPriority = -1;
+        private int dsPonCTagPriority = -1;
+        private int dsPonSTagPriority = -1;
         private int technologyProfileId;
         private String upstreamBandwidthProfile;
         private String downstreamBandwidthProfile;
