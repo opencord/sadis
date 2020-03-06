@@ -44,16 +44,17 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
 
     @Override
     public ObjectNode encode(SubscriberAndDeviceInformation entry, CodecContext context) {
-
+        // UniTagInfoCodec might not be registered in CodecService
+        UniTagInformationCodec uniTagInfoCodec = new UniTagInformationCodec();
         List<ObjectNode> uniTagListNodes = Lists.newArrayList();
         List<UniTagInformation> uniTagList = entry.uniTagList();
         if (uniTagList != null) {
             for (UniTagInformation uniTagInformation : uniTagList) {
-                uniTagListNodes.add(context.encode(uniTagInformation, UniTagInformation.class));
+                uniTagListNodes.add(uniTagInfoCodec.encode(uniTagInformation, context));
             }
         }
-        return context.mapper().createObjectNode()
-                .put(ID, entry.id())
+        ObjectNode jsonNode = context.mapper().createObjectNode();
+        jsonNode.put(ID, entry.id())
                 .put(NAS_PORT_ID, entry.nasPortId())
                 .put(UPLINK_PORT, entry.uplinkPort())
                 .put(SLOT, entry.slot())
@@ -63,7 +64,9 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
                 .put(NAS_ID, entry.nasId())
                 .put(CIRCUIT_ID, (entry.circuitId() == null) ? EMPTY_STRING : entry.circuitId())
                 .put(REMOTE_ID, (entry.remoteId() == null) ? EMPTY_STRING : entry.remoteId())
-                .put(UNI_TAG_LIST, uniTagListNodes.toString());
+                .putArray(UNI_TAG_LIST)
+                .addAll(uniTagListNodes);
+        return jsonNode;
     }
 
     @Override
