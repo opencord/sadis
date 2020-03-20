@@ -24,7 +24,7 @@ import org.onlab.packet.VlanId;
 public final class UniTagInformation {
 
     @JsonProperty(value = "uniTagMatch")
-    private VlanId uniTagMatch = VlanId.NONE;
+    private VlanId uniTagMatch = VlanId.vlanId(VlanId.NO_VID);
 
     @JsonProperty(value = "ponCTag")
     private VlanId ponCTag;
