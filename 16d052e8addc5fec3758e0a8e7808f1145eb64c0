@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcefb9cc_b89694c6",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationCodec.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000381
+      },
+      "writtenOn": "2020-04-07T18:06:49Z",
+      "side": 1,
+      "message": "Out of curiosity, who should be responsible of registering UniTagInfoCodec and why it might not be registered? Wondering if there\u0027s a root cause to fix somewhere else...",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "16d052e8addc5fec3758e0a8e7808f1145eb64c0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
