@@ -22,6 +22,30 @@
       "revId": "16d052e8addc5fec3758e0a8e7808f1145eb64c0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6e59da6_0ffb23d1",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationCodec.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2020-04-07T20:44:28Z",
+      "side": 1,
+      "message": "In Sadis, codecs are registered by the SadisManager when activated. I can try to use the same approach also for the UniTagInfoCodec, it should require just a little update to an internal API.",
+      "parentUuid": "dcefb9cc_b89694c6",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "16d052e8addc5fec3758e0a8e7808f1145eb64c0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
