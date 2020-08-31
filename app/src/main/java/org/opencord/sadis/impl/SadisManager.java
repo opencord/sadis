@@ -76,6 +76,7 @@ public class SadisManager implements SadisService {
         log.info("Started");
     }
 
+    @SuppressWarnings("unchecked")
     private void registerAdapters() {
         internalServices.forEach(service -> {
             registerConfigFactory(service.getConfigFactories());
@@ -94,6 +95,7 @@ public class SadisManager implements SadisService {
         factories.forEach(cfgService::registerConfigFactory);
     }
 
+    @SuppressWarnings("unchecked")
     private void registerCodec(InformationAdapter service) {
         codecService.registerCodec(service.getInformationClass(), service.getCodec());
     }

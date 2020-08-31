@@ -15,6 +15,7 @@
  */
 package org.opencord.sadis.rest;
 
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.onosproject.rest.AbstractWebResource;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -53,6 +54,7 @@ public class SadisWebResource extends AbstractWebResource {
     @GET
     @Path("/subscriber/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response getSubscriber(@PathParam("id") String id) {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<SubscriberAndDeviceInformation> subService =
@@ -73,10 +75,11 @@ public class SadisWebResource extends AbstractWebResource {
       *
       * @return 200 OK
       */
-     @GET
-     @Path("/cache/subscriber/{id}")
-     @Produces(MediaType.APPLICATION_JSON)
-     public Response getSubscriberCache(@PathParam("id") String id) {
+    @GET
+    @Path("/cache/subscriber/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
+    public Response getSubscriberCache(@PathParam("id") String id) {
          SadisService sadisService = get(SadisService.class);
          BaseInformationService<SubscriberAndDeviceInformation> subService =
                  sadisService.getSubscriberInfoService();
@@ -97,6 +100,7 @@ public class SadisWebResource extends AbstractWebResource {
      */
     @DELETE
     @Path("/cache/subscriber/{id}")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response deleteSubscriber(@PathParam("id") String id) {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<SubscriberAndDeviceInformation> subService =
@@ -112,6 +116,7 @@ public class SadisWebResource extends AbstractWebResource {
       */
     @DELETE
     @Path("/cache/subscriber/")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response deleteAllSubscribers() {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<SubscriberAndDeviceInformation> subService =
@@ -123,6 +128,7 @@ public class SadisWebResource extends AbstractWebResource {
     @GET
     @Path("/bandwidthprofile/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response getBandwidthProfile(@PathParam("id") String id) {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<BandwidthProfileInformation> bpService =
@@ -138,6 +144,7 @@ public class SadisWebResource extends AbstractWebResource {
     @GET
     @Path("/cache/bandwidthprofile/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response getBandwidthProfileCache(@PathParam("id") String id) {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<BandwidthProfileInformation> bpService =
@@ -152,6 +159,7 @@ public class SadisWebResource extends AbstractWebResource {
 
     @DELETE
     @Path("/cache/bandwidthprofile/{id}")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response deleteBandwidthProfile(@PathParam("id") String id) {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<BandwidthProfileInformation> bpService =
@@ -162,6 +170,7 @@ public class SadisWebResource extends AbstractWebResource {
 
     @DELETE
     @Path("/cache/bandwidthprofile/")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value="JAXRS_ENDPOINT")
     public Response deleteAllBandwidthProfiles() {
         SadisService sadisService = get(SadisService.class);
         BaseInformationService<BandwidthProfileInformation> bpService =
