@@ -118,7 +118,8 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
             try {
                 result.add(mapper.readValue(entry.toString(), SubscriberAndDeviceInformation.class));
             } catch (IOException e) {
-                log.warn("Unable to parse configuration entry, '{}', error: {}", entry, e.getMessage());
+                log.warn(String.format("Unable to parse configuration entry, '%s', error: %s",
+                         entry, e.getMessage()).replaceAll("[\r\n]", "_"));
             }
         });
 
