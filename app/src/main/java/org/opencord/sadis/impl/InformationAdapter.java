@@ -15,6 +15,7 @@
  */
 package org.opencord.sadis.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -60,9 +61,9 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
             this.log.warn("Configuration not available");
             return;
         }
-        this.log.info("Cache Max Size: {}", cfg.getCacheMaxSize());
-        this.log.info("Cache TTL:      {}", cfg.getCacheTtl().getSeconds());
-        this.log.info("Entries:        {}", cfg.getEntries());
+        this.log.info(String.format("Cache Max Size: %s", cfg.getCacheMaxSize()).replaceAll("[\r\n]", "_"));
+        this.log.info(String.format("Cache TTL:      %s", cfg.getCacheTtl().getSeconds()).replaceAll("[\r\n]", "_"));
+        this.log.info(String.format("Entries:        %s", cfg.getEntries()).replaceAll("[\r\n]", "_"));
 
         configure(cfg);
     }
@@ -91,7 +92,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
                 log.info("url is null, data source is local netcfg data");
             }
         } catch (MalformedURLException mUrlEx) {
-            log.error("Invalid URL specified: {}", mUrlEx);
+            log.error(String.format("Invalid URL specified: %s", mUrlEx).replaceAll("[\r\n]", "_"));
         }
 
         int maximumCacheSeize = cfg.getCacheMaxSize();
@@ -174,6 +175,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
      * String)
      */
     @Override
+    @SuppressFBWarnings(value = "URLCONNECTION_SSRF_FD")
     public T get(String id) {
         Cache<String, T> local;
         synchronized (this) {
@@ -199,7 +201,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
         } else {
             // Augment URL with query parameters
             String urlWithSubId = this.url.replaceAll("%s", id);
-            log.info("Getting data from the remote URL {}", urlWithSubId);
+            log.info(String.format("Getting data from the remote URL %s", urlWithSubId).replaceAll("[\r\n]", "_"));
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, getInformationClass());
@@ -207,10 +209,11 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
                 return info;
             } catch (IOException e) {
                 // TODO use a better http library that allows us to read status code
-                log.debug("Exception while reading remote data {} ", e.getMessage());
+                log.debug(String.format("Exception while reading remote data %s ",
+                          e.getMessage()).replaceAll("[\r\n]", "_"));
             }
         }
-        log.warn("Data not found for id {}", id);
+        log.warn(String.format("Data not found for id %s", id).replaceAll("[\r\n]", "_"));
         return null;
     }
 

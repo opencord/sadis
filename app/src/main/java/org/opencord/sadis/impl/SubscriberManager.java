@@ -68,7 +68,7 @@ public class SubscriberManager extends InformationAdapter<SubscriberAndDeviceInf
     public void registerModule() {
         cache = CacheBuilder.newBuilder().maximumSize(maxiumCacheSize)
                 .expireAfterAccess(cacheEntryTtl, TimeUnit.SECONDS).build();
-        log.info("Cache is {} and this {}", cache, this);
+        log.info(String.format("Cache is %s and this %s", cache, this).replaceAll("[\r\n]", "_"));
         mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         SubscriberAndDeviceInformationConfig config = new SubscriberAndDeviceInformationConfig();
