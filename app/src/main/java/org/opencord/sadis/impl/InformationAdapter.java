@@ -199,7 +199,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
         } else {
             // Augment URL with query parameters
             String urlWithSubId = this.url.replaceAll("%s", id);
-            log.info("Getting data from the remote URL {}", urlWithSubId);
+            log.debug("Getting data from the remote URL {}", urlWithSubId);
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, getInformationClass());
