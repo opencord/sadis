@@ -1,0 +1,84 @@
+{
+	"integration":
+	{
+		"url": "file:src/test/resources/%s",
+		"cache":
+		{
+			"maxsize": 50,
+			"ttl": "PT1m"
+		}
+	},
+
+	"entries":
+	[
+		{
+			"id": "1",
+			"nasPortId": "1/1/2",
+			"uplinkPort": 125,
+			"slot": 3,
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
+			"ipAddress":"10.10.10.10",
+			"nasId":"XXX-NASID",
+			"circuitId":"circuit123",
+			"remoteId":"remote123",
+			"uniTagList": [
+				{
+					"uniTagMatch":100,
+					"ponCTag":"2,",
+					"ponSTag":"2",
+					"usPonCTagPriority":0,
+					"usPonSTagPriority":1,
+					"dsPonCTagPriority":0,
+					"dsPonSTagPriority":1,
+					"technologyProfileId":64,
+					"upstreamBandwidthProfile":"HSA",
+					"downstreamBandwidthProfile":"HSA",
+					"serviceName":"HSIA"
+				}
+			]
+		},
+
+		{
+			"id": "2",
+			"nasPortId": "1/1/2",
+			"uplinkPort": 129,
+			"slot": 4,
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
+			"ipAddress":"1.1.1.1",
+			"nasId":"YYY-NASID",
+			"circuitId":"circuit234",
+			"remoteId":"remote234",
+			"uniTagList": [
+				{
+					"uniTagMatch":100,
+					"ponCTag":"2,",
+					"ponSTag":"2",
+					"usPonCTagPriority":0,
+					"usPonSTagPriority":1,
+					"dsPonCTagPriority":0,
+					"dsPonSTagPriority":1,
+					"technologyProfileId":64,
+					"upstreamBandwidthProfile":"HSA",
+					"downstreamBandwidthProfile":"HSA",
+					"serviceName":"HSIA"
+				},
+				{
+					"uniTagMatch":200,
+					"ponCTag":3,
+					"ponSTag":2,
+					"usPonCTagPriority":0,
+					"usPonSTagPriority":1,
+					"dsPonCTagPriority": 0,
+					"dsPonSTagPriority": 1,
+					"technologyProfileId":65,
+					"upstreamBandwidthProfile":"IPTV",
+					"downstreamBandwidthProfile":"IPTV",
+					"serviceName":"IPTV",
+					"isIgmpRequired": "true",
+					"isDhcpRequired": "true",
+					"configuredMacAddress": "\"ff:aa:dd:cc:bb:ee\""
+				}
+			]
+		}
+	]
+}

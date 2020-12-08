@@ -86,6 +86,7 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
 
     @Test
     public void testRemoteMode() throws Exception {
+
         BaseInformationService<SubscriberAndDeviceInformation> subscriberService = sadis.getSubscriberInfoService();
         config.init(subject, "sadis-remote-mode-test", node("/RemoteConfig.json"), mapper, delegate);
         configListener.event(event);
@@ -106,6 +107,8 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
         config.init(subject, "sadis-remote-mode-test", node("/RemoteConfig.json"), mapper, delegate);
         configListener.event(event);
 
+        service.clearLocalData();
+
         checkGetForExisting(ID3, null, service);
         checkGetForNonExist(ID1, service);
 
@@ -114,6 +117,23 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
 
         checkGetForExisting(ID1, null, service);
         checkGetForNonExist(ID3, service);
+    }
+
+    // test the hybrid mode (both local and remote data in the config)
+    // ids 1 and 2 are local, others are remote
+    @Test
+    public void testHybridMode() throws Exception {
+        BaseInformationService<SubscriberAndDeviceInformation> subscriberService = sadis.getSubscriberInfoService();
+        config.init(subject, "sadis-hybrid-mode-test", node("/HybridSubConfig.json"), mapper, delegate);
+        configListener.event(event);
+
+        // check that I can fetch from remote
+        checkGetForExisting(ID3, entry3, subscriberService);
+        checkGetForExisting(ID4, entry4, subscriberService);
+
+        // check that I can fetch from local
+        checkGetForExisting(ID1, entry1, subscriberService);
+        checkGetForExisting(ID2, entry2, subscriberService);
     }
 
     public boolean checkEquality(BaseInformation localEntry, BaseInformation entry) {

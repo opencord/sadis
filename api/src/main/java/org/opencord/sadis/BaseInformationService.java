@@ -18,6 +18,11 @@ package org.opencord.sadis;
 public interface BaseInformationService<T extends BaseInformation> {
 
     /**
+     * Removes all local stored data.
+     */
+    void clearLocalData();
+
+    /**
      * Removes all cached entries.
      */
     void invalidateAll();

@@ -36,6 +36,7 @@ import org.onosproject.net.config.NetworkConfigRegistry;
 import org.opencord.sadis.BaseInformation;
 import org.opencord.sadis.BaseConfig;
 import org.opencord.sadis.BaseInformationService;
+
 import java.util.Set;
 
 
@@ -80,19 +81,17 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
 
         String url = null;
         try {
-            // if the url is not present then assume data is in netcfg
             if (cfg.getUrl() != null) {
                 url = cfg.getUrl().toString();
-            } else {
-                localCfgData = Maps.newConcurrentMap();
-
-                cfg.getEntries().forEach(entry ->
-                        localCfgData.put(entry.id(), entry));
-                log.info("url is null, data source is local netcfg data");
             }
         } catch (MalformedURLException mUrlEx) {
             log.error("Invalid URL specified: {}", mUrlEx);
         }
+
+        // always load local data
+        localCfgData = Maps.newConcurrentMap();
+        cfg.getEntries().forEach(entry ->
+                localCfgData.put(entry.id(), entry));
 
         int maximumCacheSeize = cfg.getCacheMaxSize();
         long cacheEntryTtl = cfg.getCacheTtl().getSeconds();
@@ -122,6 +121,17 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
             return false;
         }
         return !((url == this.url) || (url != null && url.equals(this.url)));
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.opencord.sadis.SadisService#clearLocalData()
+     */
+    @Override
+    public void clearLocalData() {
+        localCfgData.clear();
     }
 
     /*
@@ -186,32 +196,42 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
         }
 
         /*
-         * Not in cache, if we have a URL configured we can attempt to get it
-         * from there, else check for it in the locally configured data
+         * Not in cache, check for it in the locally configured data,
+         * if it's not there and we have a URL configured
+         * we can attempt to get it from there
          */
-        if (this.url == null) {
-            info = (localCfgData == null) ? null : localCfgData.get(id);
 
-            if (info != null) {
-                local.put(id, info);
-                return info;
+        log.debug("Getting data from local config");
+        info = (localCfgData == null) ? null : localCfgData.get(id);
+
+        if (log.isTraceEnabled()) {
+            if (info == null) {
+                log.trace("Data not found in local config.");
+            } else {
+                log.trace("Found data in local config.");
             }
-        } else {
+        }
+
+        if (info == null && this.url != null) {
             // Augment URL with query parameters
             String urlWithSubId = this.url.replaceAll("%s", id);
             log.debug("Getting data from the remote URL {}", urlWithSubId);
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, getInformationClass());
-                local.put(id, info);
-                return info;
             } catch (IOException e) {
                 // TODO use a better http library that allows us to read status code
                 log.debug("Exception while reading remote data {} ", e.getMessage());
             }
         }
-        log.warn("Data not found for id {}", id);
-        return null;
+
+        if (info != null) {
+            local.put(id, info);
+            return info;
+        } else {
+            log.warn("Data not found for id {}", id);
+            return null;
+        }
     }
 
     public abstract void registerModule();
