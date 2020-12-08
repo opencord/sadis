@@ -349,7 +349,7 @@ public abstract class BaseSadis {
             this.config = config;
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
         @Override
         public <S, C extends Config<S>> C getConfig(final S subject, final Class<C> configClass) {
             return (C) config;
