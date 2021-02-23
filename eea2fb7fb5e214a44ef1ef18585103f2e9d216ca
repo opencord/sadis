@@ -16,6 +16,24 @@
       "revId": "eea2fb7fb5e214a44ef1ef18585103f2e9d216ca",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "010dc26c_aa675336",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-02-23T12:44:55Z",
+      "side": 1,
+      "message": "We change just api-tag in our build. But it is not necessary. I will remove this",
+      "parentUuid": "273d89f6_98cf9e64",
+      "revId": "eea2fb7fb5e214a44ef1ef18585103f2e9d216ca",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
