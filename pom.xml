@@ -38,6 +38,8 @@
         </onos.app.title>
         <onos.app.origin>Open Networking Laboratory</onos.app.origin>
         <onos.app.url>http://opencord.org</onos.app.url>
+        <api-tag>SNAPSHOT</api-tag>
+        <sadis.api.version>5.3.0-${api-tag}</sadis.api.version>
     </properties>
 
     <modules>

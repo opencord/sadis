@@ -28,6 +28,7 @@
 
     <artifactId>sadis-api</artifactId>
     <packaging>bundle</packaging>
+    <version>${sadis.api.version}</version>
 
     <url>http://opencord.org</url>
 
