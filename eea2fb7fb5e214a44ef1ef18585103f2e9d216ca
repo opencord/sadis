@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "273d89f6_98cf9e64",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-23T10:51:50Z",
+      "side": 1,
+      "message": "why do you want these two to be separated ?",
+      "revId": "eea2fb7fb5e214a44ef1ef18585103f2e9d216ca",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
