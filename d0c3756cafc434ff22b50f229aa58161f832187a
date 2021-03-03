@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8bec2ecb_d91774a4",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/BandwidthProfileCodec.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-03-03T11:00:56Z",
+      "side": 1,
+      "message": "I\u0027d like this method to be a bit smarter. If both air and abs are respectively 0 and null we can assume it\u0027s the eir, ebs based format, same happens in the other direction. this way we would avoid outputting the pir and abs to 0 and \"\" and the same por eir and ebs, keeping the input format of Json identical to the output format of this. thoughts ?",
+      "revId": "d0c3756cafc434ff22b50f229aa58161f832187a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
