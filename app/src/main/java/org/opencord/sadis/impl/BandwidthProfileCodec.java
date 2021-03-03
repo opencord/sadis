@@ -25,11 +25,13 @@ public class BandwidthProfileCodec extends JsonCodec<BandwidthProfileInformation
     public ObjectNode encode(BandwidthProfileInformation entry, CodecContext context) {
         return context.mapper().createObjectNode()
                 .put("id", entry.id())
+                .put("pir", entry.peakInformationRate())
+                .put("pbs", (entry.peakBurstSize() == null) ? "" : entry.peakBurstSize().toString())
                 .put("cir", (entry.committedInformationRate()))
                 .put("cbs", (entry.committedBurstSize() == null) ? "" : entry.committedBurstSize().toString())
                 .put("eir", entry.exceededInformationRate())
                 .put("ebs", (entry.exceededBurstSize() == null) ? "" : entry.exceededBurstSize().toString())
-                .put("air", entry.assuredInformationRate());
+                .put("gir", entry.guaranteedInformationRate());
     }
 
 }
