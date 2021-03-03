@@ -23,13 +23,23 @@ import org.opencord.sadis.BandwidthProfileInformation;
 public class BandwidthProfileCodec extends JsonCodec<BandwidthProfileInformation> {
     @Override
     public ObjectNode encode(BandwidthProfileInformation entry, CodecContext context) {
-        return context.mapper().createObjectNode()
+
+        ObjectNode node = context.mapper().createObjectNode()
                 .put("id", entry.id())
                 .put("cir", (entry.committedInformationRate()))
                 .put("cbs", (entry.committedBurstSize() == null) ? "" : entry.committedBurstSize().toString())
-                .put("eir", entry.exceededInformationRate())
-                .put("ebs", (entry.exceededBurstSize() == null) ? "" : entry.exceededBurstSize().toString())
-                .put("air", entry.assuredInformationRate());
+                .put("air", entry.assuredInformationRate())
+                .put("gir", entry.guaranteedInformationRate());
+
+        if (entry.peakInformationRate() == 0 && entry.peakBurstSize() == null) {
+            node.put("eir", entry.exceededInformationRate());
+            node.put("ebs", (entry.exceededBurstSize() == null) ? "" : entry.exceededBurstSize().toString());
+        } else {
+            node.put("pir", entry.peakInformationRate());
+            node.put("pbs", (entry.peakBurstSize() == null) ? "" : entry.peakBurstSize().toString());
+        }
+
+        return node;
     }
 
 }
