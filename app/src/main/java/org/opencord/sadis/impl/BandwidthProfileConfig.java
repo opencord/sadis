@@ -47,8 +47,22 @@ import java.util.List;
  *             "cbs"                         : Long,
  *             "eir"                         : long,
  *             "ebs"                         : Long,
- *             "air"                         : long,
+ *             "gir"                         : long,
  *         }, ...
+ *     ]
+ *
+ *     OR
+ *
+ *     "entries" : [
+ *          {
+ *             "name"                        : string,
+ *             "pir"                         : long,
+ *             "pbs"                         : Long,
+ *             "cir"                         : long,
+ *             "cbs"                         : Long,
+ *             "gir"                         : long,
+ *          },
+ *
  *     ]
  * }
  * </pre>

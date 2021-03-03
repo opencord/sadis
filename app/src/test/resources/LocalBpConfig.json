@@ -12,7 +12,7 @@
       "cbs": 384000,
       "eir": 100000000,
       "ebs": 384000,
-      "air": 100000000
+      "gir": 100000000
     },
     {
       "id": "Home User Speed",
@@ -20,7 +20,47 @@
       "cbs": 200000,
       "eir": 100000000,
       "ebs": 200000,
-      "air": 100000000
+      "gir": 100000000
+    },
+    {
+      "id": "TCONT_TYPE1_100Mbps_Fixed",
+      "pir": 100000,
+      "pbs": 10000,
+      "cir": 0,
+      "cbs": 0,
+      "gir": 100000
+    },
+    {
+      "id": "TCONT_TYPE2_50Mbps_Assured",
+      "pir": 50000,
+      "pbs": 10000,
+      "cir": 50000,
+      "cbs": 10000,
+      "gir": 0
+    },
+    {
+      "id": "TCONT_TYPE3_50Mbps_Assured_100Mbps_Peak",
+      "pir": 100000,
+      "pbs": 10000,
+      "cir": 50000,
+      "cbs": 10000,
+      "gir": 0
+    },
+    {
+      "id": "TCONT_TYPE4_200Mbps_Peak",
+      "pir": 200000,
+      "pbs": 10000,
+      "cir": 0,
+      "cbs": 0,
+      "gir": 0
+    },
+    {
+      "id": "TCONT_TYPE5_100Mbps_Peak_50Mbps_Assured_10Mbps_Fixed",
+      "pir": 100000,
+      "pbs": 10000,
+      "cir": 50000,
+      "cbs": 10000,
+      "gir": 10000
     }
   ]
 }

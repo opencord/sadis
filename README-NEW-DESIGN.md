@@ -137,7 +137,7 @@ To test the related work:
                     "cbs":348000,
                     "eir":10000000,
                     "ebs":348000,
-                    "air":10000000
+                    "gir":10000000
                  },
                  {
                     "id":"User1-Specific",
@@ -145,7 +145,7 @@ To test the related work:
                     "cbs":348000,
                     "eir":20000000,
                     "ebs":348000,
-                    "air":30000000
+                    "gir":30000000
                  }
               ]
            }
@@ -202,7 +202,7 @@ USAGE OF REMOTE SERVER
       "cbs": 384000,
       "eir": 100000000,
       "ebs": 384000,
-      "air": 100000000
+      "gir": 100000000
    }
 
 ```
