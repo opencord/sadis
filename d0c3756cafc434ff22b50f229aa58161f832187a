@@ -16,6 +16,24 @@
       "revId": "d0c3756cafc434ff22b50f229aa58161f832187a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b305c9dc_a45812e5",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/BandwidthProfileCodec.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2021-03-03T11:28:00Z",
+      "side": 1,
+      "message": "makes sense. I updated it.",
+      "parentUuid": "8bec2ecb_d91774a4",
+      "revId": "d0c3756cafc434ff22b50f229aa58161f832187a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
