@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0bf38a5f_1fff53f2",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/BandwidthProfileCodec.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2021-03-04T09:53:42Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "d9445d4a_1df392c2",
+      "revId": "fa0653a7ef4347288c94423eb6202250d3db370f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "194b5e82_7bb0f73c",
         "filename": "app/src/test/java/org/opencord/sadis/impl/BandwidthProfileManagerTest.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2021-03-04T08:14:25Z",
       "side": 1,
       "message": "this builds a json that will never exist, with both pir/pbs and eir/ebs, please have 2 tests.",
+      "revId": "fa0653a7ef4347288c94423eb6202250d3db370f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d3f88b4_8f53c93e",
+        "filename": "app/src/test/java/org/opencord/sadis/impl/BandwidthProfileManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000405
+      },
+      "writtenOn": "2021-03-04T09:53:42Z",
+      "side": 1,
+      "message": "I added if check, I think it will cover both cases. I.e. if pir !\u003d 0, it will set pir/pbs.",
+      "parentUuid": "194b5e82_7bb0f73c",
       "revId": "fa0653a7ef4347288c94423eb6202250d3db370f",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
