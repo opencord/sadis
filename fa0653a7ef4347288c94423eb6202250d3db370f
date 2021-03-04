@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9445d4a_1df392c2",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/BandwidthProfileCodec.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-03-04T08:14:25Z",
+      "side": 1,
+      "message": "please remove this line, shoudl be only at line 36. Also please put back the ID",
+      "revId": "fa0653a7ef4347288c94423eb6202250d3db370f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "194b5e82_7bb0f73c",
+        "filename": "app/src/test/java/org/opencord/sadis/impl/BandwidthProfileManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-03-04T08:14:25Z",
+      "side": 1,
+      "message": "this builds a json that will never exist, with both pir/pbs and eir/ebs, please have 2 tests.",
+      "revId": "fa0653a7ef4347288c94423eb6202250d3db370f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
