@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee2937d5_afce006e",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfileInformation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-16T07:47:11Z",
+      "side": 0,
+      "message": "please leave air in there and insert the gir as a new property",
+      "revId": "952bc26bc777653923d2019cc6cd7cd4f2ffd8c1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
