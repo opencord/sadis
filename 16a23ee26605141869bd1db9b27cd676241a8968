@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16f385a4_1a1e4bb4",
+        "filename": "README-NEW-DESIGN.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-19T20:19:28Z",
+      "side": 1,
+      "message": "Is the unit assumed here correct (bps vs kbps).\nSame comment at other places in the doc.",
+      "revId": "16a23ee26605141869bd1db9b27cd676241a8968",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1f4cd44_48f8d0a1",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfileInformation.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-19T20:19:28Z",
+      "side": 1,
+      "message": "Are we still using this or kept because of some legacy reasons.?\nIn US : pir \u003d gir + cir + eir\nIn DS : pir \u003d cir + eir",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "16a23ee26605141869bd1db9b27cd676241a8968",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a5056e7_33c0149a",
+        "filename": "app/src/test/resources/HighSpeed",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-19T20:19:28Z",
+      "side": 1,
+      "message": "Are you sure this example is correct? The units are expressed in Kbps, but here it seems to be expressed in bps.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "16a23ee26605141869bd1db9b27cd676241a8968",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f949ff66_a30364db",
+        "filename": "app/src/test/resources/LocalBpConfig.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-19T20:19:28Z",
+      "side": 1,
+      "message": "The CIR, GIR units seem to be wrong (in bps when it should be kbps)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 22
+      },
+      "revId": "16a23ee26605141869bd1db9b27cd676241a8968",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
