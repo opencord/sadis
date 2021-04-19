@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "68597d42_6089ec2a",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfileInformation.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-19T23:36:53Z",
+      "side": 1,
+      "message": "Ok, sounds good. Then I would add comment here that this is for backward compatibility reasons and may eventually be deprecated. It creates confusion to have AIR and GIR.",
+      "parentUuid": "9e5261cc_1c61cc8c",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "16a23ee26605141869bd1db9b27cd676241a8968",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a5056e7_33c0149a",
         "filename": "app/src/test/resources/HighSpeed",
         "patchSetId": 7
