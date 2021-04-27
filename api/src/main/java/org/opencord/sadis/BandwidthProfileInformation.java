@@ -130,7 +130,8 @@ public class BandwidthProfileInformation extends BaseInformation {
             return false;
         }
         BandwidthProfileInformation that = (BandwidthProfileInformation) o;
-        return peakInformationRate == that.peakInformationRate &&
+        return Objects.equals(id, that.id) &&
+                peakInformationRate == that.peakInformationRate &&
                 committedInformationRate == that.committedInformationRate &&
                 exceededInformationRate == that.exceededInformationRate &&
                 assuredInformationRate == that.assuredInformationRate &&
@@ -143,7 +144,7 @@ public class BandwidthProfileInformation extends BaseInformation {
     @Override
     public int hashCode() {
 
-        return Objects.hash(peakInformationRate, peakBurstSize, committedInformationRate, committedBurstSize,
+        return Objects.hash(id, peakInformationRate, peakBurstSize, committedInformationRate, committedBurstSize,
                 exceededInformationRate, exceededBurstSize, assuredInformationRate, guaranteedInformationRate);
     }
 
