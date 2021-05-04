@@ -152,6 +152,8 @@ public class BandwidthProfileInformation extends BaseInformation {
     public String toString() {
         final StringBuilder sb = new StringBuilder("BandwidthProfileInformation{");
         sb.append("id=").append(id);
+        sb.append(", committedInformationRate=").append(committedInformationRate);
+        sb.append(", committedBurstSize=").append(committedBurstSize);
         if (peakInformationRate == 0 && peakBurstSize == null) {
             sb.append(", exceededInformationRate=").append(exceededInformationRate);
             sb.append(", exceededBurstSize=").append(exceededBurstSize);
@@ -159,8 +161,6 @@ public class BandwidthProfileInformation extends BaseInformation {
             sb.append(", peakInformationRate=").append(peakInformationRate);
             sb.append(", peakBurstSize=").append(peakBurstSize);
         }
-        sb.append(", committedInformationRate=").append(committedInformationRate);
-        sb.append(", committedBurstSize=").append(committedBurstSize);
         sb.append(", assuredInformationRate=").append(assuredInformationRate);
         sb.append(", guaranteedInformationRate=").append(guaranteedInformationRate);
         sb.append('}');
