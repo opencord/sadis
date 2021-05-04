@@ -4,3 +4,4 @@ target
 .settings
 *.swp
 *.iml
+.idea/
