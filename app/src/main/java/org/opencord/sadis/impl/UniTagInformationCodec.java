@@ -33,6 +33,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
     private static final String TP_ID = "technologyProfileId";
     private static final String US_BP = "upstreamBandwidthProfile";
     private static final String DS_BP = "downstreamBandwidthProfile";
+    private static final String US_OLT_BP = "upstreamOltBandwidthProfile";
+    private static final String DS_OLT_BP = "downstreamOltBandwidthProfile";
     private static final String SN = "serviceName";
     private static final String MAC_LEARN = "enableMacLearning";
     private static final String MAC = "configuredMacAddress";
@@ -60,6 +62,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .put(TP_ID, entry.getTechnologyProfileId())
                 .put(US_BP, entry.getUpstreamBandwidthProfile())
                 .put(DS_BP, entry.getDownstreamBandwidthProfile())
+                .put(US_OLT_BP, entry.getUpstreamOltBandwidthProfile())
+                .put(DS_OLT_BP, entry.getDownstreamOltBandwidthProfile())
                 .put(SN, entry.getServiceName())
                 .put(MAC_LEARN, entry.getEnableMacLearning())
                 .put(MAC, entry.getConfiguredMacAddress())
@@ -94,6 +98,10 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                         json.get(US_BP).asText())
                 .setDownstreamBandwidthProfile(json.get(DS_BP) == null ? EMPTY_BP :
                         json.get(DS_BP).asText())
+                .setUpstreamOltBandwidthProfile(json.get(US_OLT_BP) == null ? EMPTY_BP :
+                        json.get(US_OLT_BP).asText())
+                .setDownstreamOltBandwidthProfile(json.get(DS_OLT_BP) == null ? EMPTY_BP :
+                        json.get(DS_OLT_BP).asText())
                 .setServiceName(json.get(SN) == null ? EMPTY_SN :
                         json.get(SN).asText())
                 .setEnableMacLearning(json.get(MAC_LEARN) == null ? DEFAULT_MAC_LEARN :

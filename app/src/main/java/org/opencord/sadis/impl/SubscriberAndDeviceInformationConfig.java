@@ -62,23 +62,25 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *             "remoteId"                   : string,
  *             "uniTagList": [
  *                  {
- *                  "uniTagMatch"               : int,
- *                  "ponCTag"                   : string,
- *                  "ponSTag"                   : string,
- *                  "usPonCTagPriority"         : int,
- *                  "dsPonCTagPriority"         : int,
- *                  "usPonSTagPriority"         : int,
- *                  "dsPonSTagPriority"         : int,
- *                  "technologyProfileId"       : int,
- *                  "upstreamBandwidthProfile"  : string,
- *                  "downstreamBandwidthProfile": string,
- *                  "enableMacLearning"         : string,
- *                  "configuredDacAddress"      : string,
- *                  "isDhcpRequired"            : string,
- *                  "isIgmpRequired"            : string,
- *                  "serviceName"               : string
+ *                  "uniTagMatch"                   : int,
+ *                  "ponCTag"                       : string,
+ *                  "ponSTag"                       : string,
+ *                  "usPonCTagPriority"             : int,
+ *                  "dsPonCTagPriority"             : int,
+ *                  "usPonSTagPriority"             : int,
+ *                  "dsPonSTagPriority"             : int,
+ *                  "technologyProfileId"           : int,
+ *                  "upstreamBandwidthProfile"      : string,
+ *                  "downstreamBandwidthProfile"    : string,
+ *                  "upstreamOltBandwidthProfile"   : string,
+ *                  "downstreamOltBandwidthProfile" : string,
+ *                  "enableMacLearning"             : string,
+ *                  "configuredDacAddress"          : string,
+ *                  "isDhcpRequired"                : string,
+ *                  "isIgmpRequired"                : string,
+ *                  "serviceName"                   : string
  *                 }
- *                 ]
+ *              ]
  *         }, ...
  *     ]
  * }
@@ -100,6 +102,8 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
     private static final String TP_ID = "technologyProfileId";
     private static final String US_BW = "upstreamBandwidthProfile";
     private static final String DS_BW = "downstreamBandwidthProfile";
+    private static final String US_OLT_BW = "upstreamOltBandwidthProfile";
+    private static final String DS_OLT_BW = "downstreamOltBandwidthProfile";
     private static final String SERVICE_NAME = "serviceName";
     private static final String IS_DHCP_REQ = "isDhcpRequired";
     private static final String IS_IGMP_REQ = "isIgmpRequired";
@@ -176,6 +180,10 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                         : node.get(US_BW).asText())
                 .setDownstreamBandwidthProfile(node.get(DS_BW) == null ? null
                         : node.get(DS_BW).asText())
+                .setUpstreamOltBandwidthProfile(node.get(US_OLT_BW) == null ? null
+                        : node.get(US_OLT_BW).asText())
+                .setDownstreamOltBandwidthProfile(node.get(DS_OLT_BW) == null ? null
+                        : node.get(DS_OLT_BW).asText())
                 .setServiceName(node.get(SERVICE_NAME) == null ? NO_SN :
                         node.get(SERVICE_NAME).asText())
                 .setIsDhcpRequired(node.get(IS_DHCP_REQ) == null ? false : node.get(IS_DHCP_REQ).asBoolean())
