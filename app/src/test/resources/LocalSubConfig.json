@@ -98,6 +98,28 @@
 					"downstreamBandwidthProfile":"HSA"
 				}
 			]
+		},
+		{
+			"id": "6",
+			"nasPortId": "1/1/2",
+			"uplinkPort": 125,
+			"slot": 3,
+			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
+			"ipAddress":"10.10.10.10",
+			"nasId":"XXX-NASID",
+			"circuitId":"circuit123",
+			"remoteId":"remote123",
+			"uniTagList": [
+				{
+					"ponCTag":"2,",
+					"ponSTag":"2",
+					"technologyProfileId":64,
+					"upstreamBandwidthProfile":"HSA",
+					"downstreamBandwidthProfile":"HSA",
+					"upstreamOltBandwidthProfile":"HSA_OLT",
+					"downstreamOltBandwidthProfile":"HSA_OLT"
+				}
+			]
 		}
 	]
 }
