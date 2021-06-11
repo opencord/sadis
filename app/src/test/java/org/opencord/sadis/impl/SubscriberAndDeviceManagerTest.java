@@ -56,10 +56,11 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
 
     private void checkEntriesForSubscriberAndAccessDevice(BaseConfig config) {
         List<SubscriberAndDeviceInformation> entries = config.getEntries();
-        assertEquals(3, entries.size());
+        assertEquals(4, entries.size());
         assertTrue(checkEquality(entry1, entries.get(0)));
         assertTrue(checkEquality(entry2, entries.get(1)));
         assertTrue(checkEquality(entry5, entries.get(2)));
+        assertTrue(checkEquality(entry6, entries.get(3)));
     }
 
     @Test
@@ -70,12 +71,14 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
         checkGetForExisting(ID1, entry1, subscriberService);
         checkGetForExisting(ID2, entry2, subscriberService);
         checkGetForExisting(ID5, entry5, subscriberService);
+        checkGetForExisting(ID6, entry6, subscriberService);
 
         invalidateId(ID1, subscriberService);
         checkFromBoth(ID1, entry1, subscriberService);
 
         invalidateAll(subscriberService);
         checkFromBoth(ID2, entry2, subscriberService);
+        checkFromBoth(ID6, entry6, subscriberService);
     }
 
 

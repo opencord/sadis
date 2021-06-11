@@ -20,8 +20,13 @@ import org.onlab.packet.VlanId;
 import org.onosproject.codec.CodecContext;
 import org.onosproject.codec.JsonCodec;
 import org.opencord.sadis.UniTagInformation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 
     private static final String UNI_TAG_MATCH = "uniTagMatch";
     private static final String PON_CTAG = "ponCTag";
@@ -33,6 +38,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
     private static final String TP_ID = "technologyProfileId";
     private static final String US_BP = "upstreamBandwidthProfile";
     private static final String DS_BP = "downstreamBandwidthProfile";
+    private static final String US_OLT_BP = "upstreamOltBandwidthProfile";
+    private static final String DS_OLT_BP = "downstreamOltBandwidthProfile";
     private static final String SN = "serviceName";
     private static final String MAC_LEARN = "enableMacLearning";
     private static final String MAC = "configuredMacAddress";
@@ -60,6 +67,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .put(TP_ID, entry.getTechnologyProfileId())
                 .put(US_BP, entry.getUpstreamBandwidthProfile())
                 .put(DS_BP, entry.getDownstreamBandwidthProfile())
+                .put(US_OLT_BP, entry.getUpstreamOltBandwidthProfile())
+                .put(DS_OLT_BP, entry.getDownstreamOltBandwidthProfile())
                 .put(SN, entry.getServiceName())
                 .put(MAC_LEARN, entry.getEnableMacLearning())
                 .put(MAC, entry.getConfiguredMacAddress())
@@ -74,6 +83,12 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
         }
 
         UniTagInformation.Builder tagInfoBuilder = new UniTagInformation.Builder();
+        String usBp = json.get(US_BP) == null ? EMPTY_BP :
+                json.get(US_BP).asText();
+        String dsBp = json.get(DS_BP) == null ? EMPTY_BP :
+                json.get(DS_BP).asText();
+        String usOltBp = json.get(US_OLT_BP) == null ? usBp : json.get(US_OLT_BP).asText();
+        String dsOltBp = json.get(DS_OLT_BP) == null ? dsBp : json.get(DS_OLT_BP).asText();
         tagInfoBuilder.setUniTagMatch(json.get(UNI_TAG_MATCH) == null ? VlanId.vlanId(VlanId.NO_VID) :
                 VlanId.vlanId(json.get(UNI_TAG_MATCH).shortValue()))
                 .setPonCTag(json.get(PON_CTAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
@@ -90,10 +105,10 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                         json.get(DS_PON_STAG_PCP).asInt())
                 .setTechnologyProfileId(json.get(TP_ID) == null ? NO_TP :
                         json.get(TP_ID).asInt())
-                .setUpstreamBandwidthProfile(json.get(US_BP) == null ? EMPTY_BP :
-                        json.get(US_BP).asText())
-                .setDownstreamBandwidthProfile(json.get(DS_BP) == null ? EMPTY_BP :
-                        json.get(DS_BP).asText())
+                .setUpstreamBandwidthProfile(usBp)
+                .setDownstreamBandwidthProfile(dsBp)
+                .setUpstreamOltBandwidthProfile(usOltBp)
+                .setDownstreamOltBandwidthProfile(dsOltBp)
                 .setServiceName(json.get(SN) == null ? EMPTY_SN :
                         json.get(SN).asText())
                 .setEnableMacLearning(json.get(MAC_LEARN) == null ? DEFAULT_MAC_LEARN :
@@ -104,7 +119,7 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                         json.get(DHCP_REQ).asBoolean())
                 .setIsIgmpRequired(json.get(IGMP_REQ) == null ? DEFAULT_IGMP_REQ :
                         json.get(IGMP_REQ).asBoolean());
-
+        log.info("Codec UniTagInformation Codec builder returning {}", tagInfoBuilder.build());
         return tagInfoBuilder.build();
     }
 }

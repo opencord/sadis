@@ -29,6 +29,7 @@ import org.onosproject.codec.JsonCodec;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.net.config.ConfigFactory;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.opencord.sadis.UniTagInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,8 +75,10 @@ public class SubscriberManager extends InformationAdapter<SubscriberAndDeviceInf
         SubscriberAndDeviceInformationConfig config = new SubscriberAndDeviceInformationConfig();
         SubscriberAndDeviceInformationConfig.VlanIdDeserializer vlanID = config.new VlanIdDeserializer();
         SubscriberAndDeviceInformationConfig.Ip4AddressDeserializer ip4Address = config.new Ip4AddressDeserializer();
+        SubscriberAndDeviceInformationConfig.UniTagDeserializer uniTagSerializer = config.new UniTagDeserializer();
         module.addDeserializer(VlanId.class, vlanID);
         module.addDeserializer(Ip4Address.class, ip4Address);
+        module.addDeserializer(UniTagInformation.class, uniTagSerializer);
         mapper.registerModule(module);
     }
 

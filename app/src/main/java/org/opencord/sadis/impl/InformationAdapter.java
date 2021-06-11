@@ -227,6 +227,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
 
         if (info != null) {
             local.put(id, info);
+            log.debug("Returning Info {}", info);
             return info;
         } else {
             log.warn("Data not found for id {}", id);

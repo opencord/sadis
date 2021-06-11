@@ -53,6 +53,12 @@ public final class UniTagInformation {
     @JsonProperty(value = "downstreamBandwidthProfile")
     private String downstreamBandwidthProfile;
 
+    @JsonProperty(value = "upstreamOltBandwidthProfile")
+    private String upstreamOltBandwidthProfile;
+
+    @JsonProperty(value = "downstreamOltBandwidthProfile")
+    private String downstreamOltBandwidthProfile;
+
     @JsonProperty(value = "serviceName")
     private String serviceName;
 
@@ -71,12 +77,15 @@ public final class UniTagInformation {
     public UniTagInformation() {
 
     }
-
+    //CHECKSTYLE:OFF
     private UniTagInformation(final VlanId uniTagMatch, final VlanId ponCTag, final VlanId ponSTag,
                               final int usPonCTagPriority, final int usPonSTagPriority,
                               final int dsPonCTagPriority, final int dsPonSTagPriority,
                               final int technologyProfileId,
-                              final String upstreamBandwidthProfile, final String downstreamBandwidthProfile,
+                              final String upstreamBandwidthProfile,
+                              final String downstreamBandwidthProfile,
+                              final String upstreamOltBandwidthProfile,
+                              final String downstreamOltBandwidthProfile,
                               final String serviceName, final boolean enableMacLearning,
                               final String configuredMacAddress, final boolean isDhcpRequired,
                               final boolean isIgmpRequired) {
@@ -90,12 +99,15 @@ public final class UniTagInformation {
         this.technologyProfileId = technologyProfileId;
         this.upstreamBandwidthProfile = upstreamBandwidthProfile;
         this.downstreamBandwidthProfile = downstreamBandwidthProfile;
+        this.upstreamOltBandwidthProfile = upstreamOltBandwidthProfile;
+        this.downstreamOltBandwidthProfile = downstreamOltBandwidthProfile;
         this.serviceName = serviceName;
         this.enableMacLearning = enableMacLearning;
         this.configuredMacAddress = configuredMacAddress;
         this.isDhcpRequired = isDhcpRequired;
         this.isIgmpRequired = isIgmpRequired;
     }
+    //CHECKSTYLE:ON
 
     public final VlanId getUniTagMatch() {
         return uniTagMatch;
@@ -135,6 +147,14 @@ public final class UniTagInformation {
 
     public final String getDownstreamBandwidthProfile() {
         return downstreamBandwidthProfile;
+    }
+
+    public final String getUpstreamOltBandwidthProfile() {
+        return upstreamOltBandwidthProfile;
+    }
+
+    public final String getDownstreamOltBandwidthProfile() {
+        return downstreamOltBandwidthProfile;
     }
 
     public final String getServiceName() {
@@ -212,6 +232,16 @@ public final class UniTagInformation {
                 that.downstreamBandwidthProfile != null) {
             return false;
         }
+        if (upstreamOltBandwidthProfile != null ?
+                !upstreamOltBandwidthProfile.equals(that.upstreamOltBandwidthProfile) :
+                that.upstreamOltBandwidthProfile != null) {
+            return false;
+        }
+        if (downstreamOltBandwidthProfile != null ?
+                !downstreamOltBandwidthProfile.equals(that.downstreamOltBandwidthProfile) :
+                that.downstreamOltBandwidthProfile != null) {
+            return false;
+        }
         return serviceName != null ? serviceName.equals(that.serviceName) : that.serviceName == null;
     }
 
@@ -227,6 +257,8 @@ public final class UniTagInformation {
         result = 31 * result + technologyProfileId;
         result = 31 * result + (upstreamBandwidthProfile != null ? upstreamBandwidthProfile.hashCode() : 0);
         result = 31 * result + (downstreamBandwidthProfile != null ? downstreamBandwidthProfile.hashCode() : 0);
+        result = 31 * result + (upstreamOltBandwidthProfile != null ? upstreamOltBandwidthProfile.hashCode() : 0);
+        result = 31 * result + (downstreamOltBandwidthProfile != null ? downstreamOltBandwidthProfile.hashCode() : 0);
         result = 31 * result + (serviceName != null ? serviceName.hashCode() : 0);
         result = 31 * result + (enableMacLearning ? 1 : 0);
         result = 31 * result + (configuredMacAddress != null ? configuredMacAddress.hashCode() : 0);
@@ -249,6 +281,8 @@ public final class UniTagInformation {
         sb.append(", enableMacLearning=").append(enableMacLearning);
         sb.append(", upstreamBandwidthProfile='").append(upstreamBandwidthProfile).append('\'');
         sb.append(", downstreamBandwidthProfile='").append(downstreamBandwidthProfile).append('\'');
+        sb.append(", upstreamOltBandwidthProfile='").append(upstreamOltBandwidthProfile).append('\'');
+        sb.append(", downstreamOltBandwidthProfile='").append(downstreamOltBandwidthProfile).append('\'');
         sb.append(", serviceName='").append(serviceName).append('\'');
         sb.append(", configuredMacAddress='").append(configuredMacAddress).append('\'');
         sb.append(", isDhcpRequired=").append(isDhcpRequired);
@@ -269,6 +303,8 @@ public final class UniTagInformation {
         private int technologyProfileId;
         private String upstreamBandwidthProfile;
         private String downstreamBandwidthProfile;
+        private String upstreamOltBandwidthProfile;
+        private String downstreamOltBandwidthProfile;
         private String serviceName;
         private boolean enableMacLearning;
         private String configuredMacAddress;
@@ -325,6 +361,16 @@ public final class UniTagInformation {
             return this;
         }
 
+        public final Builder setUpstreamOltBandwidthProfile(final String upstreamOltBandwidthProfile) {
+            this.upstreamOltBandwidthProfile = upstreamOltBandwidthProfile;
+            return this;
+        }
+
+        public final Builder setDownstreamOltBandwidthProfile(final String downstreamOltBandwidthProfile) {
+            this.downstreamOltBandwidthProfile = downstreamOltBandwidthProfile;
+            return this;
+        }
+
         public final Builder setServiceName(final String serviceName) {
             this.serviceName = serviceName;
             return this;
@@ -354,8 +400,10 @@ public final class UniTagInformation {
             return new UniTagInformation(this.uniTagMatch, this.ponCTag,
                     this.ponSTag, this.usPonCTagPriority, this.usPonSTagPriority,
                     this.dsPonCTagPriority, this.dsPonSTagPriority, this.technologyProfileId,
-                    this.upstreamBandwidthProfile, this.downstreamBandwidthProfile, this.serviceName,
-                    this.enableMacLearning, this.configuredMacAddress, this.isDhcpRequired, this.isIgmpRequired);
+                    this.upstreamBandwidthProfile, this.downstreamBandwidthProfile,
+                    this.upstreamOltBandwidthProfile, this.downstreamOltBandwidthProfile,
+                    this.serviceName, this.enableMacLearning,
+                    this.configuredMacAddress, this.isDhcpRequired, this.isIgmpRequired);
         }
     }
 }

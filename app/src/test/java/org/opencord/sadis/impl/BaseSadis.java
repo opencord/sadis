@@ -65,6 +65,7 @@ public abstract class BaseSadis {
     private static final int TECH_PROF_ID_2 = 65;
 
     private static final String HSA = "HSA";
+    private static final String HSA_OLT = "HSA_OLT";
     private static final String IPTV = "IPTV";
     private static final String NAS_PORT_ID = "1/1/2";
 
@@ -107,6 +108,7 @@ public abstract class BaseSadis {
     protected static final String ID3 = "3";
     protected static final String ID4 = "4";
     protected static final String ID5 = "5";
+    protected static final String ID6 = "6";
 
     UniTagInformation ttService1 = new UniTagInformation.Builder()
             .setUniTagMatch(VlanId.vlanId(UNI_TAG_MATCH_1))
@@ -140,6 +142,22 @@ public abstract class BaseSadis {
             .setConfiguredMacAddress(MAC2)
             .build();
 
+    UniTagInformation ttService3 = new UniTagInformation.Builder()
+            .setUniTagMatch(VlanId.vlanId(UNI_TAG_MATCH_1))
+            .setPonCTag(VlanId.vlanId(C_TAG_1))
+            .setPonSTag(VlanId.vlanId(S_TAG_1))
+            .setUsPonCTagPriority(C_TAG_PRIORITY)
+            .setUsPonSTagPriority(S_TAG_PRIORITY)
+            .setDsPonCTagPriority(C_TAG_PRIORITY)
+            .setDsPonSTagPriority(S_TAG_PRIORITY)
+            .setTechnologyProfileId(TECH_PROF_ID_1)
+            .setUpstreamBandwidthProfile(HSA)
+            .setDownstreamBandwidthProfile(HSA)
+            .setUpstreamOltBandwidthProfile(HSA_OLT)
+            .setDownstreamOltBandwidthProfile(HSA_OLT)
+            .setServiceName(HSA)
+            .build();
+
     UniTagInformation attService1 = new UniTagInformation.Builder()
             .setPonCTag(VlanId.vlanId(C_TAG_1))
             .setPonSTag(VlanId.vlanId(S_TAG_2))
@@ -150,6 +168,7 @@ public abstract class BaseSadis {
 
     List<UniTagInformation> uniTagListForTT = Lists.newArrayList(ttService1);
     List<UniTagInformation> uniTagList2ForTT = Lists.newArrayList(ttService1, ttService2);
+    List<UniTagInformation> uniTagList3ForTT = Lists.newArrayList(ttService3);
     List<UniTagInformation> uniTagList3Att = Lists.newArrayList(attService1);
 
     SubscriberAndDeviceInformationBuilder entry1 = SubscriberAndDeviceInformationBuilder.build(ID1, NAS_PORT_ID,
@@ -162,6 +181,8 @@ public abstract class BaseSadis {
             PORT_4, SLOT_4, MAC3, NAS4, IP4, CIRCUIT4, REMOTE4, uniTagList2ForTT);
     SubscriberAndDeviceInformationBuilder entry5 = SubscriberAndDeviceInformationBuilder.build(ID5, NAS_PORT_ID,
             PORT_3, SLOT_3, MAC2, NAS3, IP3, CIRCUIT3, REMOTE3, uniTagList3Att);
+    SubscriberAndDeviceInformationBuilder entry6 = SubscriberAndDeviceInformationBuilder.build(ID6, NAS_PORT_ID,
+            PORT_3, SLOT_3, MAC2, NAS3, IP3, CIRCUIT3, REMOTE3, uniTagList3ForTT);
 
     public void setUp(String localConfig, Class configClass) throws Exception {
         sadis = new SadisManager();
