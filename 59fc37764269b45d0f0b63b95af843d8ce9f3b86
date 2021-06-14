@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8795616_263a484a",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-06-14T13:05:40Z",
+      "side": 1,
+      "message": "please add javadoc for this class and the internal methods.",
+      "revId": "59fc37764269b45d0f0b63b95af843d8ce9f3b86",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffe3f1f8_26b577e0",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-06-14T13:05:40Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we could save us a lot of headaches in the olt app by automatically instantiating these to the US_BW and DS_BW values. in this way there will always be 4 meters and you can make tat assumption in the OLT app.",
+      "revId": "59fc37764269b45d0f0b63b95af843d8ce9f3b86",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
