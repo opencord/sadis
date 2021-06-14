@@ -33,6 +33,24 @@
       "revId": "59fc37764269b45d0f0b63b95af843d8ce9f3b86",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a9bf6f_ca9236fa",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/SubscriberAndDeviceInformationConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-06-14T20:59:37Z",
+      "side": 1,
+      "message": "I tried to do that in OLT app but it definitely makes sense to do it here. I will update here.",
+      "parentUuid": "ffe3f1f8_26b577e0",
+      "revId": "59fc37764269b45d0f0b63b95af843d8ce9f3b86",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
