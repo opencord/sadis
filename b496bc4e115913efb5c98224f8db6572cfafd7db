@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a393c141_14b3ba4c",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-21T12:49:38Z",
+      "side": 1,
+      "message": "Personally, I don\u0027t see any advantage in using this class, if not saving few lines of code on the build() method in the UniTagInfo class. Is this class used somewhere else? If not, and you want to keep this class, I would suggest to make it private to the UniTagInfo class, or simply remove it. The point is that the constructor of the UniTagInfo class is private, even having many parameters won\u0027t affect the usability of that object.",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c67882aa_02090f52",
+        "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-21T12:49:38Z",
+      "side": 1,
+      "message": "Can you simplify this with a single `if(bwProfiles \u003d\u003d null) {...}`? I believe this would improve readability.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 104,
+        "endChar": 69
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
