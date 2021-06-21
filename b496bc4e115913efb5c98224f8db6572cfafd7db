@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "756af817_d5fe7c05",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-06-21T21:12:35Z",
+      "side": 1,
+      "message": "this class is created in order to reduce the parameter size in UniTagInformation class. Since new fields are created for olt bandwidth profiles, it was exceeding the maximum parameter size of a constructor.",
+      "parentUuid": "a393c141_14b3ba4c",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c67882aa_02090f52",
         "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
         "patchSetId": 4
