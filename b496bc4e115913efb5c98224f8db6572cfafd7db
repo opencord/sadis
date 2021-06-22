@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0d954a28_418b3398",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-06-22T15:43:59Z",
+      "side": 1,
+      "message": "I am sorry but I didn\u0027t understand what you are saying. What does passing the builder to a constructor mean? Can you give an example please",
+      "parentUuid": "208c5a9a_b6f49684",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c67882aa_02090f52",
         "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
         "patchSetId": 4
