@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "208c5a9a_b6f49684",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-22T08:10:43Z",
+      "side": 1,
+      "message": "Can\u0027t you directly pass the builder to the constructor? I believe it makes more sense to directly pass the builder at this point, rather than creating such a class.",
+      "parentUuid": "756af817_d5fe7c05",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c67882aa_02090f52",
         "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
         "patchSetId": 4
