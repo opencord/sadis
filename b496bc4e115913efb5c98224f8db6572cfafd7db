@@ -97,6 +97,53 @@
     },
     {
       "key": {
+        "uuid": "1b7fcd3b_036bd4a1",
+        "filename": "api/src/main/java/org/opencord/sadis/BandwidthProfiles.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-22T17:19:52Z",
+      "side": 1,
+      "message": "check my comment on the UniTagInfo class.",
+      "parentUuid": "0d954a28_418b3398",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5f6c7d0_baee9626",
+        "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-22T17:19:52Z",
+      "side": 1,
+      "message": "a single parameter of type Builder",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 88,
+        "endChar": 58
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c67882aa_02090f52",
         "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
         "patchSetId": 4
@@ -113,6 +160,29 @@
         "startChar": 8,
         "endLine": 104,
         "endChar": 69
+      },
+      "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c6f5f7a_98f79a6e",
+        "filename": "api/src/main/java/org/opencord/sadis/UniTagInformation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-06-22T17:19:52Z",
+      "side": 1,
+      "message": "You can pass `this` instead of passing every single element.",
+      "range": {
+        "startLine": 400,
+        "startChar": 41,
+        "endLine": 406,
+        "endChar": 87
       },
       "revId": "b496bc4e115913efb5c98224f8db6572cfafd7db",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
