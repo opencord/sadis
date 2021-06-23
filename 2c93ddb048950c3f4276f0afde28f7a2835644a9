@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d2cc549_0af4533f",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2021-06-23T14:42:03Z",
+      "side": 1,
+      "message": "is this still needed or a leftover from development?",
+      "range": {
+        "startLine": 230,
+        "startChar": 12,
+        "endLine": 230,
+        "endChar": 49
+      },
+      "revId": "2c93ddb048950c3f4276f0afde28f7a2835644a9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
