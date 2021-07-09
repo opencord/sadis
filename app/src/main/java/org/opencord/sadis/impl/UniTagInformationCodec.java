@@ -45,6 +45,7 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
     private static final String MAC = "configuredMacAddress";
     private static final String DHCP_REQ = "isDhcpRequired";
     private static final String IGMP_REQ = "isIgmpRequired";
+    private static final String PPPOE_REQ = "isPppoeRequired";
     private static final int NO_PCP = -1;
     private static final int NO_TP = -1;
     private static final String EMPTY_BP = "";
@@ -53,6 +54,7 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
     private static final String EMPTY_MAC = "";
     private static final boolean DEFAULT_DHCP_REQ = false;
     private static final boolean DEFAULT_IGMP_REQ = false;
+    private static final boolean DEFAULT_PPPOE_REQ = false;
 
     @Override
     public ObjectNode encode(UniTagInformation entry, CodecContext context) {
@@ -73,7 +75,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .put(MAC_LEARN, entry.getEnableMacLearning())
                 .put(MAC, entry.getConfiguredMacAddress())
                 .put(DHCP_REQ, entry.getIsDhcpRequired())
-                .put(IGMP_REQ, entry.getIsIgmpRequired());
+                .put(IGMP_REQ, entry.getIsIgmpRequired())
+                .put(PPPOE_REQ, entry.getIsPppoeRequired());
     }
 
     @Override
@@ -117,7 +120,9 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .setIsDhcpRequired(json.get(DHCP_REQ) == null ? DEFAULT_DHCP_REQ :
                         json.get(DHCP_REQ).asBoolean())
                 .setIsIgmpRequired(json.get(IGMP_REQ) == null ? DEFAULT_IGMP_REQ :
-                        json.get(IGMP_REQ).asBoolean());
+                        json.get(IGMP_REQ).asBoolean())
+                .setIsPppoeRequired(json.get(PPPOE_REQ) == null ? DEFAULT_PPPOE_REQ :
+                        json.get(PPPOE_REQ).asBoolean());
         log.info("Codec UniTagInformation Codec builder returning {}", tagInfoBuilder.build());
         return tagInfoBuilder.build();
     }

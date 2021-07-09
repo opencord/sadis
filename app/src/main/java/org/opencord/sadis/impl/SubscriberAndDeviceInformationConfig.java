@@ -78,6 +78,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *                  "configuredDacAddress"          : string,
  *                  "isDhcpRequired"                : string,
  *                  "isIgmpRequired"                : string,
+ *                  "isPppoeRequired"                : string,
  *                  "serviceName"                   : string
  *                 }
  *              ]
@@ -108,6 +109,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
     private static final String SERVICE_NAME = "serviceName";
     private static final String IS_DHCP_REQ = "isDhcpRequired";
     private static final String IS_IGMP_REQ = "isIgmpRequired";
+    private static final String IS_PPPOE_REQ = "isPppoeRequired";
     private static final String MAC_ADDRESS = "configuredMacAddress";
 
     public List<SubscriberAndDeviceInformation> getEntries() {
@@ -190,6 +192,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                         node.get(SERVICE_NAME).asText())
                 .setIsDhcpRequired(node.get(IS_DHCP_REQ) != null && node.get(IS_DHCP_REQ).asBoolean())
                 .setIsIgmpRequired(node.get(IS_IGMP_REQ) != null && node.get(IS_IGMP_REQ).asBoolean())
+                .setIsPppoeRequired(node.get(IS_PPPOE_REQ) != null && node.get(IS_PPPOE_REQ).asBoolean())
                 .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? MacAddress.NONE.toString() :
                         node.get(MAC_ADDRESS).asText())
                 .build();
