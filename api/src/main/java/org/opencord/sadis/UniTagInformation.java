@@ -74,6 +74,9 @@ public final class UniTagInformation {
     @JsonProperty(value = "isIgmpRequired")
     private boolean isIgmpRequired;
 
+    @JsonProperty(value = "isPppoeRequired")
+    private boolean isPppoeRequired;
+
     public UniTagInformation() {
 
     }
@@ -88,7 +91,7 @@ public final class UniTagInformation {
                               final String downstreamOltBandwidthProfile,
                               final String serviceName, final boolean enableMacLearning,
                               final String configuredMacAddress, final boolean isDhcpRequired,
-                              final boolean isIgmpRequired) {
+                              final boolean isIgmpRequired, final boolean isPppoeRequired) {
         this.uniTagMatch = uniTagMatch;
         this.ponCTag = ponCTag;
         this.ponSTag = ponSTag;
@@ -106,6 +109,7 @@ public final class UniTagInformation {
         this.configuredMacAddress = configuredMacAddress;
         this.isDhcpRequired = isDhcpRequired;
         this.isIgmpRequired = isIgmpRequired;
+        this.isPppoeRequired = isPppoeRequired;
     }
     //CHECKSTYLE:ON
 
@@ -177,6 +181,10 @@ public final class UniTagInformation {
         return isIgmpRequired;
     }
 
+    public final boolean getIsPppoeRequired() {
+        return isPppoeRequired;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -224,6 +232,9 @@ public final class UniTagInformation {
         if (isIgmpRequired != that.isIgmpRequired) {
             return false;
         }
+        if (isPppoeRequired != that.isPppoeRequired) {
+            return false;
+        }
         if (upstreamBandwidthProfile != null ? !upstreamBandwidthProfile.equals(that.upstreamBandwidthProfile) :
                 that.upstreamBandwidthProfile != null) {
             return false;
@@ -264,6 +275,7 @@ public final class UniTagInformation {
         result = 31 * result + (configuredMacAddress != null ? configuredMacAddress.hashCode() : 0);
         result = 31 * result + (isDhcpRequired ? 1 : 0);
         result = 31 * result + (isIgmpRequired ? 1 : 0);
+        result = 31 * result + (isPppoeRequired ? 1 : 0);
         return result;
     }
 
@@ -287,6 +299,7 @@ public final class UniTagInformation {
         sb.append(", configuredMacAddress='").append(configuredMacAddress).append('\'');
         sb.append(", isDhcpRequired=").append(isDhcpRequired);
         sb.append(", isIgmpRequired=").append(isIgmpRequired);
+        sb.append(", isPppoeRequired=").append(isPppoeRequired);
         sb.append('}');
         return sb.toString();
     }
@@ -310,6 +323,7 @@ public final class UniTagInformation {
         private String configuredMacAddress;
         private boolean isDhcpRequired;
         private boolean isIgmpRequired;
+        private boolean isPppoeRequired;
 
         public final Builder setUniTagMatch(final VlanId uniTagMatch) {
             this.uniTagMatch = uniTagMatch;
@@ -396,14 +410,19 @@ public final class UniTagInformation {
             return this;
         }
 
+        public final Builder setIsPppoeRequired(final boolean isPppoeRequired) {
+            this.isPppoeRequired = isPppoeRequired;
+            return this;
+        }
+
         public final UniTagInformation build() {
             return new UniTagInformation(this.uniTagMatch, this.ponCTag,
                     this.ponSTag, this.usPonCTagPriority, this.usPonSTagPriority,
                     this.dsPonCTagPriority, this.dsPonSTagPriority, this.technologyProfileId,
                     this.upstreamBandwidthProfile, this.downstreamBandwidthProfile,
                     this.upstreamOltBandwidthProfile, this.downstreamOltBandwidthProfile,
-                    this.serviceName, this.enableMacLearning,
-                    this.configuredMacAddress, this.isDhcpRequired, this.isIgmpRequired);
+                    this.serviceName, this.enableMacLearning, this.configuredMacAddress,
+                    this.isDhcpRequired, this.isIgmpRequired, this.isPppoeRequired);
         }
     }
 }
