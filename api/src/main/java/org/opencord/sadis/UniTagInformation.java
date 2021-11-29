@@ -18,6 +18,8 @@ package org.opencord.sadis;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.onlab.packet.VlanId;
 
+import java.util.Objects;
+
 /**
  * Represents a unit of information about a service.
  */
@@ -188,16 +190,16 @@ public final class UniTagInformation {
 
         UniTagInformation that = (UniTagInformation) o;
 
-        if (uniTagMatch != that.uniTagMatch) {
+        if (!Objects.equals(uniTagMatch, that.uniTagMatch)) {
             return false;
         }
         if (technologyProfileId != that.technologyProfileId) {
             return false;
         }
-        if (ponCTag != that.ponCTag) {
+        if (!Objects.equals(ponCTag, that.ponCTag)) {
             return false;
         }
-        if (ponSTag != that.ponSTag) {
+        if (!Objects.equals(ponSTag, that.ponSTag)) {
             return false;
         }
         if (usPonCTagPriority != that.usPonCTagPriority) {
@@ -215,7 +217,7 @@ public final class UniTagInformation {
         if (enableMacLearning != that.enableMacLearning) {
             return false;
         }
-        if (configuredMacAddress != that.configuredMacAddress) {
+        if (!Objects.equals(configuredMacAddress, that.configuredMacAddress)) {
             return false;
         }
         if (isDhcpRequired != that.isDhcpRequired) {

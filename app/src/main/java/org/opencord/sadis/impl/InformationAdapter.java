@@ -163,6 +163,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
      * org.opencord.sadis.BaseInformationService#getfromCache(java.lang.
      * String)
      */
+    //TODO remove
     @Override
     public T getfromCache(String id) {
         Cache<String, T> local;
