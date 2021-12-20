@@ -22,12 +22,12 @@
     <parent>
         <groupId>org.onosproject</groupId>
         <artifactId>onos-dependencies</artifactId>
-        <version>2.5.4</version>
+        <version>2.5.5</version>
     </parent>
 
     <groupId>org.opencord</groupId>
     <artifactId>sadis</artifactId>
-    <version>5.5.0</version>
+    <version>5.5.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -38,7 +38,7 @@
         </onos.app.title>
         <onos.app.origin>Open Networking Laboratory</onos.app.origin>
         <onos.app.url>http://opencord.org</onos.app.url>
-        <sadis.api.version>5.5.0</sadis.api.version>
+        <sadis.api.version>5.5.1-SNAPSHOT</sadis.api.version>
     </properties>
 
     <modules>
