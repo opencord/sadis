@@ -90,6 +90,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private static final int NO_PCP = -1;
+    private static final int NO_TP = -1;
     private static final String NO_SN = "";
     private static final String UNI_TAG_MATCH = "uniTagMatch";
     private static final String PON_C_TAG = "ponCTag";
@@ -165,8 +166,10 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
         return new UniTagInformation.Builder()
                 .setUniTagMatch(VlanId.vlanId(node.get(UNI_TAG_MATCH) == null ? VlanId.NO_VID
                         : (short) node.get(UNI_TAG_MATCH).asInt()))
-                .setPonCTag(VlanId.vlanId((short) node.get(PON_C_TAG).asInt()))
-                .setPonSTag(VlanId.vlanId((short) node.get(PON_S_TAG).asInt()))
+                .setPonCTag(node.get(PON_C_TAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
+                                    VlanId.vlanId(node.get(PON_C_TAG).shortValue()))
+                .setPonSTag(node.get(PON_S_TAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
+                                    VlanId.vlanId(node.get(PON_S_TAG).shortValue()))
                 .setUsPonCTagPriority(node.get(US_C_TAG_PCP) == null ? NO_PCP :
                         node.get(US_C_TAG_PCP).asInt())
                 .setUsPonSTagPriority(node.get(US_S_TAG_PCP) == null ? NO_PCP :
@@ -175,9 +178,8 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                         node.get(DS_C_TAG_PCP).asInt())
                 .setDsPonSTagPriority(node.get(DS_S_TAG_PCP) == null ? NO_PCP :
                         node.get(DS_S_TAG_PCP).asInt())
-                .setEnableMacLearning(node.get(MAC_LEARNING) == null ? false :
-                        node.get(MAC_LEARNING).asBoolean())
-                .setTechnologyProfileId(node.get(TP_ID).asInt())
+                .setEnableMacLearning(node.get(MAC_LEARNING) != null && node.get(MAC_LEARNING).asBoolean())
+                .setTechnologyProfileId(node.get(TP_ID) == null ? NO_TP : node.get(TP_ID).asInt())
                 .setUpstreamBandwidthProfile(usBw)
                 .setDownstreamBandwidthProfile(dsBw)
                 .setUpstreamOltBandwidthProfile(node.get(US_OLT_BW) == null ? usBw
@@ -186,8 +188,8 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                         : node.get(DS_OLT_BW).asText())
                 .setServiceName(node.get(SERVICE_NAME) == null ? NO_SN :
                         node.get(SERVICE_NAME).asText())
-                .setIsDhcpRequired(node.get(IS_DHCP_REQ) == null ? false : node.get(IS_DHCP_REQ).asBoolean())
-                .setIsIgmpRequired(node.get(IS_IGMP_REQ) == null ? false : node.get(IS_IGMP_REQ).asBoolean())
+                .setIsDhcpRequired(node.get(IS_DHCP_REQ) != null && node.get(IS_DHCP_REQ).asBoolean())
+                .setIsIgmpRequired(node.get(IS_IGMP_REQ) != null && node.get(IS_IGMP_REQ).asBoolean())
                 .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? MacAddress.NONE.toString() :
                         node.get(MAC_ADDRESS).asText())
                 .build();

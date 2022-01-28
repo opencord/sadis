@@ -81,7 +81,6 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
         if (json == null || !json.isObject()) {
             return null;
         }
-
         UniTagInformation.Builder tagInfoBuilder = new UniTagInformation.Builder();
         String usBp = json.get(US_BP) == null ? EMPTY_BP :
                 json.get(US_BP).asText();
@@ -93,7 +92,7 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 VlanId.vlanId(json.get(UNI_TAG_MATCH).shortValue()))
                 .setPonCTag(json.get(PON_CTAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
                         VlanId.vlanId(json.get(PON_CTAG).shortValue()))
-                .setPonCTag(json.get(PON_STAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
+                .setPonSTag(json.get(PON_STAG) == null ? VlanId.vlanId(VlanId.NO_VID) :
                         VlanId.vlanId(json.get(PON_STAG).shortValue()))
                 .setUsPonCTagPriority(json.get(US_PON_CTAG_PCP) == null ? NO_PCP :
                         json.get(US_PON_CTAG_PCP).asInt())

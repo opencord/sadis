@@ -223,6 +223,7 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
             } catch (IOException e) {
                 // TODO use a better http library that allows us to read status code
                 log.debug("Exception while reading remote data {} ", e.getMessage());
+                log.debug("Exception", e);
             }
         }
 
