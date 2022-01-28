@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c15aaa2b_e025a26f",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2022-01-28T16:32:09Z",
+      "side": 1,
+      "message": "should we consolidate this into a single log message?",
+      "range": {
+        "startLine": 226,
+        "startChar": 16,
+        "endLine": 226,
+        "endChar": 40
+      },
+      "revId": "8a2d25258bebbbdc141c635dc4dec54e915e6b77",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
