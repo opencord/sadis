@@ -15,20 +15,6 @@
  */
 package org.opencord.sadis.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.onlab.packet.Ip4Address;
-import org.onlab.packet.MacAddress;
-import org.onlab.packet.VlanId;
-import org.opencord.sadis.BaseConfig;
-import org.opencord.sadis.SubscriberAndDeviceInformation;
-
-import org.opencord.sadis.UniTagInformation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -36,6 +22,17 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.onlab.packet.Ip4Address;
+import org.onlab.packet.VlanId;
+import org.opencord.sadis.BaseConfig;
+import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.opencord.sadis.UniTagInformation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Configuration options for the Subscriber And Device Information Service.
@@ -75,7 +72,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  *                  "upstreamOltBandwidthProfile"   : string,
  *                  "downstreamOltBandwidthProfile" : string,
  *                  "enableMacLearning"             : string,
- *                  "configuredDacAddress"          : string,
+ *                  "configuredMacAddress"          : string,
  *                  "isDhcpRequired"                : string,
  *                  "isIgmpRequired"                : string,
  *                  "isPppoeRequired"                : string,
@@ -93,6 +90,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
     private static final int NO_PCP = -1;
     private static final int NO_TP = -1;
     private static final String NO_SN = "";
+    private static final String EMPTY_MAC = "";
     private static final String UNI_TAG_MATCH = "uniTagMatch";
     private static final String PON_C_TAG = "ponCTag";
     private static final String PON_S_TAG = "ponSTag";
@@ -193,7 +191,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                 .setIsDhcpRequired(node.get(IS_DHCP_REQ) != null && node.get(IS_DHCP_REQ).asBoolean())
                 .setIsIgmpRequired(node.get(IS_IGMP_REQ) != null && node.get(IS_IGMP_REQ).asBoolean())
                 .setIsPppoeRequired(node.get(IS_PPPOE_REQ) != null && node.get(IS_PPPOE_REQ).asBoolean())
-                .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? MacAddress.NONE.toString() :
+                .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? EMPTY_MAC :
                         node.get(MAC_ADDRESS).asText())
                 .build();
     }
