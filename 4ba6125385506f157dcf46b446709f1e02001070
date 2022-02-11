@@ -16,6 +16,29 @@
       "message": "There is some documentation that I need help with. Have marked them with NEED HELP.\n\nPlease review and thanks for providing any help on the couple of \"NEED HELP\" items.",
       "revId": "4ba6125385506f157dcf46b446709f1e02001070",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34d5aab2_71342ca4",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-02-11T22:26:18Z",
+      "side": 1,
+      "message": "Is this used? If not remove this ?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 73
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
