@@ -84,10 +84,27 @@ If the url is specified the data for the subscribers/devices are picked from the
 
 ##### For a subscriber
 * __id__ - Unique identifier for the subscriber. This should match the name of the logical port name for this subscriber as can be seen from the ONOS `ports` command
-* __cTag__ - C-Tag to be used for this subscriber
-* __sTag__ - S-Tag to be used for this subscriber
 * __nasPortId__ - NAS Port Id to be used for this subscriber; for example in RADIUS messages
 * __circuitId__ - Circuit Id to be used for this subscriber; for example in DHCP messages
+* __uniTagList__ - List of information about the various services and tags for that subscriber
+  * _uniTagMatch_ - The Tag from the CPE to match on
+  * _ponCTag_ - C-Tag to be used for this subscriber
+  * _ponSTag_ - S-Tag to be used for this subscriber
+  * _usPonCTagPriority_ - P-bit value to set on the C-Tag for upstream traffic
+  * _usPonSTagPriority_ - P-bit value to set on the S-Tag for upstream traffic
+  * _dsPonCTagPriority_ - P-bit value to set on the C-Tag for downstream traffic
+  * _dsPonSTagPriority_ - P-bit value to set on the S-Tag for downstream traffic
+  * _technologyProfileId_ - Identifier of the techprofile to be used for the flows with these C and S Tags
+  * _upstreamBandwidthProfile_ - Identifier of profile specifying the upstream bandwidths when using these VLANs
+  * _downstreamBandwidthProfile_ - Identifier of profile specifying the upstream bandwidths when using these VLANs
+  * _upstreamOltBandwidthProfile_ - **?? NEED HELP TO UNDERSTAND THIS**
+  * _downstreamOltBandwidthProfile_ - **?? NEED HELP TO UNDERSTAND THIS**
+  * _serviceName_ - An identifier to identify this specific service
+  * _enableMacLearning_ - Should MAC address be learnt using the DHCP packets
+  * _configuredMacAddress_ - Use this MAC address instead of learning it
+  * _isDhcpRequired_ - Should DHCP traps be installed
+  * _isIgmpRequired_ - Should IGMP traps be installed
+  * _isPppoeRequired_- Should PPPoe traps be installed
 
 ##### For an OLT Device
 * __id__ - Unique identifier for an OLT device. This should match the serial number of the device as can be seen from the ONOS `devices` command
@@ -95,3 +112,39 @@ If the url is specified the data for the subscribers/devices are picked from the
 * __ipAddress__ - IP address of this device
 * __nasId__ - NAS Id to be used for this device; for example in RADIUS messages
 
+In the case of FTTB; the interpretation of the above fields for a subscriber are different. The FTTB services are identified using the below `serviceName` in the UniTagInformation:
+
+* __DPU_MGMT_TRAFFIC__ - This UniTag information is needed for the DPU Management traffic
+* __DPU_ANCP_TRAFFIC__ - This UniTag information is needed for DPU ANCP traffic
+* __FTTB_SUBSCRIBER_TRAFFIC__ - This UniTag information is needed for the DPUs subscriber traffic
+
+##### DPU_MGMT_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_- Would contain the VID_VENDOR_DPU_MGMT. This is the VLAN on which the DPU sends the DPU management traffic.
+* _ponSTag_ - Would contain the VID_NETWORK_DPU_MGMT. This is the VLAN on which the OLT should send to the leaf the DPU management traffic.
+* _usPonSTagPriority_ - Would contain the p-bit the DPU Management traffic needs to be remarked to. If this value is not present there would not be any p-bit re-marking done for the packets.
+* _usPonCTagPriority_ - Would contain the p-bit the DPU Management traffic that needs to be filtered on. If this value is not present there would not be any filtering.
+* _technologyProfileId_ - The profile to use for the DPU Management traffic
+* _upstreamBandwidthProfile_ - The profile to use for upstream bandwidth of DPU Mgmt and ANCP traffic
+* _downstreamBandwidthProfile_ - The profile to use for downstream bandwidth of DPU Mgmt and ANCP traffic
+
+##### DPU_ANCP_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_ - Would contain the VID_VENDOR_ANCP. This is the VLAN on which the DPU sends the ANCP traffic.
+* _ponSTag_ - Would contain the VID_NETWORK_ANCP. This is the VLAN on which the OLT should send to the leaf the ANCP traffic.
+* _usPonSTagPriority_ -  Would contain the p-bit the ANCP needs to be remarked to. If this value is not present there would not be any p-bit re-marking done for the packets.
+
+##### FTTB_SUBSCRIBER_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_ - Would contain the ANP Tag (also could be called as the ingress outer tag)
+* _ponSTag_ - Would contain the S-Tag of the subscriber (also could be called as the egress outer tag, unique within the OLT)
+* _uniTagMatch_ - Would be the VLAN of the inner tag of the subscriber traffic, 4096 in the case of matching to any inner vid (transparent)
+* _technologyProfileId_ - The profile to use for the FTTB subscriber traffic
+* _upstreamBandwidthProfile - The profile to use for upstream bandwidth of FTTB subscriber traffic
+* _downstreamBandwidthProfile_ - The profile to use for downstream bandwidth of FTTB subscriber traffic
