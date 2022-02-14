@@ -39,6 +39,237 @@
       },
       "revId": "4ba6125385506f157dcf46b446709f1e02001070",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9653134_4cb77bc2",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "in case of multi uni these two value are the ones that define the bandwidth profile for the flows on the OLT. it\u0027s always greater then the upstreamBandwidthProfile or downstreamOltBandwidthProfile. These value get defaulted to upstreamBandwidthProfile or downstreamOltBandwidthProfile if not present",
+      "parentUuid": "34d5aab2_71342ca4",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 73
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f99867_a4a05227",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "is different",
+      "range": {
+        "startLine": 115,
+        "startChar": 77,
+        "endLine": 115,
+        "endChar": 80
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f87f82ab_a53061b6",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "repeated useless the DPU",
+      "range": {
+        "startLine": 125,
+        "startChar": 92,
+        "endLine": 125,
+        "endChar": 100
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f12912e_4f32bbfd",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "I prefer the simpler `contains` instead of `would contain` valid for all",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 26
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd98d3f_ef463a59",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "needs to send the DPU management traffic upstream",
+      "range": {
+        "startLine": 126,
+        "startChar": 88,
+        "endLine": 126,
+        "endChar": 139
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc01eaf3_fed9e264",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "the technology profile",
+      "range": {
+        "startLine": 129,
+        "startChar": 26,
+        "endLine": 129,
+        "endChar": 37
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34949fff_b1be9562",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "the bandwidth profile",
+      "range": {
+        "startLine": 130,
+        "startChar": 31,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73396f7c_16d3ba70",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "the bandwidth profile",
+      "range": {
+        "startLine": 131,
+        "startChar": 33,
+        "endLine": 131,
+        "endChar": 44
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6132be_8a4d784e",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "same: use upstream instead of leaf",
+      "range": {
+        "startLine": 138,
+        "startChar": 84,
+        "endLine": 138,
+        "endChar": 124
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfcfceae_d19f4e41",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-14T09:14:28Z",
+      "side": 1,
+      "message": "same, distinguish which profile we are talking about.",
+      "range": {
+        "startLine": 148,
+        "startChar": 26,
+        "endLine": 150,
+        "endChar": 103
+      },
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
