@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cbd8b3d_7996c253",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2022-02-17T15:42:35Z",
+      "side": 1,
+      "message": "What happens if we have 2+ un-recognized fields? I believe this code works in such case, but log will list only first unrecognized parameter, is there a way to improve logging?",
+      "revId": "1e792b48c9270175384c0574ec3bff11f113fbfb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
