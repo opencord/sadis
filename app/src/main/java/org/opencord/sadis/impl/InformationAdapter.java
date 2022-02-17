@@ -15,7 +15,9 @@
  */
 package org.opencord.sadis.impl;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
@@ -220,6 +222,21 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, getInformationClass());
+            } catch (UnrecognizedPropertyException e) {
+                log.warn("Unknown property in remote json: \"{}\". Will attempt parsing again while ignoring " +
+                        "unknown properties", e.getPropertyName());
+                log.debug("Exception while parsing remote json: {}", e.getMessage(), e);
+
+                mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+                try (InputStream io = new URL(urlWithSubId).openStream()) {
+                    info = mapper.readValue(io, getInformationClass());
+                } catch (IOException ex) {
+                    //Json exceptions extend IOException, so everything will be catched here
+                    log.debug("Exception while reading remote data {} ", ex.getMessage(), ex);
+                }
+
+                mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
             } catch (IOException e) {
                 // TODO use a better http library that allows us to read status code
                 log.debug("Exception while reading remote data {} ", e.getMessage(), e);
