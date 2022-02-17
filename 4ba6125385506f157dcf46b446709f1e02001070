@@ -18,6 +18,23 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0f98675_1602c09a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2022-02-17T17:43:18Z",
+      "side": 1,
+      "message": "Have created another review https://gerrit.opencord.org/c/sadis/+/31107, where I have addressed the comments in this review as well along with another change to the Sadis code. There was some problem on my local machine and I could not work on this review. Sorry for the pain.\n\nI will abandon this review",
+      "revId": "4ba6125385506f157dcf46b446709f1e02001070",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34d5aab2_71342ca4",
