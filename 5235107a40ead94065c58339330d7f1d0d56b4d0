@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22a97b02_f16af4c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-17T17:58:59Z",
+      "side": 1,
+      "message": "I think it would be best to move the nniDhcpTrapVid in the uniTagList, because it\u0027s allowed to have multiple trap flows at this point, an also this would be installed upon a specific request",
+      "revId": "5235107a40ead94065c58339330d7f1d0d56b4d0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
