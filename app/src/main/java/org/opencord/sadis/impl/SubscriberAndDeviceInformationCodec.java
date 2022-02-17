@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Lists;
 import org.onlab.packet.Ip4Address;
 import org.onlab.packet.MacAddress;
+import org.onlab.packet.VlanId;
 import org.onosproject.codec.CodecContext;
 import org.onosproject.codec.JsonCodec;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
@@ -39,6 +40,7 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
     private static final String CIRCUIT_ID = "circuitId";
     private static final String REMOTE_ID = "remoteId";
     private static final String UNI_TAG_LIST = "uniTagList";
+    private static final String NNI_DHCP_TRAP_VID = "nniDhcpTrapVid";
     private static final String EMPTY_STRING = "";
     private static final int NO_VALUE = -1;
 
@@ -63,6 +65,7 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
                 .put(NAS_ID, entry.nasId())
                 .put(CIRCUIT_ID, (entry.circuitId() == null) ? EMPTY_STRING : entry.circuitId())
                 .put(REMOTE_ID, (entry.remoteId() == null) ? EMPTY_STRING : entry.remoteId())
+                .put(NNI_DHCP_TRAP_VID, entry.nniDhcpTrapVid().toShort())
                 .put(UNI_TAG_LIST, uniTagListNodes.toString());
     }
 
@@ -83,6 +86,8 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
         info.setNasId(json.get(NAS_ID) == null ? EMPTY_STRING : json.get(NAS_ID).asText());
         info.setCircuitId(json.get(CIRCUIT_ID) == null ? EMPTY_STRING : json.get(CIRCUIT_ID).asText());
         info.setRemoteId(json.get(REMOTE_ID) == null ? EMPTY_STRING : json.get(REMOTE_ID).asText());
+        info.setNniDhcpTrapVid(json.get(NNI_DHCP_TRAP_VID) == null ? VlanId.vlanId(VlanId.NO_VID) :
+        VlanId.vlanId(json.get(NNI_DHCP_TRAP_VID).shortValue()));
 
         if (json.get(HARDWARE_IDENTIFIER) != null) {
             info.setHardwareIdentifier(MacAddress.valueOf(json.get(HARDWARE_IDENTIFIER).asText()));

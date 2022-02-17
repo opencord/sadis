@@ -84,14 +84,73 @@ If the url is specified the data for the subscribers/devices are picked from the
 
 ##### For a subscriber
 * __id__ - Unique identifier for the subscriber. This should match the name of the logical port name for this subscriber as can be seen from the ONOS `ports` command
-* __cTag__ - C-Tag to be used for this subscriber
-* __sTag__ - S-Tag to be used for this subscriber
 * __nasPortId__ - NAS Port Id to be used for this subscriber; for example in RADIUS messages
 * __circuitId__ - Circuit Id to be used for this subscriber; for example in DHCP messages
+* __uniTagList__ - List of information about the various services and tags for that subscriber
+  * _uniTagMatch_ - The Tag from the CPE to match on
+  * _ponCTag_ - C-Tag to be used for this subscriber
+  * _ponSTag_ - S-Tag to be used for this subscriber
+  * _usPonCTagPriority_ - P-bit value to set on the C-Tag for upstream traffic
+  * _usPonSTagPriority_ - P-bit value to set on the S-Tag for upstream traffic
+  * _dsPonCTagPriority_ - P-bit value to set on the C-Tag for downstream traffic
+  * _dsPonSTagPriority_ - P-bit value to set on the S-Tag for downstream traffic
+  * _technologyProfileId_ - Identifier of the techprofile to be used for the flows with these C and S Tags
+  * _upstreamBandwidthProfile_ - Identifier of profile specifying the upstream bandwidths when using these VLANs
+  * _downstreamBandwidthProfile_ - Identifier of profile specifying the upstream bandwidths when using these VLANs
+  * _upstreamOltBandwidthProfile_ - In case of multi UNI this defines the upstream bandwidth profile for the flows on the OLT. It is always greater than the upstreamBandwidthProfile. Defaults to upstreamBandwidthProfile if not present
+  * _downstreamOltBandwidthProfile_ - In case of multi UNI this defines the downstream bandwidth profile for the flows on the OLT. It is always greater than the downstreamOltBandwidthProfile. Defaults to downstreamOltBandwidthProfile if not present
+  * _serviceName_ - An identifier to identify this specific service
+  * _enableMacLearning_ - Should MAC address be learnt using the DHCP packets
+  * _configuredMacAddress_ - Use this MAC address instead of learning it
+  * _isDhcpRequired_ - Should DHCP traps be installed
+  * _isIgmpRequired_ - Should IGMP traps be installed
+  * _isPppoeRequired_- Should PPPoe traps be installed
 
 ##### For an OLT Device
+
 * __id__ - Unique identifier for an OLT device. This should match the serial number of the device as can be seen from the ONOS `devices` command
 * __hardwareIdentifier__ - MAC address for this device
 * __ipAddress__ - IP address of this device
 * __nasId__ - NAS Id to be used for this device; for example in RADIUS messages
+* __nniDhcpTrapVid__ - This is the Vlan Id on which to trap the DHCP packets from the OLT NNI port to the controller. If this value is not present, then DHCP packets are trapped on all the VLANs from the NNI port. Also the `enableDhcpOnNni` and `enableDhcpV4` flags on the *olt app* should be enabled to use this vid on the downstream DHCP trap flows on the NNI port.
 
+In the case of FTTB; the interpretation of the above fields for a subscriber is different. The FTTB services are identified using the below `serviceName` in the UniTagInformation:
+
+* __DPU_MGMT_TRAFFIC__ - This UniTag information is needed for the DPU Management traffic
+* __DPU_ANCP_TRAFFIC__ - This UniTag information is needed for DPU ANCP traffic
+* __FTTB_SUBSCRIBER_TRAFFIC__ - This UniTag information is needed for the DPUs subscriber traffic
+
+##### DPU_MGMT_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_- Contains the VID_VENDOR_DPU_MGMT. This is the VLAN on which the DPU sends management traffic.
+* _ponSTag_ - Contains the VID_NETWORK_DPU_MGMT. This is the VLAN on which the OLT needs to send the DPU management traffic upstream.
+* _usPonSTagPriority_ - Contains the p-bit the DPU Management traffic needs to be remarked to. If this value is not present there would not be any p-bit re-marking done for the packets.
+* _usPonCTagPriority_ - Contains the p-bit the DPU Management traffic that needs to be filtered on. If this value is not present there would not be any filtering.
+* _technologyProfileId_ - The technology profile to use for the DPU Management traffic
+* _upstreamBandwidthProfile_ - The bandwidth profile to use for upstream DPU Mgmt traffic
+* _downstreamBandwidthProfile_ - The bandwidth profile to use for downstream DPU Mgmt traffic
+
+##### DPU_ANCP_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_ - Contains the VID_VENDOR_ANCP. This is the VLAN on which the DPU sends the ANCP traffic.
+* _ponSTag_ - Contains the VID_NETWORK_ANCP. This is the VLAN on which the OLT needs to send the ANCP traffic upstream.
+* _usPonSTagPriority_ -  Contains the p-bit the ANCP needs to be remarked to. If this value is not present there would not be any p-bit re-marking done for the packets.
+* _usPonCTagPriority_ - Contains the p-bit the DPU Management traffic that needs to be filtered on. If this value is not present there would not be any filtering.
+* _technologyProfileId_ - The technology profile to use for the ANCP traffic
+* _upstreamBandwidthProfile_ - The bandwidth profile to use for upstream ANCP traffic
+* _downstreamBandwidthProfile_ - The bandwidth profile to use for downstream ANCP traffic
+
+##### FTTB_SUBSCRIBER_TRAFFIC
+
+The interpretation of the UniTagInformation attributes for this service are as below:
+
+* _ponCTag_ - Contains the ANP Tag (also could be called as the ingress outer tag)
+* _ponSTag_ - Contains the S-Tag of the subscriber (also could be called as the egress outer tag, unique within the OLT)
+* _uniTagMatch_ - Contains the VLAN of the inner tag of the subscriber traffic, 4096 in the case of matching to any inner vid (transparent)
+* _technologyProfileId_ - The technology profile to use for the FTTB subscriber traffic
+* _upstreamBandwidthProfile - The bandwidth profile to use for upstream FTTB subscriber traffic
+* _downstreamBandwidthProfile_ - The bandwidth profile to use for downstream FTTB subscriber traffic

@@ -57,6 +57,7 @@ import java.util.List;
  *             "nasId"                      : string,
  *             "circuitId"                  : string,
  *             "remoteId"                   : string,
+ *             "nniDhcpTrapVid"             : string,
  *             "uniTagList": [
  *                  {
  *                  "uniTagMatch"                   : int,
