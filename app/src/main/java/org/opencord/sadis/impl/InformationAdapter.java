@@ -15,6 +15,9 @@
  */
 package org.opencord.sadis.impl;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -220,6 +223,18 @@ public abstract class InformationAdapter<T extends BaseInformation, K extends Ba
 
             try (InputStream io = new URL(urlWithSubId).openStream()) {
                 info = mapper.readValue(io, getInformationClass());
+            } catch (JsonParseException | JsonMappingException je) {
+                log.warn("Exception while parsing remote json. Will attempt parsing again while ignoring unknown " +
+                        "properties ", je.getMessage(), je);
+                ObjectMapper ignoreMapper = mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                        false);
+
+                try (InputStream io = new URL(urlWithSubId).openStream()) {
+                    info = ignoreMapper.readValue(io, getInformationClass());
+                } catch (IOException e) {
+                    //Json exceptions extend IOException, so everything will be catched here
+                    log.debug("Exception while reading remote data {} ", e.getMessage(), e);
+                }
             } catch (IOException e) {
                 // TODO use a better http library that allows us to read status code
                 log.debug("Exception while reading remote data {} ", e.getMessage(), e);
