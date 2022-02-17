@@ -17,9 +17,12 @@ package org.opencord.sadis;
 
 import org.onlab.packet.Ip4Address;
 import org.onlab.packet.MacAddress;
+import org.onlab.packet.VlanId;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a unit of information about a subscriber or access device.
@@ -49,6 +52,9 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
 
     @JsonProperty(value = "remoteId")
     String remoteId;
+
+    @JsonProperty(value = "nniDhcpTrapVid")
+    VlanId nniDhcpTrapVid = VlanId.vlanId(VlanId.NO_VID);
 
     @JsonProperty(value = "uniTagList")
     List<UniTagInformation> uniTagList;
@@ -120,6 +126,14 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         this.remoteId = remoteId;
     }
 
+    public final VlanId nniDhcpTrapVid() {
+        return this.nniDhcpTrapVid;
+    }
+
+    public final void setNniDhcpTrapVid(final VlanId vid) {
+        this.nniDhcpTrapVid = vid;
+    }
+
     public final List<UniTagInformation> uniTagList() {
         return this.uniTagList;
     }
@@ -148,6 +162,7 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         result = prime + result + (this.circuitId == null ? 0 : this.circuitId.hashCode());
         result = prime + result + (this.remoteId == null ? 0 : this.remoteId.hashCode());
         result = prime + result + (this.uniTagList == null ? 0 : this.uniTagList.hashCode());
+        result = prime + result + (this.nniDhcpTrapVid != null ? this.nniDhcpTrapVid.hashCode() : 0);
         return result;
     }
 
@@ -232,6 +247,9 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         } else if (!this.uniTagList.equals(other.uniTagList)) {
             return false;
         }
+        if (!Objects.equals(this.nniDhcpTrapVid, other.nniDhcpTrapVid)) {
+            return false;
+        }
         return true;
     }
 
@@ -253,6 +271,7 @@ public class SubscriberAndDeviceInformation extends BaseInformation {
         buf.append(",nasId:").append(this.nasId);
         buf.append(",circuitId:").append(this.circuitId);
         buf.append(",remoteId:").append(this.remoteId);
+        buf.append(",nniDhcpTrapVid:").append(this.nniDhcpTrapVid);
         buf.append(",uniTagList:").append(this.uniTagList);
         buf.append(']');
 
