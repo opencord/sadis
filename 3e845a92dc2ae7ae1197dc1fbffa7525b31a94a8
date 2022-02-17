@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d153f2e3_6ca59602",
+        "filename": "app/src/main/java/org/opencord/sadis/impl/InformationAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-17T15:16:00Z",
+      "side": 1,
+      "message": "nit: move this after the warn log, it\u0027s best to have first the important stuff and later the exception.",
+      "revId": "3e845a92dc2ae7ae1197dc1fbffa7525b31a94a8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
