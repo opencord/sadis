@@ -16,6 +16,24 @@
       "message": "What happens if we have 2+ un-recognized fields? I believe this code works in such case, but log will list only first unrecognized parameter, is there a way to improve logging?",
       "revId": "1e792b48c9270175384c0574ec3bff11f113fbfb",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb948e2_a27f4d9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000894
+      },
+      "writtenOn": "2022-02-17T16:01:06Z",
+      "side": 1,
+      "message": "I tested the patch with multiple unknown fields, and only the first one is shown in the warning. I suspect the library stops parsing at the first unknown property, as the exception only exposes one.\nAt the moment I\u0027m not aware of a way to obtain other unknown fields other than doing it with manual parsing, which would defeat the purpose of using the mapper here in my opinion.",
+      "parentUuid": "4cbd8b3d_7996c253",
+      "revId": "1e792b48c9270175384c0574ec3bff11f113fbfb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
