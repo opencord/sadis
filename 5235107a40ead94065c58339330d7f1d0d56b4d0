@@ -16,6 +16,24 @@
       "message": "I think it would be best to move the nniDhcpTrapVid in the uniTagList, because it\u0027s allowed to have multiple trap flows at this point, an also this would be installed upon a specific request",
       "revId": "5235107a40ead94065c58339330d7f1d0d56b4d0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "484e910a_6e5e2837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-02-21T09:29:47Z",
+      "side": 1,
+      "message": "after a discussion with Amit we agreed this being a per OLT configuration in order for the operator to consolidate the traffic from all DPUs under the same VLAN in BNG/upstream network. Will be used in upcoming olt app patchset.",
+      "parentUuid": "22a97b02_f16af4c9",
+      "revId": "5235107a40ead94065c58339330d7f1d0d56b4d0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
