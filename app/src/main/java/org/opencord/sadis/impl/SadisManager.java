@@ -27,6 +27,7 @@ import org.opencord.sadis.BandwidthProfileInformation;
 import org.opencord.sadis.BaseInformationService;
 import org.opencord.sadis.SadisService;
 import org.opencord.sadis.SubscriberAndDeviceInformation;
+import org.opencord.sadis.UniTagInformation;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -72,6 +73,8 @@ public class SadisManager implements SadisService {
         internalServices.add(bandwidthProfileManager);
 
         registerAdapters();
+
+        codecService.registerCodec(UniTagInformation.class, new UniTagInformationCodec());
 
         log.info("Started");
     }

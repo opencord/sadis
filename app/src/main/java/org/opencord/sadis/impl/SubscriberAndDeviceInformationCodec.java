@@ -66,7 +66,7 @@ public class SubscriberAndDeviceInformationCodec extends JsonCodec<SubscriberAnd
                 .put(CIRCUIT_ID, (entry.circuitId() == null) ? EMPTY_STRING : entry.circuitId())
                 .put(REMOTE_ID, (entry.remoteId() == null) ? EMPTY_STRING : entry.remoteId())
                 .put(NNI_DHCP_TRAP_VID, entry.nniDhcpTrapVid().toShort())
-                .put(UNI_TAG_LIST, uniTagListNodes.toString());
+                .putPOJO(UNI_TAG_LIST, uniTagListNodes);
     }
 
     @Override
