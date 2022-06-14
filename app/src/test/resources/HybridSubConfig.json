@@ -24,8 +24,8 @@
 			"uniTagList": [
 				{
 					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"ponCTag":2,
+					"ponSTag":2,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority":0,
@@ -51,8 +51,8 @@
 			"uniTagList": [
 				{
 					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"ponCTag":2,
+					"ponSTag":2,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority":0,
@@ -64,8 +64,8 @@
 				},
 				{
 					"uniTagMatch":200,
-					"ponCTag":3,
-					"ponSTag":2,
+					"ponCTag":2,
+					"ponSTag":3,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority": 0,
@@ -76,7 +76,8 @@
 					"serviceName":"IPTV",
 					"isIgmpRequired": "true",
 					"isDhcpRequired": "true",
-					"configuredMacAddress": "\"ff:aa:dd:cc:bb:ee\""
+					"configuredMacAddress": "ff:aa:dd:cc:bb:ee",
+					"enableMacLearning": "true"
 				}
 			]
 		}

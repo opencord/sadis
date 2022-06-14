@@ -65,6 +65,7 @@ public abstract class BaseSadis {
     private static final int TECH_PROF_ID_2 = 65;
 
     private static final String HSA = "HSA";
+    private static final String HSIA = "HSIA";
     private static final String HSA_OLT = "HSA_OLT";
     private static final String IPTV = "IPTV";
     private static final String NAS_PORT_ID = "1/1/2";
@@ -109,6 +110,7 @@ public abstract class BaseSadis {
     protected static final String ID4 = "4";
     protected static final String ID5 = "5";
     protected static final String ID6 = "6";
+    protected static final String EMPTY = "";
 
     UniTagInformation ttService1 = new UniTagInformation.Builder()
             .setUniTagMatch(VlanId.vlanId(UNI_TAG_MATCH_1))
@@ -121,7 +123,10 @@ public abstract class BaseSadis {
             .setTechnologyProfileId(TECH_PROF_ID_1)
             .setUpstreamBandwidthProfile(HSA)
             .setDownstreamBandwidthProfile(HSA)
-            .setServiceName(HSA)
+            .setServiceName(HSIA)
+            .setConfiguredMacAddress(EMPTY)
+            .setUpstreamOltBandwidthProfile(HSA)
+            .setDownstreamOltBandwidthProfile(HSA)
             .build();
 
     UniTagInformation ttService2 = new UniTagInformation.Builder()
@@ -140,6 +145,8 @@ public abstract class BaseSadis {
             .setIsDhcpRequired(true)
             .setEnableMacLearning(true)
             .setConfiguredMacAddress(MAC2)
+            .setUpstreamOltBandwidthProfile(IPTV)
+            .setDownstreamOltBandwidthProfile(IPTV)
             .build();
 
     UniTagInformation ttService3 = new UniTagInformation.Builder()
@@ -155,15 +162,21 @@ public abstract class BaseSadis {
             .setDownstreamBandwidthProfile(HSA)
             .setUpstreamOltBandwidthProfile(HSA_OLT)
             .setDownstreamOltBandwidthProfile(HSA_OLT)
-            .setServiceName(HSA)
+            .setServiceName(HSIA)
+            .setConfiguredMacAddress(EMPTY)
             .build();
 
     UniTagInformation attService1 = new UniTagInformation.Builder()
+            .setServiceName(EMPTY)
             .setPonCTag(VlanId.vlanId(C_TAG_1))
             .setPonSTag(VlanId.vlanId(S_TAG_2))
             .setTechnologyProfileId(TECH_PROF_ID_1)
             .setUpstreamBandwidthProfile(HSA)
             .setDownstreamBandwidthProfile(HSA)
+            .setUniTagMatch(VlanId.vlanId(VlanId.NO_VID))
+            .setConfiguredMacAddress(EMPTY)
+            .setUpstreamOltBandwidthProfile(HSA)
+            .setDownstreamOltBandwidthProfile(HSA)
             .build();
 
     List<UniTagInformation> uniTagListForTT = Lists.newArrayList(ttService1);

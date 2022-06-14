@@ -16,7 +16,7 @@
       		"usPonCTagPriority":0,
       		"usPonSTagPriority":1,
       		"dsPonCTagPriority":0,
-      		"dsPonSTagPriority":0,
+      		"dsPonSTagPriority":1,
       		"technologyProfileId":64,
       		"upstreamBandwidthProfile":"HSA",
       		"downstreamBandwidthProfile":"HSA",
@@ -24,16 +24,20 @@
       	},
       	{
       		"uniTagMatch":200,
-      		"ponCTag":3,
-      		"ponSTag":2,
+      		"ponCTag":2,
+      		"ponSTag":3,
       		"usPonCTagPriority":0,
       		"usPonSTagPriority":1,
       		"dsPonCTagPriority":0,
-      		"dsPonSTagPriority":0,
+      		"dsPonSTagPriority":1,
       		"technologyProfileId":65,
       		"upstreamBandwidthProfile":"IPTV",
       		"downstreamBandwidthProfile":"IPTV",
-      		"serviceName":"IPTV"
-      	}
+      		"serviceName":"IPTV",
+      	    "isIgmpRequired": "true",
+            "isDhcpRequired": "true",
+      		"configuredMacAddress": "ff:aa:dd:cc:bb:ee",
+            "enableMacLearning": "true"
+        }
       ]
 }

@@ -16,7 +16,7 @@
      		"usPonCTagPriority":0,
      		"usPonSTagPriority":1,
      		"dsPonCTagPriority": 0,
-     		"dsPonSTagPriority": 0,
+     		"dsPonSTagPriority": 1,
      		"technologyProfileId":64,
      		"upstreamBandwidthProfile":"HSA",
      		"downstreamBandwidthProfile":"HSA",

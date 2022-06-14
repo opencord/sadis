@@ -23,8 +23,8 @@
 			"uniTagList": [
 				{
 					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"ponCTag":2,
+					"ponSTag":2,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority":0,
@@ -50,8 +50,8 @@
 			"uniTagList": [
 				{
 					"uniTagMatch":100,
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"ponCTag":2,
+					"ponSTag":2,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority":0,
@@ -63,8 +63,8 @@
 				},
 				{
 					"uniTagMatch":200,
-					"ponCTag":3,
-					"ponSTag":2,
+					"ponCTag":2,
+					"ponSTag":3,
 					"usPonCTagPriority":0,
 					"usPonSTagPriority":1,
 					"dsPonCTagPriority": 0,
@@ -75,24 +75,25 @@
 					"serviceName":"IPTV",
 					"isIgmpRequired": "true",
 					"isDhcpRequired": "true",
-					"configuredMacAddress": "\"ff:aa:dd:cc:bb:ee\""
+					"configuredMacAddress": "ff:aa:dd:cc:bb:ee",
+					"enableMacLearning": "true"
 				}
 			]
 		},
 		{
 			"id": "5",
 			"nasPortId": "1/1/2",
-			"uplinkPort": 125,
-			"slot": 3,
-			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
-			"ipAddress":"10.10.10.10",
-			"nasId":"XXX-NASID",
-			"circuitId":"circuit123",
-			"remoteId":"remote123",
+			"uplinkPort": 130,
+			"slot": 7,
+			"hardwareIdentifier": "ff:aa:dd:cc:bb:ee",
+			"ipAddress":"30.30.30.30",
+			"nasId":"MNO-NASID",
+			"circuitId":"circuit567",
+			"remoteId":"remote567",
 			"uniTagList": [
 				{
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"ponCTag":2,
+					"ponSTag":3,
 					"technologyProfileId":64,
 					"upstreamBandwidthProfile":"HSA",
 					"downstreamBandwidthProfile":"HSA"
@@ -102,22 +103,28 @@
 		{
 			"id": "6",
 			"nasPortId": "1/1/2",
-			"uplinkPort": 125,
-			"slot": 3,
-			"hardwareIdentifier": "aa:bb:cc:dd:ee:ff",
-			"ipAddress":"10.10.10.10",
-			"nasId":"XXX-NASID",
-			"circuitId":"circuit123",
-			"remoteId":"remote123",
+			"uplinkPort": 130,
+			"slot": 7,
+			"hardwareIdentifier": "ff:aa:dd:cc:bb:ee",
+			"ipAddress":"30.30.30.30",
+			"nasId":"MNO-NASID",
+			"circuitId":"circuit567",
+			"remoteId":"remote567",
 			"uniTagList": [
 				{
-					"ponCTag":"2,",
-					"ponSTag":"2",
+					"serviceName": "HSIA",
+					"uniTagMatch": "100",
+					"ponCTag":2,
+					"ponSTag":2,
 					"technologyProfileId":64,
 					"upstreamBandwidthProfile":"HSA",
 					"downstreamBandwidthProfile":"HSA",
 					"upstreamOltBandwidthProfile":"HSA_OLT",
-					"downstreamOltBandwidthProfile":"HSA_OLT"
+					"downstreamOltBandwidthProfile":"HSA_OLT",
+					"usPonCTagPriority":0,
+					"usPonSTagPriority":1,
+					"dsPonCTagPriority": 0,
+					"dsPonSTagPriority": 1
 				}
 			]
 		}

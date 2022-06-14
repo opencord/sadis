@@ -19,4 +19,4 @@
  * and make it available to other services / applications within the ONOS/CORD
  * infrastructure.
  */
-package org.opencord.sadis;
+package org.opencord.sadis.impl;

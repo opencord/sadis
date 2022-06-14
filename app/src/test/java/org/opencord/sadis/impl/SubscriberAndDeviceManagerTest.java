@@ -141,7 +141,7 @@ public class SubscriberAndDeviceManagerTest extends BaseSadis {
 
     public boolean checkEquality(BaseInformation localEntry, BaseInformation entry) {
         SubscriberAndDeviceInformation sub = (SubscriberAndDeviceInformation) localEntry;
-        SubscriberAndDeviceInformation other = (SubscriberAndDeviceInformation) localEntry;
+        SubscriberAndDeviceInformation other = (SubscriberAndDeviceInformation) entry;
 
         if (other == null) {
             return false;
