@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9521aa9_f5980d16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-01-09T18:23:52Z",
+      "side": 1,
+      "message": "Bump pom.xml version to 5.10-SNAPSHOT for non-release activity",
+      "revId": "8e26f4c72f9702f6b4d13d260b8e922e4e957d7b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
