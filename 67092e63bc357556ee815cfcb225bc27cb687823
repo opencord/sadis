@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b0afef_e1ab7bed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-06-04T03:24:21Z",
+      "side": 1,
+      "message": "v5.11.0 uploaded to maven central, merge to revert version back to *-SNAPSHOT",
+      "revId": "67092e63bc357556ee815cfcb225bc27cb687823",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
