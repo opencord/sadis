@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1380d52b_8c03f0b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-06-08T14:24:55Z",
+      "side": 1,
+      "message": "New release build, lingering maven plugins (jackson-*) upgraded in api/pom.xml",
+      "revId": "d6e47fae7d900e1330c01cbaea298d2f2829a911",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
