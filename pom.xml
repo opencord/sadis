@@ -27,7 +27,7 @@
 
     <groupId>org.opencord</groupId>
     <artifactId>sadis</artifactId>
-    <version>5.12.2</version>
+    <version>5.12.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -38,7 +38,7 @@
         </onos.app.title>
         <onos.app.origin>Open Networking Laboratory</onos.app.origin>
         <onos.app.url>http://opencord.org</onos.app.url>
-        <sadis.api.version>5.12.2</sadis.api.version>
+        <sadis.api.version>5.12.3-SNAPSHOT</sadis.api.version>
     </properties>
 
     <modules>
