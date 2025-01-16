@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.opencord</groupId>
         <artifactId>sadis</artifactId>
-        <version>5.12.3-SNAPSHOT</version>
+        <version>5.12.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
